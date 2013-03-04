@@ -11,8 +11,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="118dp"
-        android:layout_marginLeft="33dp"
+        android:layout_marginBottom="151dp"
+        android:layout_marginLeft="34dp"
         android:text="JOURNAL" />
+
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="Exit" />
 
 </RelativeLayout>

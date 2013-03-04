@@ -2,7 +2,11 @@
 <resources>
 
     <string name="app_name">NoPainApp</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="erroremptytext">Please enter text in the textview above</string>
+    <string name="errorinvalidtext">Invalid Text Entered</string>
+    <string name="EntrySaved">The text is saved.</string>
+    <string name="Cameranotsupported">Device does not support Camera.</string>    
+    
 
 </resources>
