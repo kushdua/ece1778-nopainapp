@@ -4,4 +4,15 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity" >
 
+    <Button
+        android:id="@+id/journal"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="118dp"
+        android:layout_marginLeft="33dp"
+        android:text="JOURNAL" />
+
 </RelativeLayout>
