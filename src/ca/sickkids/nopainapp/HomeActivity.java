@@ -10,13 +10,14 @@ import android.widget.Button;
 public class HomeActivity extends Activity {
 
 	private Button journal = null, exit = null;
+	public static Activity activity = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		addListenerOnButton();
-
+		activity=this;
 	}
 	
 	/*
