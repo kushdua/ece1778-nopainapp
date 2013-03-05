@@ -6,7 +6,20 @@
     <string name="erroremptytext">Please enter text in the textview above</string>
     <string name="errorinvalidtext">Invalid Text Entered</string>
     <string name="EntrySaved">The text is saved.</string>
-    <string name="Cameranotsupported">Device does not support Camera.</string>    
+    <string name="Cameranotsupported">Device does not support Camera.</string>
+    <string name="lblButtonJournal">Journal</string>
+    <string name="lblButtonExit">Exit</string>
+    <string name="lblButtonJournalVideoText">Video Journal</string>
+    <string name="lblButtonDone">Done</string>
+    <string name="lblButtonJournalViewVideo">View Video</string>
+    <string name="lblButtonJournalTextJournal">Text Journal</string>
+    <string name="lblButtonJournalTalkAboutYourExperiences">Talk about your experiences</string>
+    <string name="lblButtonGoals">Goals</string>
+    <string name="lblButtonSocialNetwork">Social Network</string>
+    <string name="lblButtonCalendar">Calendar</string>
+    <string name="lblButtonVisualizeResults">Results</string>
+    <string name="lblButtonSettings">Settings</string>
+    <string name="lblSickKidsLogoContentDescription">SickKids logo</string>    
     
 
 </resources>

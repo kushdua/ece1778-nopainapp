@@ -11,42 +11,42 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="92dp"
         android:ems="10"
-        android:text="Talk about your experiences" />
+        android:text="@string/lblButtonJournalTalkAboutYourExperiences" />
 
     <Button
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/multiAutoCompleteTextView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:text="Text Journal" />
+        android:text="@string/lblButtonJournalTextJournal" />
 
     <Button
-        android:id="@+id/video"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/text"
-        android:layout_below="@+id/text"
-        android:layout_marginTop="17dp"
-        android:text="Video Journal" />
-
-    <Button
-        android:id="@+id/done"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnDone"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="37dp"
-        android:text="Done" />
+        android:text="@string/lblButtonDone" />
 
     <Button
-        android:id="@+id/view"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnVideo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/done"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp"
-        android:text="View Video" />
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnText"
+        android:layout_marginTop="14dp"
+        android:text="@string/lblButtonJournalVideoText" />
+
+    <Button
+        android:id="@+id/btnView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnDone"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="16dp"
+        android:text="@string/lblButtonJournalViewVideo" />
 
 </RelativeLayout>

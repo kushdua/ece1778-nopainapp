@@ -1,27 +1,59 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".HomeActivity" >
+
+    <Button
+        android:id="@+id/btnCalendar"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lblButtonCalendar" />
+
+    <Button
+        android:id="@+id/btnGoals"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lblButtonGoals" />
+
+    <Button
+        android:id="@+id/btnSocialNetwork"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lblButtonSocialNetwork" />
 
     <Button
         android:id="@+id/journal"
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="151dp"
-        android:layout_marginLeft="34dp"
-        android:text="JOURNAL" />
+        android:layout_gravity="center"
+        android:text="@string/lblButtonJournal" />
 
     <Button
-        android:id="@+id/exit"
+        android:id="@+id/btnSettings"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lblButtonSettings" />
+
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/lblButtonExit" />
+
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:text="Exit" />
+        android:contentDescription="@string/lblSickKidsLogoContentDescription"
+        android:src="@drawable/sickkids_logo" />
 
-</RelativeLayout>
+</LinearLayout>

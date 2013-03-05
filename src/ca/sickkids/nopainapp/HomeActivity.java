@@ -36,7 +36,7 @@ public class HomeActivity extends Activity {
     	
     	
     	//EXIT Button Handler
-    	exit = (Button) findViewById(R.id.exit);
+    	exit = (Button) findViewById(R.id.btnExit);
     	exit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

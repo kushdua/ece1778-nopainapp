@@ -42,10 +42,10 @@ public class Journaling extends Activity{
     public void addListenerOnButton()
     {	
     	talkabout=(EditText) findViewById(R.id.multiAutoCompleteTextView1);
-		Jvideo = (Button) findViewById(R.id.video);
-		Jtext = (Button) findViewById(R.id.text);
-    	done = (Button) findViewById(R.id.done);
-    	view = (Button) findViewById(R.id.view);
+		Jvideo = (Button) findViewById(R.id.btnVideo);
+		Jtext = (Button) findViewById(R.id.btnText);
+    	done = (Button) findViewById(R.id.btnDone);
+    	view = (Button) findViewById(R.id.btnView);
 
 		
 		//Text Journal button click handler

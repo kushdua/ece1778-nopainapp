@@ -1,5 +1,4 @@
 <resources>
-
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -11,10 +10,11 @@
             backward-compatibility can go here.
         -->
     </style>
-
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-
+    <color name="appBackground">#009fd4</color>
+    <color name="red">#ff0000</color>
+    <color name="lightgrey">#e8e8e8</color>
 </resources>
