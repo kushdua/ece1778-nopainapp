@@ -29,6 +29,8 @@ public class Journaling extends Activity{
 	private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
 	private VideoView mVideoView;
 	private Uri mVideoUri;
+	private static String root;
+
 
 	
 	
@@ -156,15 +158,17 @@ public class Journaling extends Activity{
 	    // To be safe, you should check that the SDCard is mounted
 	    // using Environment.getExternalStorageState() before doing this.
 
-	    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-	              Environment.DIRECTORY_PICTURES), "MyCameraApp");
+        root = Environment.getExternalStorageDirectory().getPath();
+        root +="/DCIM/";
+        
+	    File mediaStorageDir = new File(root+"NoPainVideos");
 	    // This location works best if you want the created images to be shared
 	    // between applications and persist after your app has been uninstalled.
 
 	    // Create the storage directory if it does not exist
 	    if (! mediaStorageDir.exists()){
 	        if (! mediaStorageDir.mkdirs()){
-	            Log.d("MyCameraApp", "failed to create directory");
+	            Log.d("NoPainVideos", "failed to create directory");
 	            return null;
 	        }
 	    }
@@ -188,11 +192,11 @@ public class Journaling extends Activity{
 	
 	@SuppressLint("NewApi")
 	private boolean ifcamera()	{
-		int numCameras = Camera.getNumberOfCameras();
-		if (numCameras > 0) {
+		//int numCameras = Camera.getNumberOfCameras();
+		//if (numCameras > 0) {
 		  return true;
-		}
-		return false;
+		//}
+		//return false;
 	}
 	
     public void clearInputs()
