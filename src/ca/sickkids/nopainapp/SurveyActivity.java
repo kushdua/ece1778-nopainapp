@@ -9,15 +9,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class SurveyActivity extends Activity {
+public class SurveyActivity extends Activity implements OnItemSelectedListener {
 	private int currQuestion = 1;
 	private static final int MAX_QUESTION_NUMBER = 9;
 	private ArrayList<String> answers = new ArrayList<String>();
@@ -30,6 +33,7 @@ public class SurveyActivity extends Activity {
 	private Button prevButton = null;
 	private Button nextButton = null;
 	private ProgressBar surveyProgress = null;
+	private EditText otherTextField = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +45,11 @@ public class SurveyActivity extends Activity {
 		painBar = (SeekBar) findViewById(R.id.painBar);
 		painBarContainer = (LinearLayout) findViewById(R.id.ProgressLabeledLayout);
 		choicesSpinner = (Spinner) findViewById(R.id.choiceSpinner);
+		choicesSpinner.setOnItemSelectedListener(this);
 		prevButton = (Button) findViewById(R.id.btnPrev);
 		nextButton = (Button) findViewById(R.id.btnNext);
 		surveyProgress = (ProgressBar) findViewById(R.id.surveyProgress);
+		otherTextField = (EditText) findViewById(R.id.textOtherField);
 		
 		for(int i=0; i<MAX_QUESTION_NUMBER; i++)
 		{
@@ -81,7 +87,14 @@ public class SurveyActivity extends Activity {
 		}
 		else if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==5 || currQuestion==6 || currQuestion==7 || currQuestion==8)
 		{
-			answers.set(currQuestion-1, choicesSpinner.getSelectedItem().toString());
+			if(otherTextField.getVisibility()==View.VISIBLE)
+			{
+				answers.set(currQuestion-1, otherTextField.getText().toString());
+			}
+			else
+			{
+				answers.set(currQuestion-1, choicesSpinner.getSelectedItem().toString());
+			}
 		}
 		
 		//Update question header/contents
@@ -89,6 +102,7 @@ public class SurveyActivity extends Activity {
 		
 		ArrayAdapter<CharSequence> adapter = null;
 		
+		//TODO: Include other field if so selected in q 5/7?
 		switch(nextQuestion)
 		{
 			default:
@@ -152,6 +166,7 @@ public class SurveyActivity extends Activity {
 			}
 			painBarContainer.setVisibility(View.VISIBLE);
 			choicesSpinner.setVisibility(View.INVISIBLE);
+			otherTextField.setVisibility(View.INVISIBLE);
 			storedAnswer = answers.get(nextQuestion-1).toString();
 			//Log.w("INFO","Loading " + storedAnswer + " at position " + (nextQuestion-1));
 			if(storedAnswer.compareTo("")==0 || storedAnswer.compareTo("0")==0)
@@ -182,11 +197,23 @@ public class SurveyActivity extends Activity {
 				arr=getResources().getStringArray(R.array.q6aMedicationsAnswers);
 			}
 
+			boolean setSelection=false;
 			for(int i=0; i<arr.length; i++)
 			{
 				if(storedAnswer.compareTo(arr[i])==0)
 				{
 					choicesSpinner.setSelection(i);
+					setSelection=true;
+				}
+			}
+			
+			if(!setSelection)
+			{
+				if(storedAnswer.compareTo("")!=0)
+				{
+					choicesSpinner.setSelection(arr.length-1);
+					otherTextField.setVisibility(View.VISIBLE);
+					otherTextField.setText(storedAnswer);
 				}
 			}
 		}
@@ -247,4 +274,25 @@ public class SurveyActivity extends Activity {
 			}
 		}
     }
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int pos,
+			long id) {
+		// TODO Auto-generated method stub
+		String selected = parent.getItemAtPosition(pos).toString();
+		if(selected.compareTo("Other (please list)")==0)
+		{
+			otherTextField.setVisibility(View.VISIBLE);
+			otherTextField.requestFocus();
+		}
+		else
+		{
+			otherTextField.setVisibility(View.INVISIBLE);
+		}
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		//Nothing to be done
+	}
 }

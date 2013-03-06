@@ -61,6 +61,7 @@ public final class R {
     }
     public static final class integer {
         public static final int maxProgressValue=0x7f040000;
+        public static final int textMaxLines=0x7f040001;
     }
     public static final class layout {
         public static final int activity_home=0x7f030000;
