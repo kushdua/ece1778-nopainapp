@@ -22,14 +22,14 @@ public final class R {
     public static final class id {
         public static final int LinearLayout1=0x7f080000;
         public static final int btnCalendar=0x7f080001;
-        public static final int btnDone=0x7f08000a;
+        public static final int btnDone=0x7f080009;
         public static final int btnExit=0x7f080006;
         public static final int btnGoals=0x7f080002;
         public static final int btnSettings=0x7f080005;
         public static final int btnSocialNetwork=0x7f080003;
-        public static final int btnText=0x7f080009;
-        public static final int btnVideo=0x7f08000b;
-        public static final int btnView=0x7f08000c;
+        public static final int btnText=0x7f08000c;
+        public static final int btnVideo=0x7f08000a;
+        public static final int btnView=0x7f08000b;
         public static final int gallery1=0x7f08000d;
         public static final int imageView1=0x7f080007;
         public static final int journal=0x7f080004;

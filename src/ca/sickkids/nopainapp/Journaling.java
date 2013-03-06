@@ -30,9 +30,6 @@ public class Journaling extends Activity{
 	private VideoView mVideoView;
 	private Uri mVideoUri;
 	private static String root;
-
-
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -192,11 +189,11 @@ public class Journaling extends Activity{
 	
 	@SuppressLint("NewApi")
 	private boolean ifcamera()	{
-		//int numCameras = Camera.getNumberOfCameras();
-		//if (numCameras > 0) {
+		int numCameras = Camera.getNumberOfCameras();
+		if (numCameras > 0) {
 		  return true;
-		//}
-		//return false;
+		}
+		return false;
 	}
 	
     public void clearInputs()

@@ -16,17 +16,7 @@
         android:layout_marginTop="84dp"
         android:ems="10"
         android:text="@string/lblButtonJournalTalkAboutYourExperiences" >
-
-        <requestFocus />
     </MultiAutoCompleteTextView>
-
-    <Button
-        android:id="@+id/btnText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/multiAutoCompleteTextView1"
-        android:text="@string/lblButtonJournalTextJournal" />
 
     <Button
         android:id="@+id/btnDone"
@@ -45,12 +35,20 @@
         android:text="@string/lblButtonJournalVideoText" />
 
     <Button
+        android:id="@+id/btnText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/multiAutoCompleteTextView1"
+        android:layout_marginTop="14dp"
+        android:text="@string/lblButtonJournalTextJournal" />
+
+    <Button
         android:id="@+id/btnView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/btnText"
-        android:layout_marginTop="16dp"
         android:text="@string/lblButtonJournalViewVideo" />
 
 </RelativeLayout>
