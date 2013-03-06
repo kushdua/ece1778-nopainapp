@@ -45,7 +45,6 @@ public final class R {
         public static final int btnVideo=0x7f0a000d;
         public static final int btnView=0x7f0a000e;
         public static final int choiceSpinner=0x7f0a001c;
-        public static final int gallery1=0x7f0a001d;
         public static final int imageView1=0x7f0a0009;
         public static final int journal=0x7f0a0003;
         public static final int journalGallery=0x7f0a000a;
@@ -58,9 +57,11 @@ public final class R {
         public static final int painBar=0x7f0a001a;
         public static final int survey=0x7f0a0002;
         public static final int surveyProgress=0x7f0a0014;
+        public static final int textOtherField=0x7f0a001d;
     }
     public static final class integer {
         public static final int maxProgressValue=0x7f040000;
+        public static final int textMaxLines=0x7f040001;
     }
     public static final class layout {
         public static final int activity_home=0x7f030000;
@@ -68,7 +69,6 @@ public final class R {
         public static final int journaling=0x7f030002;
         public static final int social_network_activity=0x7f030003;
         public static final int survey_activity=0x7f030004;
-        public static final int videogallery=0x7f030005;
     }
     public static final class menu {
         public static final int activity_home=0x7f090000;
