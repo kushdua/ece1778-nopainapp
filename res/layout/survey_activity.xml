@@ -4,10 +4,10 @@
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_marginLeft="2dp"
     android:layout_marginRight="2dp"
-    tools:context=".SurveyActivity">
+    android:orientation="vertical"
+    tools:context=".SurveyActivity" >
 
     <TextView
         android:id="@+id/lblQuestionHeader"
@@ -104,5 +104,18 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/lblQuestionContents"
         android:layout_marginTop="32dp" />
+
+    <EditText
+        android:id="@+id/textOtherField"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:visibility="invisible" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

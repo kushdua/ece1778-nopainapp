@@ -1,23 +1,21 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
- android:layout_height="wrap_content" 
-  android:layout_width="fill_parent">
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="422dp" >
 
-    <MultiAutoCompleteTextView
+    <EditText
         android:id="@+id/multiAutoCompleteTextView1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="84dp"
         android:ems="10"
+        android:maxLines="@integer/textMaxLines"
+        android:minLines="@integer/textMaxLines"
         android:text="@string/lblButtonJournalTalkAboutYourExperiences" >
 
-    </MultiAutoCompleteTextView>
+    </EditText>
 
     <Button
         android:id="@+id/btnDone"
@@ -53,4 +51,3 @@
         android:text="@string/lblButtonJournalViewVideo" />
 
 </RelativeLayout>
-</ScrollView>
