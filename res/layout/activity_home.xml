@@ -11,7 +11,8 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lblButtonCalendar" />
+        android:text="@string/lblButtonCalendar"
+        android:onClick="onCalendarClickHandler" />
 
     <Button
         android:id="@+id/survey"
