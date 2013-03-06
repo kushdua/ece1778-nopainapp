@@ -18,8 +18,58 @@
     <string name="lblButtonSocialNetwork">Social Network</string>
     <string name="lblButtonCalendar">Calendar</string>
     <string name="lblButtonVisualizeResults">Results</string>
+    <string name="lblButtonSurvey">Survey</string>
     <string name="lblButtonSettings">Settings</string>
-    <string name="lblSickKidsLogoContentDescription">SickKids logo</string>    
-    
-
+    <string name="lblSickKidsLogoContentDescription">SickKids logo</string>
+    <string-array name="q5aMedicationsAnswers">
+        <item>None</item>
+        <item>Acetaminophen (Tylenol)</item>
+        <item>Ibuprofen (Advil)</item>
+        <item>Acetaminophen (Tylenol)</item>
+        <item>Naproxen</item>
+        <item>Codeine</item>
+        <item>Morphine (short-acting)</item>
+        <item>Morphine (long-acting)</item>
+        <item>Gabapentin</item>
+        <item>Aitriptyline</item>
+        <item>Other (please list)</item>
+    </string-array>    
+    <string-array name="q56bMedicationsAnswers">
+        <item>Not helpful</item>
+        <item>A little helpful</item>
+        <item>Somewhat helpful</item>
+        <item>Very Helpful</item>
+        <item>Don\'t know</item>
+    </string-array>   
+    <string-array name="q6aMedicationsAnswers">
+        <item>None</item>
+        <item>Deep breathing</item>
+        <item>Relaxation exercises</item>
+        <item>Heat</item>
+        <item>Cold</item>
+        <item>Massage/rubbing</item>
+        <item>Imagery</item>
+        <item>Distraction (e.g. TV, books, music)</item>
+        <item>Talking with friends/family</item>
+        <item>Rest/sleep</item>
+        <item>Prayer/meditation</item>
+        <item>Other (please list)</item>
+    </string-array>
+    <string name="q1Text">Touch the mark and move it to show how much PAIN you have right now.</string>
+    <string name="q2Text">Touch the mark and move it to describe your pain when it was at its WORST since the last survey.</string>
+    <string name="q3Text">Touch the mark and move it to show how much your pain got in the way of your SLEEP since the last survey.</string>
+    <string name="q4Text">Touch the mark and move it to show how much your pain got in the way of THINGS YOU DID since the last survey.</string>
+    <string name="q5aText">Please tell us about the medications you have taken to try to reduce your pain since the last survey.</string>
+    <string name="q5bText">How helpful was using this strategy?</string>
+    <string name="q6aText">Please tell us about other things you used to try to REDUCE your pain since the last survey.</string>
+    <string name="q6bText">How helpful was using this strategy?</string>
+    <string name="q7Text">Touch the mark and move it to show how much CONTROL you felt you had over your pain since the last survey.</string>
+    <string name="btnNextText">Next</string>
+    <string name="btnPrevText">Previous</string>
+    <string name="surveyQuestionNumber">Question %1$d</string>
+    <string name="lblProgressMinimum">0</string>
+    <string name="lblProgressMaximum">100</string>
+    <string name="btnGetRecommendationText">Get Recommendation</string>
+    <string name="recommendationHeader">Recommendation</string>
+    <string name="recommendationTalkToParents">Talk to your parents or guardians about your pain.</string>
 </resources>

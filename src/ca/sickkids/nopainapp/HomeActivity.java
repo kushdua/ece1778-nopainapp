@@ -46,6 +46,12 @@ public class HomeActivity extends Activity {
     	}); 	
     	
     }
+    
+    public void onSurveyClickHandler(View v)
+    {
+		Intent intent = new Intent(v.getContext(), SurveyActivity.class);
+		startActivity(intent);
+    }
 
 
 	@Override

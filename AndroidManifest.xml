@@ -25,7 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="Journaling"></activity>
+        <activity android:name="ca.sickkids.nopainapp.Journaling" android:label="@string/app_name"></activity>
+        <activity android:name="ca.sickkids.nopainapp.SurveyActivity" android:label="@string/app_name"></activity>
         
     </application>
 

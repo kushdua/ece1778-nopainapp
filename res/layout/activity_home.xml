@@ -14,6 +14,21 @@
         android:text="@string/lblButtonCalendar" />
 
     <Button
+        android:id="@+id/survey"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onSurveyClickHandler"
+        android:text="@string/lblButtonSurvey" />
+
+    <Button
+        android:id="@+id/journal"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lblButtonJournal" />
+
+    <Button
         android:id="@+id/btnGoals"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
@@ -26,15 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/lblButtonSocialNetwork" />
-
-    <Button
-        android:id="@+id/journal"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/lblButtonJournal" />
-
+    
     <Button
         android:id="@+id/btnSettings"
         style="?android:attr/buttonStyleSmall"
@@ -47,6 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:minWidth="48dip"
         android:text="@string/lblButtonExit" />
 
     <ImageView
