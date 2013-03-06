@@ -71,6 +71,7 @@ public class Journaling extends Activity{
 				/*
 				 * TODO: Launch a new intent to view the list of videos 
 				 */
+				
 			}
 
     	});

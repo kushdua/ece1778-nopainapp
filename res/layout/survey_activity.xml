@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    tools:context=".SurveyActivity">
+
+    <TextView
+        android:id="@+id/lblQuestionHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:fontFamily="Arial"
+        android:text="@string/surveyQuestionNumber"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ProgressBar
+        android:id="@+id/surveyProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:indeterminate="false"
+        android:max="@integer/maxProgressValue" />
+
+    <Button
+        android:id="@+id/btnPrev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/surveyProgress"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="19dp"
+        android:onClick="btnPreviousClickHandler"
+        android:text="@string/btnPrevText" />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnPrev"
+        android:layout_alignBottom="@+id/btnPrev"
+        android:layout_alignParentRight="true"
+        android:onClick="btnNextClickHandler"
+        android:text="@string/btnNextText" />
+
+    <TextView
+        android:id="@+id/lblQuestionContents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/lblQuestionHeader"
+        android:fontFamily="Arial"
+        android:text="@string/q1Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:typeface="sans" />
+
+    <LinearLayout
+        android:id="@+id/ProgressLabeledLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblQuestionContents"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp" >
+
+        <TextView
+            android:id="@+id/lblBarMinimum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/lblProgressMinimum"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <SeekBar
+            android:id="@+id/painBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:max="@integer/maxProgressValue" />
+
+        <TextView
+            android:id="@+id/lblBarMaximum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/lblProgressMaximum"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/choiceSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/lblQuestionContents"
+        android:layout_marginTop="32dp" />
+
+</RelativeLayout>

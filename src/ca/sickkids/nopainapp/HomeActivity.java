@@ -52,6 +52,12 @@ public class HomeActivity extends Activity {
 		Intent intent = new Intent(v.getContext(), SurveyActivity.class);
 		startActivity(intent);
     }
+    
+    public void onSocialNetworkClickHandler(View v)
+    {
+    	Intent intent = new Intent(v.getContext(), SocialNetworkActivity.class);
+    	startActivity(intent);
+    }
 
 
 	@Override

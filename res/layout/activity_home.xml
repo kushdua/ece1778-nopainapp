@@ -40,7 +40,16 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lblButtonSocialNetwork" />
+        android:text="@string/lblButtonSocialNetwork"
+        android:onClick="onSocialNetworkClickHandler" />
+
+    <Button
+        android:id="@+id/btnDiseaseInfo"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onSurveyClickHandler"
+        android:text="@string/lblButtonDiseaseInfo" />
     
     <Button
         android:id="@+id/btnSettings"
