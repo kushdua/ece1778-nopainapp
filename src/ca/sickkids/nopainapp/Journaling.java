@@ -69,8 +69,11 @@ public class Journaling extends Activity{
 			@Override
 			public void onClick(View v) {
 				/*
-				 * TODO: Launch a new intent to view the list of videos 
+				 * Launch a new intent to view the list of videos 
 				 */
+				//JOURNAL Button Handler
+				Intent intent = new Intent(v.getContext(), VideoActivity.class);
+				startActivity(intent);	
 				
 				
 			}
