@@ -34,7 +34,15 @@
         <item>Gabapentin</item>
         <item>Aitriptyline</item>
         <item>Other (please list)</item>
-    </string-array>    
+    </string-array>  
+    <string-array name="q1choice">
+        <item>Yes</item>
+        <item>No</item> 
+    </string-array>  
+        <string-array name="q2choice">
+        <item>Yes</item>
+        <item>No</item> 
+    </string-array>   
     <string-array name="q56bMedicationsAnswers">
         <item>Not helpful</item>
         <item>A little helpful</item>
@@ -56,6 +64,8 @@
         <item>Prayer/meditation</item>
         <item>Other (please list)</item>
     </string-array>
+    <string name="q1yna">Did you have PAIN in the last 12 hours?</string>
+    <string name="q1ynb">Do you have PAIN now?</string>
     <string name="q1Text">Touch the mark and move it to show how much PAIN you have right now.</string>
     <string name="q2Text">Touch the mark and move it to describe your pain when it was at its WORST since the last survey.</string>
     <string name="q3Text">Touch the mark and move it to show how much your pain got in the way of your SLEEP since the last survey.</string>

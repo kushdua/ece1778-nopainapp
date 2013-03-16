@@ -9,9 +9,11 @@ package ca.sickkids.nopainapp;
 
 public final class R {
     public static final class array {
-        public static final int q56bMedicationsAnswers=0x7f060001;
+        public static final int q1choice=0x7f060001;
+        public static final int q2choice=0x7f060002;
+        public static final int q56bMedicationsAnswers=0x7f060003;
         public static final int q5aMedicationsAnswers=0x7f060000;
-        public static final int q6aMedicationsAnswers=0x7f060002;
+        public static final int q6aMedicationsAnswers=0x7f060004;
     }
     public static final class attr {
     }
@@ -77,11 +79,11 @@ public final class R {
         public static final int Cameranotsupported=0x7f050005;
         public static final int EntrySaved=0x7f050004;
         public static final int app_name=0x7f050000;
-        public static final int btnFacebookText=0x7f050027;
-        public static final int btnGetRecommendationText=0x7f050023;
-        public static final int btnNextText=0x7f05001e;
-        public static final int btnPrevText=0x7f05001f;
-        public static final int btnTwitterText=0x7f050026;
+        public static final int btnFacebookText=0x7f050029;
+        public static final int btnGetRecommendationText=0x7f050025;
+        public static final int btnNextText=0x7f050020;
+        public static final int btnPrevText=0x7f050021;
+        public static final int btnTwitterText=0x7f050028;
         public static final int erroremptytext=0x7f050002;
         public static final int errorinvalidtext=0x7f050003;
         public static final int lblButtonCalendar=0x7f050010;
@@ -98,22 +100,24 @@ public final class R {
         public static final int lblButtonSocialNetwork=0x7f05000f;
         public static final int lblButtonSurvey=0x7f050012;
         public static final int lblButtonVisualizeResults=0x7f050011;
-        public static final int lblProgressMaximum=0x7f050022;
-        public static final int lblProgressMinimum=0x7f050021;
+        public static final int lblProgressMaximum=0x7f050024;
+        public static final int lblProgressMinimum=0x7f050023;
         public static final int lblSickKidsLogoContentDescription=0x7f050014;
         public static final int menu_settings=0x7f050001;
-        public static final int q1Text=0x7f050015;
-        public static final int q2Text=0x7f050016;
-        public static final int q3Text=0x7f050017;
-        public static final int q4Text=0x7f050018;
-        public static final int q5aText=0x7f050019;
-        public static final int q5bText=0x7f05001a;
-        public static final int q6aText=0x7f05001b;
-        public static final int q6bText=0x7f05001c;
-        public static final int q7Text=0x7f05001d;
-        public static final int recommendationHeader=0x7f050024;
-        public static final int recommendationTalkToParents=0x7f050025;
-        public static final int surveyQuestionNumber=0x7f050020;
+        public static final int q1Text=0x7f050017;
+        public static final int q1yna=0x7f050015;
+        public static final int q1ynb=0x7f050016;
+        public static final int q2Text=0x7f050018;
+        public static final int q3Text=0x7f050019;
+        public static final int q4Text=0x7f05001a;
+        public static final int q5aText=0x7f05001b;
+        public static final int q5bText=0x7f05001c;
+        public static final int q6aText=0x7f05001d;
+        public static final int q6bText=0x7f05001e;
+        public static final int q7Text=0x7f05001f;
+        public static final int recommendationHeader=0x7f050026;
+        public static final int recommendationTalkToParents=0x7f050027;
+        public static final int surveyQuestionNumber=0x7f050022;
     }
     public static final class style {
         /** 

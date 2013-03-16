@@ -23,7 +23,9 @@ import android.widget.TextView;
 public class SurveyActivity extends Activity implements OnItemSelectedListener {
 	private int currQuestion = 1;
 	private static final int MAX_QUESTION_NUMBER = 9;
+	//private static final int MAX_QUESTION_NUMBER = 11;
 	private ArrayList<String> answers = new ArrayList<String>();
+	private boolean stopsurvey = false; //variable used to end survey intermediately
 	
 	private TextView questionHeader = null;
 	private TextView questionContents = null;
@@ -80,11 +82,13 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 	
 	public void saveAnswerAndUpdateQuestion(int currQuestion, int nextQuestion)
 	{
+		//if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==3 || currQuestion==4 || currQuestion==5 || currQuestion==6 || currQuestion ==11)
 		if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==1 || currQuestion==2 || currQuestion==3 || currQuestion==4 || currQuestion ==9)
 		{
 			answers.set(currQuestion-1, Integer.toString(painBar.getProgress()));
 			//Log.w("INFO","Storing " + Integer.toString(painBar.getProgress()) + " at position " + (currQuestion-1));
 		}
+		//else if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==1 || currQuestion==2 ||currQuestion==7 || currQuestion==8 || currQuestion==9 || currQuestion==10)
 		else if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==5 || currQuestion==6 || currQuestion==7 || currQuestion==8)
 		{
 			if(otherTextField.getVisibility()==View.VISIBLE)
@@ -106,6 +110,26 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 		switch(nextQuestion)
 		{
 			default:
+			/* code commited temporarily 
+			 case 10: //change it to 1 later
+				 questionContents.setText(R.string.q1yna);
+				 adapter = ArrayAdapter.createFromResource(
+		                this, R.array.q1choice, android.R.layout.simple_spinner_item);
+
+				 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+				 choicesSpinner.setAdapter(adapter);
+			 break;
+	
+			 case 11: // change it to 2 later 
+				 questionContents.setText(R.string.q1ynb);
+				 adapter = ArrayAdapter.createFromResource(
+			                this, R.array.q2choice, android.R.layout.simple_spinner_item);
+
+					 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					 choicesSpinner.setAdapter(adapter);
+			 break;
+			*/	  	
+			//change the rest of the cases accordingly during code testing
 			case 1:
 				questionContents.setText(R.string.q1Text);
 				break;
@@ -278,7 +302,6 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
 			long id) {
-		// TODO Auto-generated method stub
 		String selected = parent.getItemAtPosition(pos).toString();
 		if(selected.compareTo("Other (please list)")==0)
 		{
