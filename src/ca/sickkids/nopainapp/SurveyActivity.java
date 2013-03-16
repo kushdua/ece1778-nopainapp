@@ -285,6 +285,26 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 			prevButton.setVisibility(View.VISIBLE);
 			prevButton.setText(R.string.btnPrevText);
 			
+			if(currQuestion==1 || currQuestion==1)
+			{
+				/*
+				 * Check if the answer to Pain questions are YES/NO
+				 *Q1. Did you have PAIN in the last 12 hours?
+				 *Q2. Do you have PAIN now?
+				 *If Yes then continue else skip the rest of the survey
+				 */
+				if(answers.get(currQuestion-1).equalsIgnoreCase("NO")) {
+					stopsurvey= true;
+					currQuestion=11;
+					/*
+					 * TODO: Part of advanced algorithm .. check if there exist previous assesment 
+					 * and ask user if the previous advice was useful/or not
+					 * 
+					 */
+				}
+
+					
+			}
 			if(currQuestion==9)
 			{
 				//Change text for next to get recommendation
