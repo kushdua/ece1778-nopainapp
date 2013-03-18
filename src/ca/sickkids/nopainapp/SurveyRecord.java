@@ -29,6 +29,10 @@ public class SurveyRecord {
 
 class DBHelper extends SQLiteOpenHelper
 {
+	//TODO add ID AUTOINC to tables, date of survey taken/submitted
+	private final String createUserTable = "CREATE TABLE users(name TEXT, pass TEXT, UNIQUE(name) ON CONFLICT ROLLBACK);";
+	private final String createSurveyTable = "CREATE TABLE survey(pain12Hours TEXT, interference12Hours TEXT, control12Hours TEXT, " +
+											 "q4 TEXT, q5 TEXT, q6 TEXT, q7 TEXT, q8 TEXT, q9 TEXT);";
 	public DBHelper(Context context, String name, CursorFactory factory,
 			int version) {
 		super(context, name, factory, version);
@@ -38,10 +42,10 @@ class DBHelper extends SQLiteOpenHelper
 	public void onCreate(SQLiteDatabase db) {
 		try
 		{
-		db.beginTransaction();
-		//TODO: Create necessary survey/user tables
-		//db.execSQL("CREATE TABLE "+DB_TABLE_NAME+"("+DB_TABLE_COLUMN_NAME+" TEXT, UNIQUE("+DB_TABLE_COLUMN_NAME+") ON CONFLICT REPLACE);");
-		db.setTransactionSuccessful();
+			db.beginTransaction();
+			db.execSQL(createUserTable);
+			db.execSQL(createSurveyTable);
+			db.setTransactionSuccessful();
 		}finally{
 			db.endTransaction();
 		}

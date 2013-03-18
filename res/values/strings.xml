@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">NoPainApp</string>
+    <string name="app_name">NoPain</string>
     <string name="menu_settings">Settings</string>
     <string name="erroremptytext">Please enter text in the textview above</string>
     <string name="errorinvalidtext">Invalid Text Entered</string>
