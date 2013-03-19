@@ -6,63 +6,6 @@
     android:orientation="vertical"
     tools:context=".HomeActivity" >
 
-    <Button
-        android:id="@+id/journal"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/survey"
-        android:text="@string/lblButtonJournal" />
-
-    <Button
-        android:id="@+id/btnGoals"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/journal"
-        android:text="@string/lblButtonGoals" />
-
-    <Button
-        android:id="@+id/btnSocialNetwork"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/btnGoals"
-        android:onClick="onSocialNetworkClickHandler"
-        android:text="@string/lblButtonSocialNetwork" />
-
-    <Button
-        android:id="@+id/btnDiseaseInfo"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/btnSocialNetwork"
-        android:onClick="onSurveyClickHandler"
-        android:text="@string/lblButtonDiseaseInfo" />
-
-    <Button
-        android:id="@+id/btnSettings"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/btnDiseaseInfo"
-        android:text="@string/lblButtonSettings" />
-
-    <Button
-        android:id="@+id/btnExit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnSettings"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:minWidth="48dip"
-        android:text="@string/lblButtonExit" />
-
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
@@ -82,24 +25,135 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
-        android:id="@+id/btnCalendar"
+        android:id="@+id/journal"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_below="@+id/survey_calendar_container"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/journal"
+        android:text="@string/lblButtonJournal" />
+
+    <LinearLayout
+        android:id="@+id/survey_calendar_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
-        android:onClick="onCalendarClickHandler"
-        android:text="@string/lblButtonCalendar" />
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/survey_calendar_button_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/survey"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:background="@drawable/survey"
+                android:onClick="onSurveyClickHandler" />
+
+            <Button
+                android:id="@+id/btnCalendar"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:background="@drawable/calendar"
+                android:onClick="onCalendarClickHandler" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/survey_calendar_label_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:text="@string/lblButtonSurvey"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lblButtonCalendar"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
-        android:id="@+id/survey"
+        android:id="@+id/btnSocialNetwork"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/social"
+        android:onClick="onSocialNetworkClickHandler"
+        android:text="@string/lblButtonSocialNetwork" />
+
+    <Button
+        android:id="@+id/btnSettings"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnCalendar"
-        android:layout_alignBottom="@+id/btnCalendar"
         android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnSocialNetwork"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/settings"
+        android:text="@string/lblButtonSettings" />
+
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnSettings"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/exit"
+        android:minWidth="48dip"
+        android:text="@string/lblButtonExit" />
+
+    <Button
+        android:id="@+id/btnDiseaseInfo"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageView1"
+        android:layout_toRightOf="@+id/btnClassroom"
+        android:background="@drawable/health_info"
         android:onClick="onSurveyClickHandler"
-        android:text="@string/lblButtonSurvey" />
+        android:text="@string/lblButtonDiseaseInfo" />
+
+    <Button
+        android:id="@+id/btnClassroom"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/journal"
+        android:layout_alignBottom="@+id/journal"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/classroom"
+        android:text="@string/lblButtonClassroom" />
+
+    <Button
+        android:id="@+id/btnGoals"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/journal"
+        android:layout_alignBottom="@+id/journal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/goals"
+        android:text="@string/lblButtonGoals" />
 
 </RelativeLayout>

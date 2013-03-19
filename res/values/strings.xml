@@ -11,7 +11,7 @@
     <string name="lblButtonExit">Exit</string>
     <string name="lblButtonJournalVideoText">Video Journal</string>
     <string name="lblButtonDone">Done</string>
-    <string name="lblButtonDiseaseInfo">Disease Information</string>
+    <string name="lblButtonDiseaseInfo">Health Information</string>
     <string name="lblButtonJournalViewVideo">View Video</string>
     <string name="lblButtonJournalTextJournal">Text Journal</string>
     <string name="lblButtonJournalTalkAboutYourExperiences">Talk about your experiences</string>
@@ -85,4 +85,5 @@
     <string name="recommendationTalkToParents">Talk to your parents or guardians about your pain.</string>
     <string name="btnTwitterText">Twitter</string>
     <string name="btnFacebookText">Facebook</string>
+    <string name="lblButtonClassroom">Classroom</string>
 </resources>
