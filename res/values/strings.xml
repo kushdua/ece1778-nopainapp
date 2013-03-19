@@ -6,6 +6,7 @@
     <string name="erroremptytext">Please enter text in the textview above</string>
     <string name="errorinvalidtext">Invalid Text Entered</string>
     <string name="EntrySaved">The text is saved.</string>
+    <string name="nopainreported">No pain in last 12 hours. Survey not required.</string>
     <string name="Cameranotsupported">Device does not support Camera.</string>
     <string name="lblButtonJournal">Journal</string>
     <string name="lblButtonExit">Exit</string>

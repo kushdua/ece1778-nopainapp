@@ -19,11 +19,12 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SurveyActivity extends Activity implements OnItemSelectedListener {
 	private int currQuestion = 1;
-	private static final int MAX_QUESTION_NUMBER = 9;
-	//private static final int MAX_QUESTION_NUMBER = 11;
+	//private static final int MAX_QUESTION_NUMBER = 9;
+	private static final int MAX_QUESTION_NUMBER = 11;
 	private ArrayList<String> answers = new ArrayList<String>();
 	private boolean stopsurvey = false; //variable used to end survey intermediately
 	
@@ -82,14 +83,14 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 	
 	public void saveAnswerAndUpdateQuestion(int currQuestion, int nextQuestion)
 	{
-		//if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==3 || currQuestion==4 || currQuestion==5 || currQuestion==6 || currQuestion ==11)
-		if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==1 || currQuestion==2 || currQuestion==3 || currQuestion==4 || currQuestion ==9)
+		if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==3 || currQuestion==4 || currQuestion==5 || currQuestion==6 || currQuestion ==11)
+		//if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==1 || currQuestion==2 || currQuestion==3 || currQuestion==4 || currQuestion ==9)
 		{
 			answers.set(currQuestion-1, Integer.toString(painBar.getProgress()));
 			//Log.w("INFO","Storing " + Integer.toString(painBar.getProgress()) + " at position " + (currQuestion-1));
 		}
-		//else if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==1 || currQuestion==2 ||currQuestion==7 || currQuestion==8 || currQuestion==9 || currQuestion==10)
-		else if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==5 || currQuestion==6 || currQuestion==7 || currQuestion==8)
+		else if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==1 || currQuestion==2 ||currQuestion==7 || currQuestion==8 || currQuestion==9 || currQuestion==10)
+		//else if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==5 || currQuestion==6 || currQuestion==7 || currQuestion==8)
 		{
 			if(otherTextField.getVisibility()==View.VISIBLE)
 			{
@@ -110,8 +111,8 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 		switch(nextQuestion)
 		{
 			default:
-			/* code commited temporarily 
-			 case 10: //change it to 1 later
+			 //code commited temporarily 
+			 case 1: //change it to 1 later
 				 questionContents.setText(R.string.q1yna);
 				 adapter = ArrayAdapter.createFromResource(
 		                this, R.array.q1choice, android.R.layout.simple_spinner_item);
@@ -120,7 +121,7 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 				 choicesSpinner.setAdapter(adapter);
 			 break;
 	
-			 case 11: // change it to 2 later 
+			 case 2: // change it to 2 later 
 				 questionContents.setText(R.string.q1ynb);
 				 adapter = ArrayAdapter.createFromResource(
 			                this, R.array.q2choice, android.R.layout.simple_spinner_item);
@@ -128,21 +129,21 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 					 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 					 choicesSpinner.setAdapter(adapter);
 			 break;
-			*/	  	
+				  	
 			//change the rest of the cases accordingly during code testing
-			case 1:
+			case 3:
 				questionContents.setText(R.string.q1Text);
 				break;
-			case 2:
+			case 4:
 				questionContents.setText(R.string.q2Text);
 				break;
-			case 3:
+			case 5:
 				questionContents.setText(R.string.q3Text);
 				break;
-			case 4:
+			case 6:
 				questionContents.setText(R.string.q4Text);
 				break;
-			case 5:
+			case 7:
 				questionContents.setText(R.string.q5aText);
 				adapter = ArrayAdapter.createFromResource(
 		                this, R.array.q5aMedicationsAnswers, android.R.layout.simple_spinner_item);
@@ -150,7 +151,7 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 				adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 				choicesSpinner.setAdapter(adapter);
 				break;
-			case 6:
+			case 8:
 				questionContents.setText(R.string.q5bText);
 				adapter = ArrayAdapter.createFromResource(
 		                this, R.array.q56bMedicationsAnswers, android.R.layout.simple_spinner_item);
@@ -158,7 +159,7 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 				adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 				choicesSpinner.setAdapter(adapter);
 				break;
-			case 7:
+			case 9:
 				questionContents.setText(R.string.q6aText);
 				adapter = ArrayAdapter.createFromResource(
 		                this, R.array.q6aMedicationsAnswers, android.R.layout.simple_spinner_item);
@@ -166,7 +167,7 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 				adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 				choicesSpinner.setAdapter(adapter);
 				break;
-			case 8:
+			case 10:
 				questionContents.setText(R.string.q6bText);
 				adapter = ArrayAdapter.createFromResource(
 		                this, R.array.q56bMedicationsAnswers, android.R.layout.simple_spinner_item);
@@ -174,14 +175,15 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 				adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 				choicesSpinner.setAdapter(adapter);
 				break;
-			case 9:
+			case 11:
 				questionContents.setText(R.string.q7Text);
 				break;
 		}
 
 		String storedAnswer = "";
 		//Update visibilities and question answers if previously saved
-		if(nextQuestion==1 || nextQuestion==2 || nextQuestion==3 || nextQuestion==4 || nextQuestion==9)
+		//if(nextQuestion==1 || nextQuestion==2 || nextQuestion==3 || nextQuestion==4 || nextQuestion==9)
+		if(nextQuestion==3 || nextQuestion==4 || nextQuestion==5 || nextQuestion==6 || nextQuestion==11)
 		{
 			if(nextQuestion==1 && currQuestion==0)
 			{
@@ -202,21 +204,32 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 				painBar.setProgress(Integer.parseInt(storedAnswer));
 			}
 		}
-		else if(nextQuestion==5 || nextQuestion==6 || nextQuestion==7 || nextQuestion==8)
+		//else if(nextQuestion==5 || nextQuestion==6 || nextQuestion==7 || nextQuestion==8)
+		else if(nextQuestion==1 || nextQuestion==2 || nextQuestion==7 || nextQuestion==8 || nextQuestion==9 || nextQuestion==10)
 		{
+			if(nextQuestion==1 && currQuestion==0)
+			{
+				//Initialization of survey
+				prevButton.setVisibility(View.INVISIBLE);
+			}
 			painBarContainer.setVisibility(View.INVISIBLE);
 			choicesSpinner.setVisibility(View.VISIBLE);
 			storedAnswer = answers.get(nextQuestion-1).toString();
 			String arr[] = null;
-			if(nextQuestion==6 || nextQuestion==8)
+			if(nextQuestion==1 || nextQuestion==2)
+			{
+				arr=getResources().getStringArray(R.array.q1choice);
+			}
+			//if(nextQuestion==6 || nextQuestion==8)
+			else if(nextQuestion==8 || nextQuestion==10)
 			{
 				arr=getResources().getStringArray(R.array.q56bMedicationsAnswers);
 			}
-			else if(nextQuestion==5)
+			else if(nextQuestion==7) //else if(nextQuestion==5)
 			{
 				arr=getResources().getStringArray(R.array.q5aMedicationsAnswers);
 			}
-			else if(nextQuestion==7)
+			else if(nextQuestion==9) //else if(nextQuestion==7)
 			{
 				arr=getResources().getStringArray(R.array.q6aMedicationsAnswers);
 			}
@@ -241,7 +254,8 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 				}
 			}
 		}
-		else if(nextQuestion==10)
+		//else if(nextQuestion==10)
+		else if(nextQuestion==12)
 		{
 			painBarContainer.setVisibility(View.INVISIBLE);
 			choicesSpinner.setVisibility(View.INVISIBLE);
@@ -285,7 +299,7 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 			prevButton.setVisibility(View.VISIBLE);
 			prevButton.setText(R.string.btnPrevText);
 			
-			if(currQuestion==1 || currQuestion==1)
+			if(currQuestion==3)
 			{
 				/*
 				 * Check if the answer to Pain questions are YES/NO
@@ -293,24 +307,24 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 				 *Q2. Do you have PAIN now?
 				 *If Yes then continue else skip the rest of the survey
 				 */
-				if(answers.get(currQuestion-1).equalsIgnoreCase("NO")) {
+				if(answers.get(currQuestion-2).equalsIgnoreCase("NO") && answers.get(currQuestion-3).equalsIgnoreCase("NO")) {
 					stopsurvey= true;
 					currQuestion=11;
+					Toast.makeText(this, R.string.nopainreported, Toast.LENGTH_SHORT).show();
+					finish();
 					/*
-					 * TODO: Part of advanced algorithm .. check if there exist previous assesment 
+					 * TODO: Part of advanced algorithm .. check if there exist previous assessment 
 					 * and ask user if the previous advice was useful/or not
 					 * 
 					 */
-				}
-
-					
+				}	
 			}
-			if(currQuestion==9)
+			if(currQuestion==11) //if(currQuestion==9)
 			{
 				//Change text for next to get recommendation
 				nextButton.setText(R.string.btnGetRecommendationText);
 			}
-			else if(currQuestion==10)
+			else if(currQuestion==12) //else if(currQuestion==10)
 			{
 				//Display recommendation
 				nextButton.setVisibility(View.INVISIBLE);
