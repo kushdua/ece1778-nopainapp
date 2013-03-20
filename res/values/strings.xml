@@ -92,8 +92,9 @@
     <string name="lblButtonLogin">Login</string>
     <string name="lblButtonRegister">Register</string>
     <string name="successRegistering">Successfully registered.</string>
-    <string name="errorRegistering">Error registering user. Please restart the application and try again.</string>
-    <string name="errorConfirmingPassword">Error confirming registration password (the passwords dont match).</string>
+    <string name="errorRegisteringUnknown">Error registering user. Please restart the application and try again.</string>
+    <string name="errorRegisteringUsernameTaken">Error registering user. Username already taken.</string>
+    <string name="errorConfirmingPassword">Error confirming registration password (the passwords don\'t match).</string>
     <string name="successLogin">Successfully logged in.</string>
     <string name="errorLoggingIn">Error logging in. Please restart the application and try again.</string>
 </resources>
