@@ -9,14 +9,14 @@ import android.util.Log;
 public class DBHelper extends SQLiteOpenHelper
 {
 	//TODO add ID AUTOINC to tables, date of survey taken/submitted
-	private final String createUserTable = "CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, pass TEXT, UNIQUE(name) ON CONFLICT ROLLBACK);";
+	private final String createUserTable = "CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, pass TEXT NOT NULL, UNIQUE(name) ON CONFLICT ROLLBACK);";
 	//q1 = pain now (INT); q2 = pain worst in past 12 hours (INT); q3 = in way of sleep past 12 (INT)
 	//; q4 = in way of things past 12 (INT); q5 (5a) = medications in past 12 (TEXT); q6 (5b) - how effective were they (TEXT)
 	//q7 (6a) - other strategies past 12 (TEXT); q8 (6b) - how effective were those strategies (TEXT); q9 (7) - control past 12 (INT)
 	private final String createSurveyTable = "CREATE TABLE survey(id INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, q1 INTEGER, q2 INTEGER, control12Hours INTEGER, " +
-											 "q4 INTEGER, q5 TEXT, q6 TEXT, q7 TEXT, q8 TEXT, q9 INTEGER, userID REFERENCES(users.id));";
-	private final String createFavouritesTable = "CREATE TABLE favourites(id INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, text TEXT, stars FLOAT, count INTEGER, userID REFERENCES(users.id), text NOT NULL, stars DEFAULT 0.0, count DEFAULT 0);";
-	private final String createAppointmentsTable = "CREATE TABLE appointments(id INTEGER AUTOINCREMENT, userID INTEGER REFERENCES(user.id), type TEXT, reminderMinutes INTEGER DEFAULT 5);";
+											 "q4 INTEGER, q5 TEXT, q6 TEXT, q7 TEXT, q8 TEXT, q9 INTEGER, FOREIGN KEY(userID) REFERENCES users(id) ON DELETE CASCADE);";
+	private final String createFavouritesTable = "CREATE TABLE favourites(id INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, text TEXT NOT NULL, stars FLOAT DEFAULT 0.0, count INTEGER DEFAULT 0.0, FOREIGN KEY(userID) REFERENCES users(id) ON DELETE CASCADE);";
+	private final String createAppointmentsTable = "CREATE TABLE appointments(id INTEGER AUTOINCREMENT, userID INTEGER, type TEXT NOT NULL, date INTEGER NOT NULL, FOREIGN KEY(userID) REFERENCES users(id) ON DELETE CASCADE, reminderMinutes INTEGER DEFAULT 5);";
 	public DBHelper(Context context, String name, CursorFactory factory,
 			int version) {
 		super(context, name, factory, version);
