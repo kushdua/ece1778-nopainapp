@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- <item
+        android:id="@+id/calendar_menu_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_settings"/> -->
+
+    <item
+        android:id="@+id/calendar_menu_new_survey"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/calendar_menu_new_survey"/>
+    
+    <item
+        android:id="@+id/calendar_menu_new_appointment"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/calendar_menu_new_appointment"/>
+</menu>

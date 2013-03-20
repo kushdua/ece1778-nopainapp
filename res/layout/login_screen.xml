@@ -21,7 +21,11 @@
         android:id="@+id/fieldUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" >
+        android:ems="10"
+        android:lines="@integer/maxUserPassLines"
+        android:maxLines="@integer/maxUserPassLines"
+        android:minLines="@integer/maxUserPassLines"
+        android:singleLine="true" >
 
         <requestFocus />
     </EditText>
@@ -38,7 +42,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:lines="@integer/maxUserPassLines"
+        android:maxLines="@integer/maxUserPassLines"
+        android:minLines="@integer/maxUserPassLines"
+        android:singleLine="true" />
 
     <LinearLayout
         android:id="@+id/buttonLoginRegisterContainer"

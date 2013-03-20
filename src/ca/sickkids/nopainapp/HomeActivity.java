@@ -64,13 +64,15 @@ public class HomeActivity extends Activity {
     
     public void onCalendarClickHandler(View v)
     {
-    	Intent intent = new Intent(Intent.ACTION_EDIT);  
-    	intent.setType("vnd.android.cursor.item/event");
-    	intent.putExtra("title", "Some title");
-    	intent.putExtra("description", "Some description");
-    	intent.putExtra("beginTime", System.currentTimeMillis()+43200000);
-    	intent.putExtra("endTime", System.currentTimeMillis()+43500000);
+    	Intent intent = new Intent(v.getContext(), CalendarActivity.class);
     	startActivity(intent);
+//    	Intent intent = new Intent(Intent.ACTION_EDIT);  
+//    	intent.setType("vnd.android.cursor.item/event");
+//    	intent.putExtra("title", "Some title");
+//    	intent.putExtra("description", "Some description");
+//    	intent.putExtra("beginTime", System.currentTimeMillis()+43200000);
+//    	intent.putExtra("endTime", System.currentTimeMillis()+43500000);
+//    	startActivity(intent);
     }
 
 	@Override

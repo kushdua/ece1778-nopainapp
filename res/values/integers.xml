@@ -2,4 +2,5 @@
 <resources>
     <integer name="maxProgressValue">100</integer>
     <integer name="textMaxLines">3</integer>
+    <integer name="maxUserPassLines">1</integer>
 </resources>

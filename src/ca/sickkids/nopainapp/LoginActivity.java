@@ -42,6 +42,8 @@ public class LoginActivity extends Activity {
 		
 		activity=this;
 		dbHelper = new DBHelper(this, HomeActivity.DB_NAME, null, HomeActivity.DB_VERSION);
+		
+		userName.requestFocus();
 	}
     
     public void onLoginClickHandler(View v)
@@ -55,6 +57,8 @@ public class LoginActivity extends Activity {
 			Cursor result = db.rawQuery("SELECT name, pass FROM users WHERE name=? AND pass=?;", args);
 			if(result != null && result.getCount()==1)
 			{
+				this.pass.setText("");
+				this.userName.setText("");
 				Toast.makeText(activity, R.string.successLogin, Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent(v.getContext(), HomeActivity.class);
 				startActivity(intent);
@@ -94,6 +98,8 @@ public class LoginActivity extends Activity {
 				long numRows = db.insertOrThrow("users", null, values);
 				if(numRows != -1 && numRows == 1)
 				{
+					this.pass.setText("");
+					this.userName.setText("");
 					Toast.makeText(activity, R.string.successRegistering, Toast.LENGTH_SHORT).show();
 					Intent intent = new Intent(activity, HomeActivity.class);
 					startActivity(intent);
@@ -129,7 +135,8 @@ public class LoginActivity extends Activity {
     	// Set an EditText view to get user input 
     	final EditText input = new EditText(this);
     	input.setSingleLine();
-    	input.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+    	
+    	input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
     	alert.setView(input);
 
     	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -140,7 +147,7 @@ public class LoginActivity extends Activity {
 				}
 				else
 				{
-					Toast.makeText(activity, R.string.errorRegisteringUnknown, Toast.LENGTH_SHORT).show();
+					Toast.makeText(activity, R.string.errorConfirmingPassword, Toast.LENGTH_SHORT).show();
 	    			pass.setText("");
 	    			pass.requestFocus();
 				}
