@@ -134,9 +134,10 @@ public final class R {
         public static final int btnNextText=0x7f060021;
         public static final int btnPrevText=0x7f060022;
         public static final int btnTwitterText=0x7f060029;
-        public static final int errorConfirmingPassword=0x7f060032;
-        public static final int errorLoggingIn=0x7f060034;
-        public static final int errorRegistering=0x7f060031;
+        public static final int errorConfirmingPassword=0x7f060033;
+        public static final int errorLoggingIn=0x7f060035;
+        public static final int errorRegisteringUnknown=0x7f060031;
+        public static final int errorRegisteringUsernameTaken=0x7f060032;
         public static final int erroremptytext=0x7f060002;
         public static final int errorinvalidtext=0x7f060003;
         public static final int lblButtonCalendar=0x7f060011;
@@ -176,7 +177,7 @@ public final class R {
         public static final int q7Text=0x7f060020;
         public static final int recommendationHeader=0x7f060027;
         public static final int recommendationTalkToParents=0x7f060028;
-        public static final int successLogin=0x7f060033;
+        public static final int successLogin=0x7f060034;
         public static final int successRegistering=0x7f060030;
         public static final int surveyQuestionNumber=0x7f060023;
     }

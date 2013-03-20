@@ -28,9 +28,9 @@ public class DBHelper extends SQLiteOpenHelper
 		{
 			db.beginTransaction();
 			db.execSQL(createUserTable);
-			db.execSQL(createSurveyTable);
-			db.execSQL(createFavouritesTable);
-			db.execSQL(createAppointmentsTable);
+			//db.execSQL(createSurveyTable);
+			//db.execSQL(createFavouritesTable);
+			//db.execSQL(createAppointmentsTable);
 			db.setTransactionSuccessful();
 		}finally{
 			db.endTransaction();

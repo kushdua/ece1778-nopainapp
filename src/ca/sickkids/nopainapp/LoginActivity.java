@@ -79,6 +79,15 @@ public class LoginActivity extends Activity {
     		{
 				//String args[] = { userName.getText().toString(), pass.getText().toString() };
 		    	//db.execSQL("INSERT INTO users VALUES(?,?);", args);
+    			
+    			String args[] = { name, pass };
+    	    	//db.execSQL("SELECT name, pass FROM users WHERE name=? AND pass=?;", args);
+    			Cursor result = db.rawQuery("SELECT name, pass FROM users WHERE name=? AND pass=?;", args);
+    			if(result != null && result.getCount() != -1 && result.getCount()==1)
+    			{
+					Toast.makeText(activity, R.string.errorRegisteringUsernameTaken, Toast.LENGTH_SHORT).show();
+    			}
+    			
 				ContentValues values = new ContentValues(2);
 				values.put("name", name);
 				values.put("pass", pass);
@@ -92,18 +101,18 @@ public class LoginActivity extends Activity {
 				else
 				{
 					//Error registering user
-					Toast.makeText(activity, R.string.errorRegistering, Toast.LENGTH_SHORT).show();
+					Toast.makeText(activity, R.string.errorRegisteringUnknown, Toast.LENGTH_SHORT).show();
 				}
     		}
     		catch(SQLException e)
     		{
     			Log.e("LOGIN", "Error registering user " + e.getMessage());
-				Toast.makeText(activity, R.string.errorRegistering, Toast.LENGTH_SHORT).show();
+				Toast.makeText(activity, R.string.errorRegisteringUnknown, Toast.LENGTH_SHORT).show();
     		}
     	}
     	else
     	{
-			Toast.makeText(activity, R.string.errorRegistering, Toast.LENGTH_SHORT).show();
+			Toast.makeText(activity, R.string.errorRegisteringUnknown, Toast.LENGTH_SHORT).show();
     	}
     }
     
@@ -131,7 +140,7 @@ public class LoginActivity extends Activity {
 				}
 				else
 				{
-					Toast.makeText(activity, R.string.errorRegistering, Toast.LENGTH_SHORT).show();
+					Toast.makeText(activity, R.string.errorRegisteringUnknown, Toast.LENGTH_SHORT).show();
 	    			pass.setText("");
 	    			pass.requestFocus();
 				}
