@@ -3,6 +3,8 @@
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/programMarginLeftMedium"
+    android:layout_marginRight="@dimen/programMarginRightMedium"
     android:orientation="vertical"
     tools:context=".HomeActivity" >
 

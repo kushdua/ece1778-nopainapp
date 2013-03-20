@@ -87,4 +87,13 @@
     <string name="btnTwitterText">Twitter</string>
     <string name="btnFacebookText">Facebook</string>
     <string name="lblButtonClassroom">Classroom</string>
+    <string name="lblButtonUsername">User Name</string>
+    <string name="lblButtonPassword">Password</string>
+    <string name="lblButtonLogin">Login</string>
+    <string name="lblButtonRegister">Register</string>
+    <string name="successRegistering">Successfully registered.</string>
+    <string name="errorRegistering">Error registering user. Please restart the application and try again.</string>
+    <string name="errorConfirmingPassword">Error confirming registration password (the passwords don't match).</string>
+    <string name="successLogin">Successfully logged in.</string>
+    <string name="errorLoggingIn">Error logging in. Please restart the application and try again.</string>
 </resources>

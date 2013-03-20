@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="programMarginRightSmall">2dp</dimen>
+    <dimen name="programMarginLeftSmall">2dp</dimen>
+    <dimen name="programMarginRightMedium">5dp</dimen>
+    <dimen name="programMarginLeftMedium">5dp</dimen>
+    <dimen name="programMarginRightLarge">10dp</dimen>
+    <dimen name="programMarginLeftLarge">10dp</dimen>
+</resources>

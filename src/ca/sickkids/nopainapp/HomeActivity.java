@@ -11,6 +11,9 @@ public class HomeActivity extends Activity {
 
 	private Button journal = null, exit = null;
 	public static Activity activity = null;
+	
+	public static final String DB_NAME = "NOPAINDB";
+	public static final int DB_VERSION = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
