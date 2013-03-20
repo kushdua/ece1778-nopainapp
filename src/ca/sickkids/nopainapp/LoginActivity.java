@@ -89,6 +89,8 @@ public class LoginActivity extends Activity {
     			Cursor result = db.rawQuery("SELECT name, pass FROM users WHERE name=? AND pass=?;", args);
     			if(result != null && result.getCount() != -1 && result.getCount()==1)
     			{
+					this.pass.setText("");
+					this.userName.setText("");
 					Toast.makeText(activity, R.string.errorRegisteringUsernameTaken, Toast.LENGTH_SHORT).show();
     			}
     			
@@ -107,17 +109,20 @@ public class LoginActivity extends Activity {
 				else
 				{
 					//Error registering user
+					this.pass.setText("");
 					Toast.makeText(activity, R.string.errorRegisteringUnknown, Toast.LENGTH_SHORT).show();
 				}
     		}
     		catch(SQLException e)
     		{
     			Log.e("LOGIN", "Error registering user " + e.getMessage());
+				this.pass.setText("");
 				Toast.makeText(activity, R.string.errorRegisteringUnknown, Toast.LENGTH_SHORT).show();
     		}
     	}
     	else
     	{
+			this.pass.setText("");
 			Toast.makeText(activity, R.string.errorRegisteringUnknown, Toast.LENGTH_SHORT).show();
     	}
     }

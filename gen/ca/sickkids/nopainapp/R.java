@@ -23,6 +23,7 @@ public final class R {
         public static final int red=0x7f090001;
     }
     public static final class dimen {
+        public static final int homeExitMarginTop=0x7f040006;
         public static final int programMarginLeftLarge=0x7f040005;
         public static final int programMarginLeftMedium=0x7f040003;
         public static final int programMarginLeftSmall=0x7f040001;

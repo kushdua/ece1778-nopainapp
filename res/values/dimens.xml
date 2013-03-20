@@ -6,4 +6,5 @@
     <dimen name="programMarginLeftMedium">5dp</dimen>
     <dimen name="programMarginRightLarge">10dp</dimen>
     <dimen name="programMarginLeftLarge">10dp</dimen>
+    <dimen name="homeExitMarginTop">1dp</dimen>
 </resources>
