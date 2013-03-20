@@ -328,6 +328,9 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 			{
 				//Display recommendation
 				nextButton.setVisibility(View.INVISIBLE);
+				Intent intent = new Intent(v.getContext(), Recommendation.class);
+				startActivity(intent);
+				finish();
 				
 			}
 		}
