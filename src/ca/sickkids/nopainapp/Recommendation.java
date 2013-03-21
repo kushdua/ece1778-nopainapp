@@ -56,10 +56,10 @@ class RatingAdapter extends ArrayAdapter<RowModel> {
     public View getView(int position, View convertView,
                         ViewGroup parent) {
       View row=super.getView(position, convertView, parent);
-      ViewHolder holder=(ViewHolder)row.getTag();
+      RecommendationRowViewHolder holder=(RecommendationRowViewHolder)row.getTag();
                           
       if (holder==null) {   
-        holder=new ViewHolder(row);
+        holder=new RecommendationRowViewHolder(row);
         row.setTag(holder);
         
         RatingBar.OnRatingBarChangeListener l=

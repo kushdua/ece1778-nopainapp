@@ -3,10 +3,10 @@ package ca.sickkids.nopainapp;
 import android.view.View;
 import android.widget.RatingBar;
 
-public class ViewHolder {
+public class RecommendationRowViewHolder {
 	  RatingBar rate=null;
 	  
-	  ViewHolder(View base) {
+	  RecommendationRowViewHolder(View base) {
 	    this.rate=(RatingBar)base.findViewById(R.id.rate);
 	  }
 }

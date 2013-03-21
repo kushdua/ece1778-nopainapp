@@ -8,7 +8,6 @@ import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper
 {
-	//TODO add ID AUTOINC to tables, date of survey taken/submitted
 	private final String createUserTable = "CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, pass TEXT NOT NULL, UNIQUE(name) ON CONFLICT ROLLBACK);";
 	//q1 = pain now (INT); q2 = pain worst in past 12 hours (INT); q3 = in way of sleep past 12 (INT)
 	//; q4 = in way of things past 12 (INT); q5 (5a) = medications in past 12 (TEXT); q6 (5b) - how effective were they (TEXT)
@@ -16,7 +15,7 @@ public class DBHelper extends SQLiteOpenHelper
 	private final String createSurveyTable = "CREATE TABLE survey(id INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, q1 INTEGER, q2 INTEGER, control12Hours INTEGER, " +
 											 "q4 INTEGER, q5 TEXT, q6 TEXT, q7 TEXT, q8 TEXT, q9 INTEGER, FOREIGN KEY(userID) REFERENCES users(id) ON DELETE CASCADE);";
 	private final String createFavouritesTable = "CREATE TABLE favourites(id INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, text TEXT NOT NULL, stars FLOAT DEFAULT 0.0, count INTEGER DEFAULT 0.0, FOREIGN KEY(userID) REFERENCES users(id) ON DELETE CASCADE);";
-	private final String createAppointmentsTable = "CREATE TABLE appointments(id INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, type TEXT NOT NULL, date INTEGER NOT NULL, reminderMinutes INTEGER DEFAULT 5, FOREIGN KEY(userID) REFERENCES users(id) ON DELETE CASCADE);";
+	private final String createAppointmentsTable = "CREATE TABLE appointments(id INTEGER PRIMARY KEY, userID INTEGER, type TEXT NOT NULL, date INTEGER NOT NULL, reminderMinutes INTEGER DEFAULT 5, FOREIGN KEY(userID) REFERENCES users(id) ON DELETE CASCADE);";
 	public DBHelper(Context context, String name, CursorFactory factory,
 			int version) {
 		super(context, name, factory, version);

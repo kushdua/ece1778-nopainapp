@@ -19,7 +19,7 @@ public class VideoActivity extends Activity {
       private Cursor videocursor;
       private int video_column_index;
       //ListView videolist;
-      GridView videolist;
+      AdapterView videolist;
 
       int count;
 
@@ -41,7 +41,7 @@ public class VideoActivity extends Activity {
             
             videocursor = managedQuery(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, proj, null, null, null);
             count = videocursor.getCount();
-            videolist = (GridView) findViewById(R.id.journalGallery);
+            videolist = (AdapterView) findViewById(R.id.journalGallery);
             videolist.setAdapter(new VideoAdapter(getApplicationContext()));
             videolist.setOnItemClickListener(videogridlistener);
       }
@@ -81,6 +81,7 @@ public class VideoActivity extends Activity {
             public View getView(int position, View convertView, ViewGroup parent) {
                   System.gc();
                   TextView tv = new TextView(vContext.getApplicationContext());
+                  tv.setLines(2);
                   String id = null;
                   if (convertView == null) {
                         video_column_index = videocursor

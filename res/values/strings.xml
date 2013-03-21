@@ -99,4 +99,10 @@
     <string name="errorConfirmingPassword">Error confirming registration password (the passwords don\'t match).</string>
     <string name="successLogin">Successfully logged in.</string>
     <string name="errorLoggingIn">Error logging in. Please restart the application and try again.</string>
+    <string name="viewListNoEventsFound">No events found.</string>
+    <string name="calendarRowNamePrefix">Name: </string>
+    <string name="calendarRowTypePrefix">Type: </string>
+    <string name="calendarRowDatePrefix">When: </string>
+    <string name="calendarRowDurationUntilPrefix">Starts in: </string>
+    
 </resources>
