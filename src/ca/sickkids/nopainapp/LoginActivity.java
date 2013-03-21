@@ -92,13 +92,14 @@ public class LoginActivity extends Activity {
 					this.pass.setText("");
 					this.userName.setText("");
 					Toast.makeText(activity, R.string.errorRegisteringUsernameTaken, Toast.LENGTH_SHORT).show();
+					return;
     			}
     			
 				ContentValues values = new ContentValues(2);
 				values.put("name", name);
 				values.put("pass", pass);
 				long numRows = db.insertOrThrow("users", null, values);
-				if(numRows != -1 && numRows == 1)
+				if(numRows != -1)
 				{
 					this.pass.setText("");
 					this.userName.setText("");
