@@ -1,54 +1,61 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/journalingBackgroundContainer"
     android:layout_width="match_parent"
-    android:layout_height="422dp"
-    android:layout_marginLeft="@dimen/programMarginLeftMedium"
-    android:layout_marginRight="@dimen/programMarginRightMedium" >
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_pattern"
+    android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/multiAutoCompleteTextView1"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="84dp"
-        android:ems="10"
-        android:maxLines="@integer/textMaxLines"
-        android:minLines="@integer/textMaxLines"
-        android:text="@string/lblButtonJournalTalkAboutYourExperiences" >
+	    android:layout_marginLeft="@dimen/programMarginMedium"
+	    android:layout_marginRight="@dimen/programMarginMedium"
+        android:layout_height="422dp" >
 
-    </EditText>
+        <EditText
+            android:id="@+id/multiAutoCompleteTextView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="84dp"
+            android:ems="10"
+            android:maxLines="@integer/textMaxLines"
+            android:minLines="@integer/textMaxLines"
+            android:text="@string/lblButtonJournalTalkAboutYourExperiences" >
+        </EditText>
 
-    <Button
-        android:id="@+id/btnDone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/btnVideo"
-        android:text="@string/lblButtonDone" />
+        <Button
+            android:id="@+id/btnDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/btnVideo"
+            android:text="@string/lblButtonDone" />
 
-    <Button
-        android:id="@+id/btnVideo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/btnView"
-        android:text="@string/lblButtonJournalVideoText" />
+        <Button
+            android:id="@+id/btnVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/btnView"
+            android:text="@string/lblButtonJournalVideoText" />
 
-    <Button
-        android:id="@+id/btnText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/multiAutoCompleteTextView1"
-        android:layout_marginTop="14dp"
-        android:text="@string/lblButtonJournalTextJournal" />
+        <Button
+            android:id="@+id/btnText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/multiAutoCompleteTextView1"
+            android:layout_marginTop="14dp"
+            android:text="@string/lblButtonJournalTextJournal" />
 
-    <Button
-        android:id="@+id/btnView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/btnText"
-        android:text="@string/lblButtonJournalViewVideo" />
+        <Button
+            android:id="@+id/btnView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/btnText"
+            android:text="@string/lblButtonJournalViewVideo" />
+    </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>

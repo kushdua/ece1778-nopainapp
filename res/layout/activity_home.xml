@@ -1,263 +1,266 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RelativeLayout1"
+    android:id="@+id/homeBackgroundContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="@dimen/programMarginLeftMedium"
-    android:layout_marginRight="@dimen/programMarginRightMedium"
-    android:orientation="vertical"
-    tools:context=".HomeActivity" >
+    android:background="@drawable/background_pattern"
+    android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/app_name"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+	    android:layout_marginLeft="@dimen/programMarginMedium"
+	    android:layout_marginRight="@dimen/programMarginMedium"
+        tools:context=".HomeActivity" >
 
-    <LinearLayout
-        android:id="@+id/firstRowContainer"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:id="@+id/firstRowButtonContainer"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-
-            <Button
-                android:id="@+id/survey"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:background="@drawable/survey"
-                android:onClick="onSurveyClickHandler" />
-
-            <Button
-                android:id="@+id/btnCalendar"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.2"
-                android:background="@drawable/calendar"
-                android:onClick="onCalendarClickHandler" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <LinearLayout
-            android:id="@+id/firstRowLabelContainer"
+            android:id="@+id/firstRowContainer"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView1"
+            android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/lblSurvey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:text="@string/lblButtonSurvey"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <TextView
-                android:id="@+id/lblCalendar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lblButtonCalendar"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/secondRowContainer"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/firstRowContainer"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:id="@+id/secondRowButtonContainer"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-
-            <Button
-                android:id="@+id/btnClassroom"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.33"
-                android:background="@drawable/classroom" />
-
-            <Button
-                android:id="@+id/btnGoals"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                android:background="@drawable/goals" />
-
-            <Button
-                android:id="@+id/journal"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.34"
-                android:background="@drawable/journal" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/secondRowLabelContainer"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/lblClassroom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".28"
-                android:text="@string/lblButtonClassroom"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <TextView
-                android:id="@+id/lblGoals"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".4"
-                android:text="@string/lblButtonGoals"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <TextView
-                android:id="@+id/lblJournal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.34"
-                android:text="@string/lblButtonJournal"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/thirdRowContainer"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/secondRowContainer"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:id="@+id/thirdRowButtonContainer"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-
-            <Button
-                android:id="@+id/btnSocialNetwork"
-                style="?android:attr/buttonStyleSmall"
+            <LinearLayout
+                android:id="@+id/firstRowButtonContainer"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/social"
-                android:onClick="onSocialNetworkClickHandler" />
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/survey"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:background="@drawable/survey"
+                    android:onClick="onSurveyClickHandler" />
+
+                <Button
+                    android:id="@+id/btnCalendar"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/calendar"
+                    android:onClick="onCalendarClickHandler" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/firstRowLabelContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/lblSurvey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="@string/lblButtonSurvey"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/lblCalendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lblButtonCalendar"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/thirdRowLabelContainer"
+            android:id="@+id/secondRowContainer"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/firstRowContainer"
+            android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/lblSocial"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lblButtonSocialNetwork"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <LinearLayout
+                android:id="@+id/secondRowButtonContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/btnClassroom"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.33"
+                    android:background="@drawable/classroom" />
+
+                <Button
+                    android:id="@+id/btnGoals"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".33"
+                    android:background="@drawable/goals" />
+
+                <Button
+                    android:id="@+id/journal"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.34"
+                    android:background="@drawable/journal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/secondRowLabelContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/lblClassroom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".28"
+                    android:text="@string/lblButtonClassroom"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/lblGoals"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".4"
+                    android:text="@string/lblButtonGoals"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/lblJournal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.34"
+                    android:text="@string/lblButtonJournal"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/fourthRowContainer"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/thirdRowContainer"
-        android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/fourthRowButtonContainer"
+            android:id="@+id/thirdRowContainer"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/secondRowContainer"
+            android:orientation="vertical" >
 
-            <Button
-                android:id="@+id/btnSettings"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.2"
-                android:background="@drawable/settings" />
+            <LinearLayout
+                android:id="@+id/thirdRowButtonContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
 
-            <Button
-                android:id="@+id/btnDiseaseInfo"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.6"
-                android:background="@drawable/health_info" />
+                <Button
+                    android:id="@+id/btnSocialNetwork"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/social"
+                    android:onClick="onSocialNetworkClickHandler" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/btnExit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/homeExitMarginTop"
-                android:layout_weight="0.2"
-                android:background="@drawable/exit"
-                android:minWidth="48dip" />
+            <LinearLayout
+                android:id="@+id/thirdRowLabelContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
 
+                <TextView
+                    android:id="@+id/lblSocial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lblButtonSocialNetwork"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/fourthRowLabelContainer"
+            android:id="@+id/fourthRowContainer"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-            
-            <TextView
-                android:id="@+id/lblSettings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".2"
-                android:text="@string/lblButtonSettings"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/thirdRowContainer"
+            android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/lblDiseaseInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".6"
-                android:text="@string/lblButtonDiseaseInfo"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <LinearLayout
+                android:id="@+id/fourthRowButtonContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/lblExit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".4"
-                android:text="@string/lblButtonExit"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-            
+                <Button
+                    android:id="@+id/btnSettings"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/settings" />
+
+                <Button
+                    android:id="@+id/btnDiseaseInfo"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:background="@drawable/health_info" />
+
+                <Button
+                    android:id="@+id/btnExit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/homeExitMarginTop"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/exit"
+                    android:minWidth="48dip" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fourthRowLabelContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/lblSettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:text="@string/lblButtonSettings"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/lblDiseaseInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".6"
+                    android:text="@string/lblButtonDiseaseInfo"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/lblExit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".4"
+                    android:text="@string/lblButtonExit"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/fourthRowContainer"
-        android:contentDescription="@string/lblSickKidsLogoContentDescription"
-        android:src="@drawable/sickkids_logo" />
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/fourthRowContainer"
+            android:contentDescription="@string/lblSickKidsLogoContentDescription"
+            android:src="@drawable/sickkids_logo" />
+    </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>

@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="programMarginRightSmall">2dp</dimen>
-    <dimen name="programMarginLeftSmall">2dp</dimen>
-    <dimen name="programMarginRightMedium">5dp</dimen>
-    <dimen name="programMarginLeftMedium">5dp</dimen>
-    <dimen name="programMarginRightLarge">10dp</dimen>
-    <dimen name="programMarginLeftLarge">10dp</dimen>
+    <dimen name="programMarginSmall">2dp</dimen>
+    <dimen name="programMarginMedium">5dp</dimen>
+    <dimen name="programMarginLarge">10dp</dimen>
     <dimen name="homeExitMarginTop">1dp</dimen>
 </resources>
