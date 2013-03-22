@@ -25,12 +25,18 @@ public class Recommendation extends ListActivity {
 	private static final String[] items={"Learn about pain", "Learn about your disease", "Talk or write about disease",
         "Get your mind off it", "Set a pain management goal ",
         "Talk to someone about it ", "Use medications"};
+	private enum category {
+		MILD, MODERATE, SEVERE
+	}
+	private category painstatus;
+	
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_main);
-		
+		getreccomendation();
 		 ArrayList<RowModel> list=new ArrayList<RowModel>();
 		    
 		    for (String s : items) {
@@ -41,6 +47,30 @@ public class Recommendation extends ListActivity {
 		    setListAdapter(new RatingAdapter(list));
 		  }
 	
+
+
+private void getreccomendation() {
+		// Check the results of the survey and decide from which category should the 
+		// should the advice be chosen and displayed
+	
+		if(SurveyActivity.answers.get(0).equalsIgnoreCase("NO") && SurveyActivity.answers.get(1).equalsIgnoreCase("NO")){
+			//don't give any advice
+		}
+		else if(Integer.parseInt(SurveyActivity.answers.get(2))>70 || Integer.parseInt(SurveyActivity.answers.get(3))>70 || 
+				Integer.parseInt(SurveyActivity.answers.get(4))>70 || Integer.parseInt(SurveyActivity.answers.get(5))>70 || 
+				Integer.parseInt(SurveyActivity.answers.get(10))<30) {
+			painstatus=category.MILD;			
+		}
+		else if(Integer.parseInt(SurveyActivity.answers.get(2))<30 && Integer.parseInt(SurveyActivity.answers.get(3))<30 && 
+				Integer.parseInt(SurveyActivity.answers.get(4))<30 && Integer.parseInt(SurveyActivity.answers.get(5))<30 && 
+				Integer.parseInt(SurveyActivity.answers.get(10))>70) {
+			painstatus=category.SEVERE;			
+		} else {
+			painstatus=category.MODERATE;			
+
+		}
+	}
+
 
 
 private RowModel getModel(int position) {
@@ -94,7 +124,6 @@ class RatingAdapter extends ArrayAdapter<RowModel> {
     	    	finish();
     	    }
     	});
-      
       return(row);
     }
   }

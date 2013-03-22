@@ -25,7 +25,7 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 	private int currQuestion = 1;
 	//private static final int MAX_QUESTION_NUMBER = 9;
 	private static final int MAX_QUESTION_NUMBER = 11;
-	private ArrayList<String> answers = new ArrayList<String>();
+	public static ArrayList<String> answers = new ArrayList<String>();
 	private boolean stopsurvey = false; //variable used to end survey intermediately
 	
 	private TextView questionHeader = null;
@@ -257,12 +257,12 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 		//else if(nextQuestion==10)
 		else if(nextQuestion==12)
 		{
-			painBarContainer.setVisibility(View.INVISIBLE);
+			/*painBarContainer.setVisibility(View.INVISIBLE);
 			choicesSpinner.setVisibility(View.INVISIBLE);
 			questionHeader.setText(R.string.recommendationHeader);
 			
 			//TODO: Algorithm for recommendations
-			questionContents.setText(R.string.recommendationTalkToParents);
+			questionContents.setText(R.string.recommendationTalkToParents);*/
 		}
 		
 		surveyProgress.setMax(100);
@@ -330,6 +330,8 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 				nextButton.setVisibility(View.INVISIBLE);
 				Intent intent = new Intent(v.getContext(), Recommendation.class);
 				startActivity(intent);
+				//After suggestion is given finish the survey activity as well
+				Toast.makeText(this, "Thanks for chooosing the advice", Toast.LENGTH_SHORT).show();
 				finish();
 				
 			}
