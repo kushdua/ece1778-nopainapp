@@ -3,8 +3,9 @@
     android:id="@+id/recommendationBackgroundContainer"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_pattern"
     android:orientation="vertical" >
+    <!-- android:background="@drawable/background_pattern" -->
+    
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -19,15 +20,22 @@
             android:layout_height="wrap_content"
             android:padding="2dip"
             android:text="TextView"
-            android:textSize="15sp" />
-
-        <RatingBar
-            android:id="@+id/rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="3"
-            android:rating="1"
-            android:stepSize="1" />
+            android:textSize="30sp" />
     </LinearLayout>
+
+    <RatingBar
+        android:id="@+id/rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:isIndicator="true"
+        android:numStars="5"
+        android:rating="1"
+        android:stepSize="1" />
+
+    <Button
+        android:id="@+id/choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose" />
 
 </LinearLayout>

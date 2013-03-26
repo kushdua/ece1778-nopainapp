@@ -331,7 +331,7 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 				Intent intent = new Intent(v.getContext(), Recommendation.class);
 				startActivity(intent);
 				//After suggestion is given finish the survey activity as well
-				Toast.makeText(this, "Thanks for chooosing the advice", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Please choose one of the following advice by clicking on it", Toast.LENGTH_SHORT).show();
 				finish();
 				
 			}

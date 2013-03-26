@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -28,7 +29,10 @@ public class Recommendation extends ListActivity {
 	private enum category {
 		MILD, MODERATE, SEVERE
 	}
+	//private static String[] question = {"q1","q2","q3","q4","q5","q6","q7"};
+	private static int[] freq = {1,4,10,6,1,8,9};
 	private category painstatus;
+	private int getmax=1;
 	
 	
 	
@@ -38,9 +42,10 @@ public class Recommendation extends ListActivity {
 		//setContentView(R.layout.activity_main);
 		getreccomendation();
 		 ArrayList<RowModel> list=new ArrayList<RowModel>();
-		    
+		    int count =0;
 		    for (String s : items) {
-		      list.add(new RowModel(s));
+		      list.add(new RowModel(s,count));
+		      count++;
 		    }
 		    //ListView list = getListView();
 
@@ -68,6 +73,11 @@ private void getreccomendation() {
 		} else {
 			painstatus=category.MODERATE;			
 
+		}
+		//Get the max number from freq table
+		for (int i=0;i<freq.length;i++){
+			if(getmax<freq[i])
+				getmax=freq[i];
 		}
 	}
 
@@ -104,6 +114,19 @@ class RatingAdapter extends ArrayAdapter<RowModel> {
           
             LinearLayout parent=(LinearLayout)ratingBar.getParent();
             TextView label=(TextView)parent.findViewById(R.id.label);
+            Button b1=(Button)parent.findViewById(R.id.choose);
+            
+            b1.setOnClickListener(new OnClickListener() {
+
+          	    public void onClick(View v) {
+          	    	//Handle the click event
+          	    	/*
+          	    	 * TODO : Check the position of the row and see what item was chosen
+          	    	 * And accordingly put that recommendation in database
+          	    	 */
+          	    	finish();
+          	    }
+          	});
             label.setMovementMethod(new ScrollingMovementMethod());
             label.setText(model.toString());
           }
@@ -116,29 +139,23 @@ class RatingAdapter extends ArrayAdapter<RowModel> {
       
       holder.rate.setTag(new Integer(position));
       holder.rate.setRating(model.rating);
-      
-      row.setOnClickListener(new OnClickListener() {
 
-    	    public void onClick(View v) {
-    	    	//Handle the click event
-    	    	finish();
-    	    }
-    	});
       return(row);
     }
   }
   
   class RowModel {
     String label;
-    float rating=2.0f;
+    float rating;
     
-    RowModel(String label) {
+    RowModel(String label, int count) {
+      this.rating= (float) Math.round(((float)freq[count]/getmax)*5.0);
       this.label=label;
     }
     
     public String toString() {
       if (rating>=3.0) {
-        return(label.toUpperCase());
+        //return(label.toUpperCase());
       }
       
       return(label);
