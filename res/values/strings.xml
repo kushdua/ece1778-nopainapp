@@ -103,5 +103,5 @@
     <string name="calendarRowTypePrefix">Type: </string>
     <string name="calendarRowDatePrefix">When: </string>
     <string name="calendarRowDurationUntilPrefix">Starts in: </string>
-    
+    <string name="btnRecommendationChooseText">Choose</string>
 </resources>

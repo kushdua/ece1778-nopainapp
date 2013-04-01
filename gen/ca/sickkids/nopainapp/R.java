@@ -149,6 +149,7 @@ public final class R {
         public static final int btnGetRecommendationText=0x7f060028;
         public static final int btnNextText=0x7f060023;
         public static final int btnPrevText=0x7f060024;
+        public static final int btnRecommendationChooseText=0x7f06003d;
         public static final int btnTwitterText=0x7f06002b;
         public static final int calendarRowDatePrefix=0x7f06003b;
         public static final int calendarRowDurationUntilPrefix=0x7f06003c;

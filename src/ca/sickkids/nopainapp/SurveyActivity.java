@@ -266,7 +266,7 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 		}
 		
 		surveyProgress.setMax(100);
-		surveyProgress.setProgress(nextQuestion*100/10);
+		surveyProgress.setProgress(nextQuestion*100/MAX_QUESTION_NUMBER);
 	}
 
     public void btnPreviousClickHandler(View v)
