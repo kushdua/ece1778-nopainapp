@@ -26,13 +26,14 @@ public class Recommendation extends ListActivity {
 	private static final String[] items={"Learn about pain", "Learn about your disease", "Talk or write about disease",
         "Get your mind off it", "Set a pain management goal ",
         "Talk to someone about it ", "Use medications"};
+
+	private static final int maxsuggestion = 7;
+	private static int[] freq = {5,4,2,6,1,8,9};
+	private static int[] frequpdated = new int[maxsuggestion];
+	private static String[] survey1 = {};
 	private enum category {
 		MILD, MODERATE, SEVERE
 	}
-	//private static String[] question = {"q1","q2","q3","q4","q5","q6","q7"};
-	private static int[] freq = {5,4,2,6,1,8,9};
-	private static int[] frequpdated = new int[7];
-
 	private category painstatus;
 	private int getmax=1;
 	private int lowest= Integer.MAX_VALUE;
@@ -44,7 +45,7 @@ public class Recommendation extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_main);
-		String[] finallist = new String[7];
+		String[] finallist = new String[maxsuggestion];
 		getreccomendation(finallist);
 		 ArrayList<RowModel> list=new ArrayList<RowModel>();
 		    int count =0;
@@ -57,15 +58,7 @@ public class Recommendation extends ListActivity {
 		    setListAdapter(new RatingAdapter(list));
 		  }
 	
-
-
-private void getreccomendation(String[] finallist) {
-		// Check the results of the survey and decide from which category should the 
-		// should the advice be chosen and displayed
-		int minindex=-1;
-		int maxindex=-1;
-		int[] freqnew = new int[7];
-		//freqnew = freq;
+    public void findpaincategory () {
 
 		if(SurveyActivity.answers.get(0).equalsIgnoreCase("NO") && SurveyActivity.answers.get(1).equalsIgnoreCase("NO")){
 			//don't give any advice
@@ -83,6 +76,15 @@ private void getreccomendation(String[] finallist) {
 			painstatus=category.MODERATE;			
 
 		}
+    }
+
+private void getreccomendation(String[] finallist) {
+		// Check the results of the survey and decide from which category should the 
+		// should the advice be chosen and displayed
+		int minindex=-1;
+		int maxindex=-1;
+		int[] freqnew = new int[maxsuggestion];
+
 		//Get the max number from freq table
 		for (int i=0;i<freq.length;i++){
 			freqnew[i]=freq[i];
@@ -92,7 +94,6 @@ private void getreccomendation(String[] finallist) {
 			}
 			if(getmax<freq[i]) {
 				getmax=freq[i];
-				//maxindex=i;
 			}
 		}
 		
@@ -112,7 +113,6 @@ private void getreccomendation(String[] finallist) {
 			counter++;
 		}
 		lowest= Integer.MAX_VALUE;
-		//freqnew=freq;
 
 	}
 

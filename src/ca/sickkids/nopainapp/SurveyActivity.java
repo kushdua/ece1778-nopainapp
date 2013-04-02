@@ -26,7 +26,7 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 	//private static final int MAX_QUESTION_NUMBER = 9;
 	private static final int MAX_QUESTION_NUMBER = 11;
 	public static ArrayList<String> answers = new ArrayList<String>();
-	private boolean stopsurvey = false; //variable used to end survey intermediately
+	private static int numsurvey = 0;
 	
 	private TextView questionHeader = null;
 	private TextView questionContents = null;
@@ -319,7 +319,6 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 				 *If Yes then continue else skip the rest of the survey
 				 */
 				if(answers.get(currQuestion-2).equalsIgnoreCase("NO") && answers.get(currQuestion-3).equalsIgnoreCase("NO")) {
-					stopsurvey= true;
 					currQuestion=11;
 					Toast.makeText(this, R.string.nopainreported, Toast.LENGTH_SHORT).show();
 					finish();
@@ -343,11 +342,14 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 				startActivity(intent);
 				//After suggestion is given finish the survey activity as well
 				Toast.makeText(this, "Please choose one of the following advice by clicking on it", Toast.LENGTH_SHORT).show();
+				numsurvey=1;
 				finish();
 				
 			}
 		}
     }
+    
+
 
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
