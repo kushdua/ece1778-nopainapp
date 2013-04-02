@@ -9,6 +9,7 @@
     <string name="errorinvalidtext">Invalid Text Entered</string>
     <string name="EntrySaved">The text is saved.</string>
     <string name="nopainreported">No pain in last 12 hours. Survey not required.</string>
+    <string name="invalidinput">Please select a valid input</string>
     <string name="Cameranotsupported">Device does not support Camera.</string>
     <string name="lblButtonJournal">Journal</string>
     <string name="lblButtonExit">Exit</string>
@@ -38,10 +39,12 @@
         <item>Other (please list)</item>
     </string-array>  
     <string-array name="q1choice">
+        <item></item>
         <item>Yes</item>
         <item>No</item> 
     </string-array>  
         <string-array name="q2choice">
+        <item></item>
         <item>Yes</item>
         <item>No</item> 
     </string-array>   
@@ -66,6 +69,8 @@
         <item>Prayer/meditation</item>
         <item>Other (please list)</item>
     </string-array>
+    <string name="q1prev">Did you use the last Advice?</string>
+    <string name="q1next">Did you like this Advice?</string>
     <string name="q1yna">Did you have PAIN in the last 12 hours?</string>
     <string name="q1ynb">Do you have PAIN now?</string>
     <string name="q1Text">Touch the mark and move it to show how much PAIN you have right now.</string>

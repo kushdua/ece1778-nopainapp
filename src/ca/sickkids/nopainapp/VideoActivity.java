@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -18,8 +19,10 @@ import android.widget.AdapterView.OnItemClickListener;
 public class VideoActivity extends Activity {
       private Cursor videocursor;
       private int video_column_index;
-      //ListView videolist;
-      AdapterView videolist;
+      ListView videolist;
+      //put the uri here
+      Uri parcialUri = Uri.parse("content://media/external/video/media");
+      //AdapterView videolist;
 
       int count;
 
@@ -33,22 +36,23 @@ public class VideoActivity extends Activity {
 
       @SuppressWarnings("deprecation")
 	private void init_phone_video_grid() {
-            System.gc();
+            //System.gc();
             String[] proj = { MediaStore.Video.Media._ID,
             		MediaStore.Video.Media.DATA,
 					MediaStore.Video.Media.DISPLAY_NAME,
 					MediaStore.Video.Media.SIZE };
             
-            videocursor = managedQuery(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, proj, null, null, null);
+            //videocursor = managedQuery(MediaStore.Video.Media.INTERNAL_CONTENT_URI, proj, null, null, null);
+            videocursor = managedQuery(parcialUri, proj, null, null, null);
             count = videocursor.getCount();
-            videolist = (AdapterView) findViewById(R.id.journalGallery);
+            videolist = (ListView) findViewById(R.id.journalGallery);
             videolist.setAdapter(new VideoAdapter(getApplicationContext()));
             videolist.setOnItemClickListener(videogridlistener);
       }
 
       private OnItemClickListener videogridlistener = new OnItemClickListener() {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
-                  System.gc();
+                  //System.gc();
                   video_column_index = videocursor
 .getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
                   videocursor.moveToPosition(position);
@@ -79,7 +83,7 @@ public class VideoActivity extends Activity {
             }
 
             public View getView(int position, View convertView, ViewGroup parent) {
-                  System.gc();
+                  //System.gc();
                   TextView tv = new TextView(vContext.getApplicationContext());
                   tv.setLines(2);
                   String id = null;

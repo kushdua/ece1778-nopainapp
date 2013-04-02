@@ -162,7 +162,7 @@ public class Journaling extends Activity{
 
         root = Environment.getExternalStorageDirectory().getPath();
         root +="/DCIM/";
-        
+        //root +="media/external/video/media";
 	    File mediaStorageDir = new File(root+"NoPainVideos");
 	    // This location works best if you want the created images to be shared
 	    // between applications and persist after your app has been uninstalled.

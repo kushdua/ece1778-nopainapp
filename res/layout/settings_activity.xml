@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_pattern"
+    android:orientation="vertical"
+    tools:context=".SettingsActivity" >
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/programMarginLarge"
+        android:layout_marginLeft="@dimen/programMarginMedium"
+        android:layout_marginRight="@dimen/programMarginMedium"
+        android:text="@string/titleSettings"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <LinearLayout
+        android:id="@+id/diseaseNameContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/programMarginMedium"
+        android:layout_marginRight="@dimen/programMarginMedium" >
+
+        <TextView
+            android:id="@+id/lblSettingsDisease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_weight="1"
+            android:text="@string/lblSettingsDiseaseInfo"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Spinner
+            android:id="@+id/spinnerDisease"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".8"
+            android:entries="@array/diseaseList" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/remindersContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/programMarginMedium"
+        android:layout_marginRight="@dimen/programMarginMedium"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/lblSettingsReminders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_weight="1"
+            android:text="@string/lblSettingsReminder"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Spinner
+            android:id="@+id/spinnerReminders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:entries="@array/reminderList" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/morningAlarmContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/programMarginMedium"
+        android:layout_marginRight="@dimen/programMarginMedium" >
+
+        <TextView
+            android:id="@+id/lblSettingsMorningAlarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_weight="1"
+            android:text="@string/lblSettingsMorningAlarm"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TimePicker
+            android:id="@+id/morningAlarmTimePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/eveningAlarmContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/programMarginMedium"
+        android:layout_marginRight="@dimen/programMarginMedium" >
+
+        <TextView
+            android:id="@+id/lblSettingsEveningAlarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_weight="1"
+            android:text="@string/lblSettingsEveningAlarm"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TimePicker
+            android:id="@+id/eveningAlarmTimePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5" />
+
+    </LinearLayout>
+
+</LinearLayout>

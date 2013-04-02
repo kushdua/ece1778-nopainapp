@@ -294,8 +294,18 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 		{
 			//Save answer and proceed with question
 			saveAnswerAndUpdateQuestion(currQuestion, currQuestion+1);
-			currQuestion++;
+			if(currQuestion==1 || currQuestion==2) {
+				if((currQuestion==1 && answers.get(currQuestion-1).equalsIgnoreCase("")) || (currQuestion==2 && answers.get(currQuestion-2).equalsIgnoreCase(""))) 
+					Toast.makeText(this, R.string.invalidinput, Toast.LENGTH_SHORT).show();
+				else {
+					currQuestion++;
+				}
+			}
+			else {
+				currQuestion++;
+			}			
 			
+
 			prevButton.setVisibility(View.VISIBLE);
 			prevButton.setText(R.string.btnPrevText);
 			

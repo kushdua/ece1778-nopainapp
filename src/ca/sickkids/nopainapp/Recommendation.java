@@ -124,6 +124,7 @@ class RatingAdapter extends ArrayAdapter<RowModel> {
           	    	 * TODO : Check the position of the row and see what item was chosen
           	    	 * And accordingly put that recommendation in database
           	    	 */
+            		Toast.makeText(getApplicationContext(), "Thanks for chooosing the recommendation", Toast.LENGTH_SHORT).show();
           	    	finish();
           	    }
           	});

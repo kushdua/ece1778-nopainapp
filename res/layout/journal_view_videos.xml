@@ -5,10 +5,10 @@
     android:background="@drawable/background_pattern"
     android:orientation="vertical" >
 
-    <Gallery
+    <ListView
         android:id="@+id/journalGallery"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.72" />
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>
