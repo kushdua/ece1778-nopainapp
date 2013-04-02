@@ -29,6 +29,8 @@ public class LoginActivity extends Activity {
 	private EditText userName = null, pass = null;
 	public static Activity activity = null;
 	DBHelper dbHelper = null;
+	
+	public static int userID = -1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +56,10 @@ public class LoginActivity extends Activity {
     	{
 			String args[] = { userName.getText().toString(), pass.getText().toString() };
 	    	//db.execSQL("SELECT name, pass FROM users WHERE name=? AND pass=?;", args);
-			Cursor result = db.rawQuery("SELECT name, pass FROM users WHERE name=? AND pass=?;", args);
+			Cursor result = db.rawQuery("SELECT id, name, pass FROM users WHERE name=? AND pass=?;", args);
 			if(result != null && result.getCount()==1)
 			{
+				userID = result.getInt(0);
 				this.pass.setText("");
 				this.userName.setText("");
 				Toast.makeText(activity, R.string.successLogin, Toast.LENGTH_SHORT).show();
@@ -91,6 +94,13 @@ public class LoginActivity extends Activity {
     			{
 					this.pass.setText("");
 					this.userName.setText("");
+					
+					Cursor selectResult = db.rawQuery("SELECT id FROM users WHERE name=? AND pass=?;", args);
+					if(selectResult != null && selectResult.getCount()==1)
+					{
+						userID = selectResult.getInt(0);
+					}
+					
 					Toast.makeText(activity, R.string.errorRegisteringUsernameTaken, Toast.LENGTH_SHORT).show();
 					return;
     			}

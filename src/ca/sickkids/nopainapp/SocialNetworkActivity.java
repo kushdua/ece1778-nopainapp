@@ -9,7 +9,6 @@ import android.widget.Button;
 
 public class SocialNetworkActivity extends Activity {
 
-	private Button journal = null, exit = null;
 	public static Activity activity = null;
 
 	@Override

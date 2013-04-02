@@ -9,11 +9,13 @@ package ca.sickkids.nopainapp;
 
 public final class R {
     public static final class array {
+        public static final int diseaseList=0x7f070005;
         public static final int q1choice=0x7f070001;
         public static final int q2choice=0x7f070002;
         public static final int q56bMedicationsAnswers=0x7f070003;
         public static final int q5aMedicationsAnswers=0x7f070000;
         public static final int q6aMedicationsAnswers=0x7f070004;
+        public static final int reminderList=0x7f070006;
     }
     public static final class attr {
     }
@@ -46,30 +48,33 @@ public final class R {
     }
     public static final class id {
         public static final int LinearLayout1=0x7f0b0022;
-        public static final int ProgressLabeledLayout=0x7f0b0042;
+        public static final int ProgressLabeledLayout=0x7f0b004e;
         public static final int RelativeLayout1=0x7f0b0001;
         public static final int btnCalendar=0x7f0b0006;
         public static final int btnClassroom=0x7f0b000c;
         public static final int btnDiseaseInfo=0x7f0b001b;
         public static final int btnDone=0x7f0b0026;
         public static final int btnExit=0x7f0b001c;
-        public static final int btnFacebook=0x7f0b003a;
+        public static final int btnFacebook=0x7f0b0046;
         public static final int btnGoals=0x7f0b000d;
         public static final int btnLogin=0x7f0b0030;
-        public static final int btnNext=0x7f0b0040;
-        public static final int btnPrev=0x7f0b003f;
+        public static final int btnNext=0x7f0b004c;
+        public static final int btnPrev=0x7f0b004b;
         public static final int btnRegister=0x7f0b0031;
         public static final int btnSettings=0x7f0b001a;
         public static final int btnSocialNetwork=0x7f0b0015;
         public static final int btnText=0x7f0b0029;
-        public static final int btnTwitter=0x7f0b003b;
+        public static final int btnTwitter=0x7f0b0047;
         public static final int btnVideo=0x7f0b0027;
         public static final int btnView=0x7f0b0028;
         public static final int buttonLoginRegisterContainer=0x7f0b002f;
-        public static final int calendar_menu_new_appointment=0x7f0b0049;
-        public static final int calendar_menu_new_survey=0x7f0b0048;
-        public static final int choiceSpinner=0x7f0b0046;
+        public static final int calendar_menu_new_appointment=0x7f0b0055;
+        public static final int calendar_menu_new_survey=0x7f0b0054;
+        public static final int choiceSpinner=0x7f0b0052;
         public static final int choose=0x7f0b0035;
+        public static final int diseaseNameContainer=0x7f0b003a;
+        public static final int eveningAlarmContainer=0x7f0b0043;
+        public static final int eveningAlarmTimePicker=0x7f0b0045;
         public static final int fieldPass=0x7f0b002e;
         public static final int fieldUser=0x7f0b002c;
         public static final int firstRowButtonContainer=0x7f0b0004;
@@ -84,26 +89,33 @@ public final class R {
         public static final int journalGallery=0x7f0b0023;
         public static final int journalingBackgroundContainer=0x7f0b0024;
         public static final int label=0x7f0b0033;
-        public static final int lblBarMaximum=0x7f0b0045;
-        public static final int lblBarMinimum=0x7f0b0043;
+        public static final int lblBarMaximum=0x7f0b0051;
+        public static final int lblBarMinimum=0x7f0b004f;
         public static final int lblCalendar=0x7f0b0009;
         public static final int lblClassroom=0x7f0b0010;
         public static final int lblDiseaseInfo=0x7f0b001f;
         public static final int lblExit=0x7f0b0020;
         public static final int lblGoals=0x7f0b0011;
         public static final int lblJournal=0x7f0b0012;
-        public static final int lblQuestionContents=0x7f0b0041;
-        public static final int lblQuestionHeader=0x7f0b003d;
+        public static final int lblQuestionContents=0x7f0b004d;
+        public static final int lblQuestionHeader=0x7f0b0049;
         public static final int lblSettings=0x7f0b001e;
+        public static final int lblSettingsDisease=0x7f0b003b;
+        public static final int lblSettingsEveningAlarm=0x7f0b0044;
+        public static final int lblSettingsMorningAlarm=0x7f0b0041;
+        public static final int lblSettingsReminders=0x7f0b003e;
         public static final int lblSocial=0x7f0b0017;
         public static final int lblSurvey=0x7f0b0008;
         public static final int loginBackgroundContainer=0x7f0b002a;
         public static final int loginLayout=0x7f0b002b;
-        public static final int menu_settings=0x7f0b004a;
+        public static final int menu_settings=0x7f0b0056;
+        public static final int morningAlarmContainer=0x7f0b0040;
+        public static final int morningAlarmTimePicker=0x7f0b0042;
         public static final int multiAutoCompleteTextView1=0x7f0b0025;
-        public static final int painBar=0x7f0b0044;
+        public static final int painBar=0x7f0b0050;
         public static final int rate=0x7f0b0034;
         public static final int recommendationBackgroundContainer=0x7f0b0032;
+        public static final int remindersContainer=0x7f0b003d;
         public static final int rowViewEventDate=0x7f0b0038;
         public static final int rowViewEventDistance=0x7f0b0039;
         public static final int rowViewEventName=0x7f0b0036;
@@ -111,10 +123,12 @@ public final class R {
         public static final int secondRowButtonContainer=0x7f0b000b;
         public static final int secondRowContainer=0x7f0b000a;
         public static final int secondRowLabelContainer=0x7f0b000f;
+        public static final int spinnerDisease=0x7f0b003c;
+        public static final int spinnerReminders=0x7f0b003f;
         public static final int survey=0x7f0b0005;
-        public static final int surveyBackgroundContainer=0x7f0b003c;
-        public static final int surveyProgress=0x7f0b003e;
-        public static final int textOtherField=0x7f0b0047;
+        public static final int surveyBackgroundContainer=0x7f0b0048;
+        public static final int surveyProgress=0x7f0b004a;
+        public static final int textOtherField=0x7f0b0053;
         public static final int textView1=0x7f0b0002;
         public static final int textView2=0x7f0b002d;
         public static final int thirdRowButtonContainer=0x7f0b0014;
@@ -134,8 +148,9 @@ public final class R {
         public static final int login_screen=0x7f030004;
         public static final int recommendation=0x7f030005;
         public static final int row_view_events=0x7f030006;
-        public static final int social_network_activity=0x7f030007;
-        public static final int survey_activity=0x7f030008;
+        public static final int settings_activity=0x7f030007;
+        public static final int social_network_activity=0x7f030008;
+        public static final int survey_activity=0x7f030009;
     }
     public static final class menu {
         public static final int activity_calendar_menu=0x7f0a0000;
@@ -161,6 +176,7 @@ public final class R {
         public static final int errorLoggingIn=0x7f060037;
         public static final int errorRegisteringUnknown=0x7f060033;
         public static final int errorRegisteringUsernameTaken=0x7f060034;
+        public static final int errorSavingSettingValue=0x7f060041;
         public static final int erroremptytext=0x7f060004;
         public static final int errorinvalidtext=0x7f060005;
         public static final int lblButtonCalendar=0x7f060013;
@@ -184,6 +200,10 @@ public final class R {
         public static final int lblButtonVisualizeResults=0x7f060014;
         public static final int lblProgressMaximum=0x7f060027;
         public static final int lblProgressMinimum=0x7f060026;
+        public static final int lblSettingsDiseaseInfo=0x7f06003e;
+        public static final int lblSettingsEveningAlarm=0x7f060043;
+        public static final int lblSettingsMorningAlarm=0x7f060042;
+        public static final int lblSettingsReminder=0x7f06003f;
         public static final int lblSickKidsLogoContentDescription=0x7f060017;
         public static final int menu_settings=0x7f060001;
         public static final int nopainreported=0x7f060007;
@@ -203,6 +223,7 @@ public final class R {
         public static final int successLogin=0x7f060036;
         public static final int successRegistering=0x7f060032;
         public static final int surveyQuestionNumber=0x7f060025;
+        public static final int titleSettings=0x7f060040;
         public static final int viewListNoEventsFound=0x7f060038;
     }
     public static final class style {

@@ -104,4 +104,22 @@
     <string name="calendarRowDatePrefix">When: </string>
     <string name="calendarRowDurationUntilPrefix">Starts in: </string>
     <string name="btnRecommendationChooseText">Choose</string>
+    <string name="lblSettingsDiseaseInfo">Disease for Pain Educational Health information</string>
+    <string-array name="diseaseList">
+        <item>General Pain</item>
+        <item>Cancer</item>
+        <item>Juvenile Idiopathic Arthritis (JIA)</item>
+        <item>Sickle Cell Disease (SCD)</item>
+   </string-array>
+   <string name="lblSettingsReminder">Calendar event reminder frequency</string>
+    <string-array name="reminderList">
+        <item>10 minutes</item>
+        <item>20 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+   </string-array>
+   <string name="titleSettings">Settings</string>
+   <string name="errorSavingSettingValue">Error saving setting value. Please try again.</string>
+   <string name="lblSettingsMorningAlarm">Survey 1 time</string>
+   <string name="lblSettingsEveningAlarm">Survey 2 time</string>
 </resources>

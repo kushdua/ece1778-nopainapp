@@ -16,6 +16,7 @@ public class DBHelper extends SQLiteOpenHelper
 											 "q4 INTEGER, q5 TEXT, q6 TEXT, q7 TEXT, q8 TEXT, q9 INTEGER, FOREIGN KEY(userID) REFERENCES users(id) ON DELETE CASCADE);";
 	private final String createFavouritesTable = "CREATE TABLE favourites(id INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, text TEXT NOT NULL, stars FLOAT DEFAULT 0.0, count INTEGER DEFAULT 0.0, FOREIGN KEY(userID) REFERENCES users(id) ON DELETE CASCADE);";
 	private final String createAppointmentsTable = "CREATE TABLE appointments(id INTEGER PRIMARY KEY, userID INTEGER, type TEXT NOT NULL, date INTEGER NOT NULL, reminderMinutes INTEGER DEFAULT 5, FOREIGN KEY(userID) REFERENCES users(id) ON DELETE CASCADE);";
+	private final String createSettingsTable = "CREATE TABLE settings(userID INTEGER PRIMARY KEY, disease TEXT, reminder TEXT, morningSurveyTime TEXT, eveningSurveyTime TEXT, FOREIGN KEY(userID) REFERENCES users(id) ON DELETE CASCADE);";
 	public DBHelper(Context context, String name, CursorFactory factory,
 			int version) {
 		super(context, name, factory, version);
@@ -30,6 +31,7 @@ public class DBHelper extends SQLiteOpenHelper
 			db.execSQL(createSurveyTable);
 			db.execSQL(createFavouritesTable);
 			db.execSQL(createAppointmentsTable);
+			db.execSQL(createSettingsTable);
 			db.setTransactionSuccessful();
 		}finally{
 			db.endTransaction();
