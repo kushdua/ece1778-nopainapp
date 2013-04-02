@@ -293,19 +293,20 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 		if(currQuestion>=1 && currQuestion<=MAX_QUESTION_NUMBER)
 		{
 			//Save answer and proceed with question
-			saveAnswerAndUpdateQuestion(currQuestion, currQuestion+1);
+			//saveAnswerAndUpdateQuestion(currQuestion, currQuestion+1);
 			if(currQuestion==1 || currQuestion==2) {
-				if((currQuestion==1 && answers.get(currQuestion-1).equalsIgnoreCase("")) || (currQuestion==2 && answers.get(currQuestion-2).equalsIgnoreCase(""))) 
+				if(choicesSpinner.getSelectedItem().toString().equalsIgnoreCase("")) 
 					Toast.makeText(this, R.string.invalidinput, Toast.LENGTH_SHORT).show();
 				else {
+					saveAnswerAndUpdateQuestion(currQuestion, currQuestion+1);
 					currQuestion++;
 				}
 			}
 			else {
+				saveAnswerAndUpdateQuestion(currQuestion, currQuestion+1);
 				currQuestion++;
 			}			
 			
-
 			prevButton.setVisibility(View.VISIBLE);
 			prevButton.setText(R.string.btnPrevText);
 			
