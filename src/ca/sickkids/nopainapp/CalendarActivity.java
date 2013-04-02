@@ -6,13 +6,17 @@ import java.util.List;
 import java.util.Locale;
 
 import android.app.ListActivity;
+import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
+
 import java.text.DateFormat;
 import android.text.format.DateUtils;
 import android.view.Menu;
@@ -23,6 +27,10 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 public class CalendarActivity extends ListActivity {
+	
+	public static int calendarID = -1;
+	private final String CALENDAR_NAME="NoPain";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,16 +41,79 @@ public class CalendarActivity extends ListActivity {
 		
 		ArrayList<AppointmentRecord> entriesLoadedFromDB = new ArrayList<AppointmentRecord>();
 
-		Uri calendar_events_URI = Uri.parse("content://calendar/calendars");
-		Uri.Builder builder = calendar_events_URI.buildUpon();
-		//long now1 = new Date().getTime();
-		long timeNow = System.currentTimeMillis();
-		ContentUris.appendId(builder, timeNow);
-		ContentUris.appendId(builder, timeNow + DateUtils.WEEK_IN_MILLIS);
-		String description = "";
-		Cursor eventCursor = getContentResolver().query(builder.build(),
-				new String[] {"event_id", "title", "begin", "description" }, "description != ?",
-				new String[] {DatabaseUtils.sqlEscapeString(description)}, "startDay ASC, startMinute ASC");
+//		Uri calendar_events_URI = Uri.parse("content://calendar/calendars");
+//		Uri.Builder builder = calendar_events_URI.buildUpon();
+//		//long now1 = new Date().getTime();
+//		long timeNow = System.currentTimeMillis();
+//		ContentUris.appendId(builder, timeNow);
+//		ContentUris.appendId(builder, timeNow + DateUtils.WEEK_IN_MILLIS);
+//		String description = "";
+//		Cursor eventCursor = getContentResolver().query(builder.build(),
+//				new String[] {"event_id", "title", "begin", "description" }, "description != ?",
+//				new String[] {DatabaseUtils.sqlEscapeString(description)}, "startDay ASC, startMinute ASC");
+
+//		ContentResolver cr = getContentResolver();
+//		ContentValues values = new ContentValues();
+//		values.put(CalendarContract.Events.DTSTART, startMillis);
+//		values.put(CalendarContract.Events.DTEND, endMillis);
+//		values.put(CalendarContract.Events.TITLE, "Walk The Dog");
+//		values.put(CalendarContract.Events.DESCRIPTION, "My dog is bored, so we're going on a really long walk!");
+//		values.put(CalendarContract.Events.CALENDAR_ID, 3);
+//		Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
+		
+		//TODO check if our calendar exists already and insert if not
+//		When inserting a new calendar the following fields must be included:
+//			ACCOUNT_NAME
+//			ACCOUNT_TYPE
+//			NAME
+//			CALENDAR_DISPLAY_NAME
+//			CALENDAR_COLOR
+//			CALENDAR_ACCESS_LEVEL
+//			OWNER_ACCOUNT
+//			The following fields are not required when inserting a Calendar but are generally a good idea to include:
+//			SYNC_EVENTS set to 1
+//			CALENDAR_TIME_ZONE
+//			ALLOWED_REMINDERS
+//			ALLOWED_AVAILABILITY
+//			ALLOWED_ATTENDEE_TYPES
+		
+		Uri uri = CalendarContract.Calendars.CONTENT_URI;
+		String[] projection = new String[] {
+		       CalendarContract.Calendars._ID,
+		       CalendarContract.Calendars.ACCOUNT_NAME,
+		       CalendarContract.Calendars.CALENDAR_DISPLAY_NAME,
+		       CalendarContract.Calendars.NAME,
+		       CalendarContract.Calendars.CALENDAR_COLOR
+		};
+
+		Cursor calendarCursor = managedQuery(uri, projection, null, null, null);
+		String accountName = "";
+		if(calendarCursor.getCount()>0)
+		{
+			//Calendar does not exist => create and record id
+			ContentResolver cr = getContentResolver();
+			ContentValues values = new ContentValues();
+			values.put(CalendarContract.Calendars.NAME, CALENDAR_NAME);
+//			values.put
+//			Uri uri = cr.insert(CalendarContract.Calendars.CONTENT_URI, values);
+			calendarCursor.close();
+		}
+		else
+		{
+			calendarID = calendarCursor.getInt(0);
+			calendarCursor.close();
+		}
+		
+		
+		ContentResolver cr = getContentResolver();
+		ContentValues values = new ContentValues();
+//		values.put(CalendarContract.Events.DTSTART, startMillis);
+//		values.put(CalendarContract.Events.DTEND, endMillis);
+//		values.put(CalendarContract.Events.TITLE, "Walk The Dog");
+//		values.put(CalendarContract.Events.DESCRIPTION, "My dog is bored, so we're going on a really long walk!");
+//		values.put(CalendarContract.Events.CALENDAR_ID, 3);
+//		Uri uri = cr.insert(CalendarContract.Calendars.CONTENT_URI, values);
+		Cursor eventCursor = null;
 		
 		if(eventCursor!=null)
 		{
