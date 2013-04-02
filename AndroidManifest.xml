@@ -36,10 +36,6 @@
         <activity android:name="ca.sickkids.nopainapp.CalendarActivity" android:label="@string/app_name"></activity>
         <activity android:name="ca.sickkids.nopainapp.ViewVideo" android:label="@string/app_name"></activity>
         <activity android:name="ca.sickkids.nopainapp.SettingsActivity" android:label="@string/app_name"></activity>
-<<<<<<< HEAD
-=======
-        
->>>>>>> 63144804080cd25a65c81061d129141ee81fd517
         <!-- <activity android:name=".ViewVideo"> -->
         <!--          <intent-filter> -->
         <!--               <action android:name="android.intent.action.VIEW" /> -->
