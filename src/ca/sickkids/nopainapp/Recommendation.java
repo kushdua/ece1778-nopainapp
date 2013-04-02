@@ -29,10 +29,13 @@ public class Recommendation extends ListActivity {
 	private enum category {
 		MILD, MODERATE, SEVERE
 	}
+	private static String[] finallist=null;
 	//private static String[] question = {"q1","q2","q3","q4","q5","q6","q7"};
 	private static int[] freq = {1,4,2,6,1,8,9};
 	private category painstatus;
 	private int getmax=1;
+	private int lowest= Integer.MAX_VALUE;
+	//private int maxindex;
 	
 	
 	
@@ -43,7 +46,7 @@ public class Recommendation extends ListActivity {
 		getreccomendation();
 		 ArrayList<RowModel> list=new ArrayList<RowModel>();
 		    int count =0;
-		    for (String s : items) {
+		    for (String s : finallist) {
 		      list.add(new RowModel(s,count));
 		      count++;
 		    }
@@ -57,7 +60,10 @@ public class Recommendation extends ListActivity {
 private void getreccomendation() {
 		// Check the results of the survey and decide from which category should the 
 		// should the advice be chosen and displayed
-	
+		int minindex=-1;
+		int maxindex=-1;
+		int[] freqnew = freq;
+
 		if(SurveyActivity.answers.get(0).equalsIgnoreCase("NO") && SurveyActivity.answers.get(1).equalsIgnoreCase("NO")){
 			//don't give any advice
 		}
@@ -76,9 +82,33 @@ private void getreccomendation() {
 		}
 		//Get the max number from freq table
 		for (int i=0;i<freq.length;i++){
-			if(getmax<freq[i])
+			if(lowest>freq[i]){
+				lowest = freq[i];
+				minindex =i;
+			}
+			if(getmax<freq[i]) {
 				getmax=freq[i];
+				//maxindex=i;
+			}
 		}
+		
+		int counter;
+		while(minindex>0 && freqnew[minindex]!=-1) {
+			int maxval=0;counter=0;
+			for (int i=0;i<freqnew.length;i++) {
+				if(maxval<freqnew[i]) {
+					maxval=freqnew[i];
+					maxindex = i;
+				}			
+			}
+			maxval=0;
+			freqnew[maxindex]=-1;
+			finallist[counter]=items[maxindex];
+			counter++;
+		}
+
+		
+		
 	}
 
 
