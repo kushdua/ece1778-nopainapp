@@ -30,7 +30,7 @@ public class Recommendation extends ListActivity {
 		MILD, MODERATE, SEVERE
 	}
 	//private static String[] question = {"q1","q2","q3","q4","q5","q6","q7"};
-	private static int[] freq = {1,4,10,6,1,8,9};
+	private static int[] freq = {1,4,2,6,1,8,9};
 	private category painstatus;
 	private int getmax=1;
 	
