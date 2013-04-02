@@ -88,7 +88,7 @@ private void getreccomendation() {
 			}
 			if(getmax<freq[i]) {
 				getmax=freq[i];
-				//maxindex=i;
+				maxindex=i;
 			}
 		}
 		
