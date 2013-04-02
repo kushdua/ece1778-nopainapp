@@ -57,9 +57,10 @@ public class LoginActivity extends Activity {
 			String args[] = { userName.getText().toString(), pass.getText().toString() };
 	    	//db.execSQL("SELECT name, pass FROM users WHERE name=? AND pass=?;", args);
 			Cursor result = db.rawQuery("SELECT id, name, pass FROM users WHERE name=? AND pass=?;", args);
-			if(result != null && result.getCount()==1)
+			if(result != null && result.getCount()==1 && result.moveToNext())
 			{
 				userID = result.getInt(0);
+				result.close();
 				this.pass.setText("");
 				this.userName.setText("");
 				Toast.makeText(activity, R.string.successLogin, Toast.LENGTH_SHORT).show();
@@ -96,9 +97,10 @@ public class LoginActivity extends Activity {
 					this.userName.setText("");
 					
 					Cursor selectResult = db.rawQuery("SELECT id FROM users WHERE name=? AND pass=?;", args);
-					if(selectResult != null && selectResult.getCount()==1)
+					if(selectResult != null && selectResult.getCount()==1 && selectResult.moveToNext())
 					{
 						userID = selectResult.getInt(0);
+						selectResult.close();
 					}
 					
 					Toast.makeText(activity, R.string.errorRegisteringUsernameTaken, Toast.LENGTH_SHORT).show();
@@ -113,6 +115,14 @@ public class LoginActivity extends Activity {
 				{
 					this.pass.setText("");
 					this.userName.setText("");
+					
+					Cursor selectResult = db.rawQuery("SELECT id FROM users WHERE name=? AND pass=?;", args);
+					if(selectResult != null && selectResult.getCount()==1 && selectResult.moveToNext())
+					{
+						userID = selectResult.getInt(0);
+						selectResult.close();
+					}
+					
 					Toast.makeText(activity, R.string.successRegistering, Toast.LENGTH_SHORT).show();
 					Intent intent = new Intent(activity, HomeActivity.class);
 					startActivity(intent);
