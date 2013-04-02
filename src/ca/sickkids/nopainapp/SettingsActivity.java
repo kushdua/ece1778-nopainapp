@@ -28,6 +28,7 @@ public class SettingsActivity extends Activity {
 	
 	public static String disease = "";
 	public static String reminder = "";
+	public static int reminderMinutes = -1;
 	public static String morningAlarm = "";
 	public static String eveningAlarm = "";
 	
@@ -64,6 +65,8 @@ public class SettingsActivity extends Activity {
 			    list2 = Arrays.asList(remindersArray);
 			    reminderSpinner.setSelection(list2.indexOf(reminder));
 			    
+			    reminderMinutes = reminderStringToMinutes(reminder);
+			    
 				morningAlarm=result.getString(2);
 				String[] array = morningAlarm.split(":");
 				morningAlarmPicker.setCurrentHour(Integer.parseInt(array[0]));
@@ -92,6 +95,22 @@ public class SettingsActivity extends Activity {
 	protected void onDestroy()
 	{
 		saveSelections();
+	}
+	
+	public int reminderStringToMinutes(String in)
+	{
+		try
+		{
+			return Integer.parseInt(in)*(in.contains("day")?1440:1);
+		}
+		catch(NumberFormatException e)
+		{
+			//Log error and return default of 5 minutes below
+			Log.e("SETTINGS", "Could not parse " + in + " to minutes." + e.toString());
+		}
+		
+		//Return default of 5 minutes reminder
+		return 5;
 	}
 
 	public void saveSelections()
