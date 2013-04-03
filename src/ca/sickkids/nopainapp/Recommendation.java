@@ -30,7 +30,12 @@ public class Recommendation extends ListActivity {
 	private static final int maxsuggestion = 7;
 	private static int[] freq = {5,4,2,6,1,8,9};
 	private static int[] frequpdated = new int[maxsuggestion];
-	private static String[] survey1 = {};
+	private static String[] survey1 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
+	private static String[] survey2 = {"","","yes","yes","30","90","80","5","","","","","10"}; //high
+	private static String[] survey3 = {"","","yes","yes","50","60","60","65","","","","","50"}; //medium
+	private static String[] survey4 = {"","","yes","yes","30","90","80","5","","","","","10"}; //high
+	private static String[] survey5 = {"","","yes","yes","30","90","80","5","","","","","10"}; //high
+
 	private enum category {
 		MILD, MODERATE, SEVERE
 	}
@@ -79,6 +84,8 @@ public class Recommendation extends ListActivity {
     }
 
 private void getreccomendation(String[] finallist) {
+		//Before computing the ratings ... find if the suggestion is about doctors approval or not
+	
 		// Check the results of the survey and decide from which category should the 
 		// should the advice be chosen and displayed
 		int minindex=-1;
