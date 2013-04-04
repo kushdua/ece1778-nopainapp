@@ -1,11 +1,15 @@
 package ca.sickkids.nopainapp;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +21,16 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class VideoActivity extends Activity {
-      private Cursor videocursor;
-      private int video_column_index;
+//      private Cursor videocursor;
+//      private int video_column_index;
       ListView videolist;
-      //put the uri here
-      Uri parcialUri = Uri.parse("content://media/external/video/media");
-      //AdapterView videolist;
-
-      int count;
+      ArrayList<String> items = new ArrayList<String>();
+      ArrayList<Long> sizes = new ArrayList<Long>();
+//      //put the uri here
+//      Uri parcialUri = Uri.parse("content://media/external/video/media");
+//      //AdapterView videolist;
+//
+//      int count;
 
       /** Called when the activity is first created. */
       @Override
@@ -43,8 +49,24 @@ public class VideoActivity extends Activity {
 					MediaStore.Video.Media.SIZE };
             
             //videocursor = managedQuery(MediaStore.Video.Media.INTERNAL_CONTENT_URI, proj, null, null, null);
-            videocursor = managedQuery(parcialUri, proj, null, null, null);
-            count = videocursor.getCount();
+//            videocursor = managedQuery(parcialUri, proj, null, null, null);
+//            count = videocursor.getCount();
+    		File mfile=new File(Environment.getExternalStorageDirectory().getPath()+"/DCIM/"+"NoPainVideos");
+    		if(mfile!=null)
+    		{
+    			File[] list=mfile.listFiles();
+    			if(list!=null)
+    			{
+    				items = new ArrayList<String>();
+    				
+    				for(int i=0; i<list.length; i++)
+    				{
+    					items.add(i,list[i].getName());
+    					sizes.add(i, Long.valueOf(list[i].length()));
+    				}
+    			}
+    		}
+            
             videolist = (ListView) findViewById(R.id.journalGallery);
             videolist.setAdapter(new VideoAdapter(getApplicationContext()));
             videolist.setOnItemClickListener(videogridlistener);
@@ -53,12 +75,12 @@ public class VideoActivity extends Activity {
       private OnItemClickListener videogridlistener = new OnItemClickListener() {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                   //System.gc();
-                  video_column_index = videocursor
-.getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
-                  videocursor.moveToPosition(position);
-                  String filename = videocursor.getString(video_column_index); 
+//                  video_column_index = videocursor
+//.getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
+//                  videocursor.moveToPosition(position);
+//                  String filename = videocursor.getString(video_column_index); 
                   Intent intent = new Intent(VideoActivity.this, ViewVideo.class);
-                  intent.putExtra("videofilename", filename);
+                  intent.putExtra("videofilename", items.get(position));
                   startActivity(intent);
             }
       };
@@ -71,7 +93,8 @@ public class VideoActivity extends Activity {
             }
 
             public int getCount() {
-                  return count;
+                  //return count;
+            	return items.size();
             }
 
             public Object getItem(int position) {
@@ -88,14 +111,15 @@ public class VideoActivity extends Activity {
                   tv.setLines(2);
                   String id = null;
                   if (convertView == null) {
-                        video_column_index = videocursor
-.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME);
-                        videocursor.moveToPosition(position);
-                        id = videocursor.getString(video_column_index);
-                        video_column_index = videocursor
-.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE);
-                        videocursor.moveToPosition(position);
-                        id += " Size(KB):" + videocursor.getString(video_column_index);
+//                        video_column_index = videocursor
+//.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME);
+//                        videocursor.moveToPosition(position);
+//                        id = videocursor.getString(video_column_index);
+//                        video_column_index = videocursor
+//.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE);
+//                        videocursor.moveToPosition(position);
+//                        id += " Size(KB):" + videocursor.getString(video_column_index);
+                	  	id=items.get(position) + " Size(KB): " + (sizes.get(position)/(1024*1024));
                         tv.setText(id);
                   } else
                         tv = (TextView) convertView;

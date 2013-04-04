@@ -21,9 +21,10 @@ public class HomeActivity extends Activity {
 		setContentView(R.layout.activity_home);
 		addListenerOnButton();
 		activity=this;
-		SettingsActivity.loadSettingsValuesFromDatabase(this, false);
-		CalendarActivity.initializeCalendarID(this, CalendarActivity.CALENDAR_NAME, false);
-		CalendarActivity.loadTimesOrCreateRecurringMorningEveningEvents(this, SettingsActivity.morningAlarm, SettingsActivity.eveningAlarm, true);
+		//Disabling settings and calendar DB functionality in normal app operation until tested
+//		SettingsActivity.loadSettingsValuesFromDatabase(this, false);
+//		CalendarActivity.initializeCalendarID(this, CalendarActivity.CALENDAR_NAME, false);
+//		CalendarActivity.loadTimesOrCreateRecurringMorningEveningEvents(this, SettingsActivity.morningAlarm, SettingsActivity.eveningAlarm, true);
 	}
 	
 	/*
