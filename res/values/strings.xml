@@ -127,4 +127,7 @@
    <string name="errorSavingSettingValue">Error saving setting value. Please try again.</string>
    <string name="lblSettingsMorningAlarm">Survey 1 time</string>
    <string name="lblSettingsEveningAlarm">Survey 2 time</string>
+   <string name="errorFindingCalendars">Error finding Google calendars. Please ensure they are created correctly.</string>
+   <string name="lblCredits">Lindsay Jibb, Bozhidar Lenchov, Kush Dua
+       ECE1778 Creative Mobile Applications Project ©2013</string>
 </resources>

@@ -84,7 +84,6 @@ public final class R {
         public static final int fourthRowContainer=0x7f0b0018;
         public static final int fourthRowLabelContainer=0x7f0b001d;
         public static final int homeBackgroundContainer=0x7f0b0000;
-        public static final int imageView1=0x7f0b0021;
         public static final int journal=0x7f0b000e;
         public static final int journalGallery=0x7f0b0023;
         public static final int journalingBackgroundContainer=0x7f0b0024;
@@ -93,6 +92,7 @@ public final class R {
         public static final int lblBarMinimum=0x7f0b004f;
         public static final int lblCalendar=0x7f0b0009;
         public static final int lblClassroom=0x7f0b0010;
+        public static final int lblCredits=0x7f0b0021;
         public static final int lblDiseaseInfo=0x7f0b001f;
         public static final int lblExit=0x7f0b0020;
         public static final int lblGoals=0x7f0b0011;
@@ -173,6 +173,7 @@ public final class R {
         public static final int calendar_menu_new_appointment=0x7f060003;
         public static final int calendar_menu_new_survey=0x7f060002;
         public static final int errorConfirmingPassword=0x7f060038;
+        public static final int errorFindingCalendars=0x7f060047;
         public static final int errorLoggingIn=0x7f06003a;
         public static final int errorRegisteringUnknown=0x7f060036;
         public static final int errorRegisteringUsernameTaken=0x7f060037;
@@ -199,6 +200,7 @@ public final class R {
         public static final int lblButtonSurvey=0x7f060016;
         public static final int lblButtonUsername=0x7f060031;
         public static final int lblButtonVisualizeResults=0x7f060015;
+        public static final int lblCredits=0x7f060048;
         public static final int lblProgressMaximum=0x7f06002a;
         public static final int lblProgressMinimum=0x7f060029;
         public static final int lblSettingsDiseaseInfo=0x7f060041;

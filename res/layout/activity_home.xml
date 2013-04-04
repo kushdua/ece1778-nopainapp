@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_pattern"
+    android:gravity="bottom|clip_vertical|end"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -252,15 +253,16 @@
             </LinearLayout>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView1"
+        <TextView
+            android:id="@+id/lblCredits"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/fourthRowContainer"
+            android:layout_marginTop="30dp"
             android:contentDescription="@string/lblSickKidsLogoContentDescription"
-            android:src="@drawable/sickkids_logo" />
+            android:text="@string/lblCredits" />
+
     </RelativeLayout>
 
 </LinearLayout>

@@ -21,16 +21,18 @@ import android.widget.Toast;
 
 public class SettingsActivity extends Activity {
 
-	private Spinner diseaseSpinner = null, reminderSpinner = null;
-	private TimePicker morningAlarmPicker = null, eveningAlarmPicker = null;
+	protected static Spinner diseaseSpinner = null, reminderSpinner = null;
+	protected static TimePicker morningAlarmPicker = null, eveningAlarmPicker = null;
 	public static Activity activity = null;
-	DBHelper dbHelper = null;
+	protected static DBHelper dbHelper = null;
 	
 	public static String disease = "";
 	public static String reminder = "";
 	public static int reminderMinutes = -1;
 	public static String morningAlarm = "";
 	public static String eveningAlarm = "";
+	
+	public static final String REMINDER_TIME_DELIMITER = ":";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +42,14 @@ public class SettingsActivity extends Activity {
 		reminderSpinner = (Spinner)findViewById(R.id.spinnerReminders);
 		morningAlarmPicker = (TimePicker)findViewById(R.id.morningAlarmTimePicker);
 		eveningAlarmPicker = (TimePicker)findViewById(R.id.eveningAlarmTimePicker);
-		
+		loadSettingsValuesFromDatabase(this, true);
+	}
+
+	public static void loadSettingsValuesFromDatabase(Activity activity, boolean setSettingsUIElementValues)
+	{
 		//TODO Load saved settings values from DB + set values to that
-		dbHelper = new DBHelper(this, HomeActivity.DB_NAME, null, HomeActivity.DB_VERSION);
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		SettingsActivity.dbHelper = new DBHelper(activity, HomeActivity.DB_NAME, null, HomeActivity.DB_VERSION);
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		try
 		{
 			String args[] = {};//{ //1,//2 };
@@ -51,31 +57,45 @@ public class SettingsActivity extends Activity {
 			Cursor result = db.rawQuery("SELECT disease, reminder, morningSurveyTime, eveningSurveyTime FROM settings WHERE userID=?;", new String[]{Integer.toString(LoginActivity.userID)});
 			if(result != null && result.getCount()==1 && result.moveToNext())
 			{
-				disease=result.getString(0);
+				SettingsActivity.disease=result.getString(0);
 	
-				String[] diseasesArray = getResources().getStringArray(R.array.diseaseList);
-				List<String> list = new ArrayList<String>();
-			    list = Arrays.asList(diseasesArray);
-			    diseaseSpinner.setSelection(list.indexOf(disease));
+				if(setSettingsUIElementValues)
+				{
+					String[] diseasesArray = activity.getResources().getStringArray(R.array.diseaseList);
+					List<String> list = new ArrayList<String>();
+				    list = Arrays.asList(diseasesArray);
+				    SettingsActivity.diseaseSpinner.setSelection(list.indexOf(SettingsActivity.disease));
+				}
 				
-				reminder=result.getString(1);
+			    SettingsActivity.reminder=result.getString(1);
 				
-				String[] remindersArray = getResources().getStringArray(R.array.diseaseList);
-				List<String> list2 = new ArrayList<String>();
-			    list2 = Arrays.asList(remindersArray);
-			    reminderSpinner.setSelection(list2.indexOf(reminder));
+			    if(setSettingsUIElementValues)
+			    {
+					String[] remindersArray = activity.getResources().getStringArray(R.array.reminderList);
+					List<String> list2 = new ArrayList<String>();
+				    list2 = Arrays.asList(remindersArray);
+				    SettingsActivity.reminderSpinner.setSelection(list2.indexOf(reminder));
+			    }
 			    
-			    reminderMinutes = reminderStringToMinutes(reminder);
+			    SettingsActivity.reminderMinutes = reminderStringToMinutes(reminder);
 			    
-				morningAlarm=result.getString(2);
-				String[] array = morningAlarm.split(":");
-				morningAlarmPicker.setCurrentHour(Integer.parseInt(array[0]));
-				morningAlarmPicker.setCurrentMinute(Integer.parseInt(array[1]));
+			    SettingsActivity.morningAlarm=result.getString(2);
 				
-				eveningAlarm=result.getString(3);
-				array = morningAlarm.split(":");
-				eveningAlarmPicker.setCurrentHour(Integer.parseInt(array[0]));
-				eveningAlarmPicker.setCurrentMinute(Integer.parseInt(array[1]));
+				if(setSettingsUIElementValues)
+				{
+					String[] array = morningAlarm.split(SettingsActivity.REMINDER_TIME_DELIMITER);
+					SettingsActivity.morningAlarmPicker.setCurrentHour(Integer.parseInt(array[0]));
+					SettingsActivity.morningAlarmPicker.setCurrentMinute(Integer.parseInt(array[1]));
+				}
+				
+				SettingsActivity.eveningAlarm=result.getString(3);
+				
+				if(setSettingsUIElementValues)
+				{
+					String[] array = morningAlarm.split(SettingsActivity.REMINDER_TIME_DELIMITER);
+					SettingsActivity.eveningAlarmPicker.setCurrentHour(Integer.parseInt(array[0]));
+					SettingsActivity.eveningAlarmPicker.setCurrentMinute(Integer.parseInt(array[1]));
+				}
 			}
 			else
 			{
@@ -89,6 +109,7 @@ public class SettingsActivity extends Activity {
 		{
 			db.close();
 		}
+
 	}
 	
 	@Override
@@ -97,7 +118,7 @@ public class SettingsActivity extends Activity {
 		saveSelections();
 	}
 	
-	public int reminderStringToMinutes(String in)
+	public static int reminderStringToMinutes(String in)
 	{
 		try
 		{
@@ -118,8 +139,8 @@ public class SettingsActivity extends Activity {
     	SQLiteDatabase db = dbHelper.getWritableDatabase();
 		disease = diseaseSpinner.getSelectedItem().toString();
 		reminder = reminderSpinner.getSelectedItem().toString();
-		morningAlarm = morningAlarmPicker.getCurrentHour() + ":" + morningAlarmPicker.getCurrentMinute();
-		eveningAlarm = eveningAlarmPicker.getCurrentHour() + ":" + eveningAlarmPicker.getCurrentMinute();
+		morningAlarm = morningAlarmPicker.getCurrentHour() + REMINDER_TIME_DELIMITER + morningAlarmPicker.getCurrentMinute();
+		eveningAlarm = eveningAlarmPicker.getCurrentHour() + REMINDER_TIME_DELIMITER + eveningAlarmPicker.getCurrentMinute();
 		
 		try
 		{
@@ -134,6 +155,9 @@ public class SettingsActivity extends Activity {
 				Log.e("SETTINGS", "Unable to save diseaseSpinner setting to DB - wrong number of affected rows returned - " + numRows);
 				Toast.makeText(activity, R.string.errorSavingSettingValue, Toast.LENGTH_SHORT).show();
 			}
+			
+			//Update recurring events with new info (update times even if they might not have changed perhaps...)
+			CalendarActivity.loadTimesOrCreateRecurringMorningEveningEvents(this, morningAlarm, eveningAlarm, false);
 		}
 		catch(SQLException e)
 		{

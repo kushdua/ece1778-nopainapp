@@ -8,6 +8,7 @@ public class AppointmentRecord {
 	private long date = -1;
 	private long distanceDuration = -1;
 	private int reminderDurationPeriodMinutes = -1;
+	private boolean isRecurring = false;
 	
 	//Default constructor
 	public AppointmentRecord()
@@ -19,10 +20,11 @@ public class AppointmentRecord {
 		date = System.currentTimeMillis();
 		setDistanceDuration(0);
 		reminderDurationPeriodMinutes = 5;
+		setRecurring(false);
 	}
 	
 	//Constructor for db record to memory structure or when saving event perhaps
-	public AppointmentRecord(int id, String name, int userID, String type, long date, long distanceDuration, int reminderDurationMinutes)
+	public AppointmentRecord(int id, String name, int userID, String type, long date, long distanceDuration, int reminderDurationMinutes, boolean isRecurring)
 	{
 		this.id = id;
 		this.name = name;
@@ -31,6 +33,7 @@ public class AppointmentRecord {
 		this.date = date;
 		this.setDistanceDuration(distanceDuration);
 		this.reminderDurationPeriodMinutes = reminderDurationMinutes;
+		this.setRecurring(isRecurring);
 	}
 	
 	public int getId() {
@@ -87,6 +90,14 @@ public class AppointmentRecord {
 
 	public void setDistanceDuration(long distanceDuration) {
 		this.distanceDuration = distanceDuration;
+	}
+
+	public boolean isRecurring() {
+		return isRecurring;
+	}
+
+	public void setRecurring(boolean isRecurring) {
+		this.isRecurring = isRecurring;
 	}
 
 	public enum Types {
