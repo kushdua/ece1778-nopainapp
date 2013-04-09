@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">NoPain</string>
+    <string name="app_name">NOpain</string>
     <string name="menu_settings">Settings</string>
     <string name="calendar_menu_new_survey">New Survey</string>
     <string name="calendar_menu_new_appointment">New Appointment</string>
