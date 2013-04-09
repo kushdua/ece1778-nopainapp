@@ -7,6 +7,18 @@
         android:title="@string/menu_settings"/> -->
 
     <item
+        android:id="@+id/calendar_menu_edit_event"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/calendar_menu_edit_event"/>
+    
+    <item
+        android:id="@+id/calendar_menu_deleteEvent"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/calendar_menu_delete_event"/>
+    
+    <item
         android:id="@+id/calendar_menu_new_survey"
         android:orderInCategory="100"
         android:showAsAction="never"

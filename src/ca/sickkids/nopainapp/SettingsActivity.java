@@ -37,11 +37,12 @@ public class SettingsActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.social_network_activity);
+		setContentView(R.layout.settings_activity);
 		diseaseSpinner = (Spinner)findViewById(R.id.spinnerDisease);
 		reminderSpinner = (Spinner)findViewById(R.id.spinnerReminders);
 		morningAlarmPicker = (TimePicker)findViewById(R.id.morningAlarmTimePicker);
 		eveningAlarmPicker = (TimePicker)findViewById(R.id.eveningAlarmTimePicker);
+		activity=this;
 		loadSettingsValuesFromDatabase(this, true);
 	}
 
@@ -113,7 +114,7 @@ public class SettingsActivity extends Activity {
 	}
 	
 	@Override
-	protected void onDestroy()
+	public void onDestroy()
 	{
 		saveSelections();
 	}
@@ -149,7 +150,7 @@ public class SettingsActivity extends Activity {
 			values.put("reminder", reminder);
 			values.put("morningSurveyTime", morningAlarm);
 			values.put("eveningSurveyTime", eveningAlarm);
-			long numRows = db.update("settings", values, "id=?", new String[]{Integer.toString(LoginActivity.userID)});
+			long numRows = db.update("settings", values, "userID=?", new String[]{Integer.toString(LoginActivity.userID)});
 			if(numRows!=1)
 			{
 				Log.e("SETTINGS", "Unable to save diseaseSpinner setting to DB - wrong number of affected rows returned - " + numRows);

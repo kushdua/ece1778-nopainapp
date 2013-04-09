@@ -8,14 +8,17 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
+import android.graphics.Color;
 import android.location.Address;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,15 +26,22 @@ import android.provider.CalendarContract;
 import android.provider.CalendarContract.Events;
 
 import java.text.DateFormat;
+
+import android.text.InputType;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemLongClickListener;
 
 public class CalendarActivity extends ListActivity {
 	public Activity activity = null;
@@ -48,6 +58,13 @@ public class CalendarActivity extends ListActivity {
 	
 	protected final static int NUMBER_MILLISECONDS_IN_MINUTE = 60000;
 	
+	ArrayList<AppointmentRecord> list = new ArrayList<AppointmentRecord>();
+	ListRecordAdapter adapter = null;
+	
+	private static final String recurrenceRRule = "FREQ=DAILY;";
+	
+	private static int selectedListItem = -1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,14 +73,22 @@ public class CalendarActivity extends ListActivity {
 		activity = this;
 		
 		//Concatenate entered (on top) and loaded lists for display
-		ArrayList<AppointmentRecord> list = new ArrayList<AppointmentRecord>();
-		
 		ArrayList<AppointmentRecord> entriesLoadedFromDB = initializeCalendarID(this, CALENDAR_NAME, true);
 		
 		list.addAll(entriesLoadedFromDB);
 		
-		setListAdapter(new ListRecordAdapter(this, R.layout.row_view_events, R.id.rowViewEventName, list));
+		adapter = new ListRecordAdapter(this, R.layout.row_view_events, R.id.rowViewEventName, list);
+		
+		setListAdapter(adapter);
 	}
+	
+    protected void onResume() {
+        super.onResume();
+        
+        //list.clear();
+        //list.addAll(initializeCalendarID(activity, CALENDAR_NAME, true));
+        //adapter.notifyDataSetChanged();
+    }
 	
 	public static ArrayList<AppointmentRecord> initializeCalendarID(Activity activity, String calendarName, boolean returnApptList)
 	{
@@ -95,9 +120,17 @@ public class CalendarActivity extends ListActivity {
 				//Indicate whether we found our NOpain calendar or not...
 				if(calendarCursor.getString(3).compareTo(CALENDAR_NAME)==0)
 				{
+					//TO KEEP DROPPING CALENDAR UNCOMMENT THIS
+//					ContentValues values = new ContentValues();
+//					Uri deleteUrl = ContentUris.withAppendedId(CalendarContract.Calendars.CONTENT_URI, calendarCursor.getInt(0));
+//					int rows = activity.getContentResolver().delete(deleteUrl, null, null);
+//					continue;
+					
+					//TO MAKE SURE CREATED CALENDAR IS PICKED UP HAVE THIS UNCOMMENTED
 					foundOurs = true;
 					CalendarActivity.accountName = calendarCursor.getString(1);
 					CalendarActivity.accountType = calendarCursor.getString(2);
+					CalendarActivity.calendarID = calendarCursor.getInt(0);
 					break;
 				}
 				else if(calendarCursor.getString(3).compareTo("NoPain")==0)
@@ -139,7 +172,7 @@ public class CalendarActivity extends ListActivity {
 					Log.w("CALENDAR", "Unable to retrieve ID of newly inserted calendar entry with existing account name and type. Error: "+e.toString());
 				}
 			}
-			calendarCursor.close();
+			//calendarCursor.close();
 		}
 		else
 		{
@@ -181,14 +214,14 @@ public class CalendarActivity extends ListActivity {
 		String[] eventProjection = new String[] {
 		       CalendarContract.Events._ID,
 		       CalendarContract.Events.TITLE,
-		       CalendarContract.Events.DTSTART
+		       CalendarContract.Events.DTSTART,
+		       CalendarContract.Events.RRULE
 		};
 
 		Cursor eventCursor = activity.managedQuery(eventsUri, eventProjection, CalendarContract.Events.CALENDAR_ID+"=?",new String[]{Integer.toString(calendarID)}, null);
 		
 		ArrayList<AppointmentRecord> resultList = new ArrayList<AppointmentRecord>();
 		
-		Cursor reminderCursor = null;
 		if(eventCursor!=null)
 		{
 			while(eventCursor.moveToNext())
@@ -205,22 +238,28 @@ public class CalendarActivity extends ListActivity {
 				AppointmentRecord record = new AppointmentRecord();
 				String rowName = eventCursor.getString(1);
 				String[] split = rowName.split(":");
-				String type = (split.length==2) ? split[0] : "";
-				String name = (split.length==2) ? split[1] : "";
-				DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault());
-				Date beginTime = new Date(eventCursor.getInt(2));
+				String type = (split.length==2) ? split[0].trim() : "";
+				String name = (split.length==2) ? split[1].trim() : "";
+				//DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, Locale.getDefault());
+				Date beginTime = new Date((long)Math.abs(eventCursor.getInt(2)));
 				record.setId(eventCursor.getInt(0));
 				record.setName(name);
 				record.setType(type);
-				record.setDate(Long.parseLong(df.format(beginTime)));
-				record.setDistanceDuration(Long.parseLong(df.format(new Date(System.currentTimeMillis() - beginTime.getTime()))));
-				
-				if(returnApptList)
+				record.setDate(beginTime.getTime());//df.format(beginTime)));
+				record.setDistanceDuration(DateUtils.getRelativeTimeSpanString(beginTime.getTime(), System.currentTimeMillis(),0,DateUtils.FORMAT_ABBREV_RELATIVE).toString());
+				String rrule = eventCursor.getString(3);
+				record.setRecurring(false);
+				if(rrule!=null && rrule.contains(CalendarActivity.recurrenceRRule))
+				{
+					record.setRecurring(true);
+				}
+				//Only display upcoming events... - DISPLAY ALL - ONES IN PAST MIGHT BE RECURRING...
+				if(returnApptList) //&& beginTime.getTime() > System.currentTimeMillis())
 				{
 					resultList.add(record);
 				}
 			}
-			eventCursor.close();
+			//eventCursor.close();
 		}
 		return resultList;
 	}
@@ -252,15 +291,17 @@ public class CalendarActivity extends ListActivity {
     	}
 		
 		//See if morning survey exists based on name (if it doesn't, create it) + grab ID
-		int morningEventID = getEventIDBasedOnTimeAndName(activity, CALENDAR_NAME, defaultSurveyTitle, 
-				morningHour, morningMinute, -1, false, true);
+		int morningEventID = getEventIDBasedOnTimeAndName(activity, calendarID, defaultSurveyTitle, morningHour, morningMinute, true, false, -1, true, true, true);
+				//(activity, calendarID, defaultSurveyTitle, 
+				//morningHour, morningMinute, -1, false, true);
 		
 		//Update survey time...
 		updateEventTime(activity, morningEventID, morningHour, morningMinute);
 		
 		//See if evening survey exists based on time + grab ID
-		int eveningEventID = getEventIDBasedOnTimeAndName(activity, CALENDAR_NAME, defaultSurveyTitle, 
-				eveningHour, eveningMinute, morningEventID, false, true);
+		int eveningEventID = getEventIDBasedOnTimeAndName(activity, calendarID, defaultSurveyTitle, eveningHour, eveningMinute, false, true, -1, true, true, true);
+				//(activity, calendarID, defaultSurveyTitle, 
+				//eveningHour, eveningMinute, morningEventID, false, true);
 		//Update survey time...
 		updateEventTime(activity, eveningEventID, eveningHour, eveningMinute);
 	}
@@ -278,7 +319,7 @@ public class CalendarActivity extends ListActivity {
 		int rows = activity.getContentResolver().update(updateUri, values, null, null);
 	}
 	
-	public static int getEventIDBasedOnTimeAndName(Activity activity, String calendarName, String eventName, int hours, int minutes, int excludeID, boolean compareTimes, boolean createIfDoesntExist)
+	public static int getEventIDBasedOnTimeAndName(Activity activity, int calendarID, String eventName, int hours, int minutes, boolean isMorningRecurring, boolean isEveningRecurring, int excludeID, boolean compareTimes, boolean createIfDoesntExist, boolean createRecurring)
 	{
 		int result = -1;
 		
@@ -287,10 +328,11 @@ public class CalendarActivity extends ListActivity {
 		String[] eventProjection = new String[] {
 		       CalendarContract.Events._ID,
 		       CalendarContract.Events.TITLE,
-		       CalendarContract.Events.DTSTART
+		       CalendarContract.Events.DTSTART,
+		       CalendarContract.Events.RRULE
 		};
 
-		Cursor eventCursor = activity.managedQuery(eventsUri, eventProjection, CalendarContract.Calendars.NAME+"=?",new String[]{calendarName}, null);
+		Cursor eventCursor = activity.managedQuery(eventsUri, eventProjection, CalendarContract.Events.CALENDAR_ID+"=?",new String[]{Integer.toString(calendarID)}, null);
 		
 		if(eventCursor!=null)
 		{
@@ -299,15 +341,21 @@ public class CalendarActivity extends ListActivity {
 				if(eventCursor.getString(1).contains("noPain:"))//compareTo(eventName)==0)
 				{
 					Date eventTime = new Date(eventCursor.getInt(2));
-					if(compareTimes && (excludeID!=-1 && eventCursor.getInt(0)!=excludeID) &&
+					if(!compareTimes || (excludeID!=-1 && eventCursor.getInt(0)!=excludeID) &&
 					   eventTime.getHours()==hours && eventTime.getMinutes()==minutes)
 					{
+						//If event is said to be recurring but one in DB is not, continue searching for the event the user specified
+						if((isMorningRecurring || isEveningRecurring || createRecurring) &&
+						   eventCursor.getString(3)!=null && eventCursor.getString(3).compareTo(CalendarActivity.recurrenceRRule)!=0)
+						{
+							continue;
+						}
 						result = eventCursor.getInt(0);
 						break;
 					}
 				}
 			}
-			eventCursor.close();
+			//eventCursor.close();
 		}
 		
 		if(result==-1 && createIfDoesntExist)
@@ -337,7 +385,8 @@ public class CalendarActivity extends ListActivity {
         	}
         	
         	//See what survey to start from - whether morning or evening is up next
-        	if(now.getHours()>morningHour && now.getHours()<eveningHour ||
+        	if(isMorningRecurring ||
+        	   (now.getHours()>morningHour && now.getHours()<eveningHour) ||
         	   (now.getHours()==morningHour && now.getMinutes()>=morningMinute) ||
         	   (now.getHours()==eveningHour && now.getMinutes()<eveningMinute))
         	{
@@ -346,13 +395,19 @@ public class CalendarActivity extends ListActivity {
         	}
         	else
         	{
-        		//Insert morning
-        		eventDate = new Date(now.getYear(),	now.getMonth(), now.getDay(), morningHour, morningMinute);
+	        	if(isEveningRecurring)
+	        	{
+	        		//Insert morning
+	        		eventDate = new Date(now.getYear(),	now.getMonth(), now.getDay(), morningHour, morningMinute);
+	        	}
         	}
         	values.put(Events.DTSTART, eventDate.getTime());
         	values.put(Events.DTEND, eventDate.getTime()+5*CalendarActivity.NUMBER_MILLISECONDS_IN_MINUTE);
-        	values.put(Events.RRULE, 
-        	      "FREQ=DAILY;");//COUNT=20;BYDAY=MO,TU,WE,TH,FR;WKST=MO");
+        	if(isMorningRecurring || isEveningRecurring || createRecurring)
+        	{
+	        	values.put(Events.RRULE, 
+	        	      CalendarActivity.recurrenceRRule);//COUNT=20;BYDAY=MO,TU,WE,TH,FR;WKST=MO");
+        	}
         	values.put(Events.TITLE, defaultSurveyTitle);
         	values.put(Events.CALENDAR_ID, calendarID);
         	values.put(Events.EVENT_TIMEZONE, TimeZone.getDefault().getID());
@@ -394,7 +449,7 @@ public class CalendarActivity extends ListActivity {
 			holder.type.setText(getResources().getText(R.string.calendarRowTypePrefix) + record.getType() + ", " + 
 						(record.isRecurring() ? "Recurring" : "One Time"));
 			holder.date.setText(getResources().getText(R.string.calendarRowDatePrefix) + Long.toString(record.getDate()));
-			holder.distance.setText(getResources().getText(R.string.calendarRowDurationUntilPrefix) + Long.toString(record.getDistanceDuration()));
+			holder.distance.setText(getResources().getText(R.string.calendarRowDurationUntilPrefix) + record.getDistanceDuration());
 //			holder.reminderPeriod.setText(record.getReminderDuration());
 			
 			return(row);
@@ -414,11 +469,70 @@ public class CalendarActivity extends ListActivity {
      	   // no calendar account; react meaningfully
      	   return false;
      	}
+    	
+    	if(selectedListItem==-1 || selectedListItem>=list.size())
+    	{
+    		Toast.makeText(activity, R.string.err_calendar_no_event_selected, Toast.LENGTH_SHORT);
+    		return false;
+    	}
      	
      	Date now = new Date(System.currentTimeMillis());
-     	String[] morningReminderTime = SettingsActivity.morningAlarm.split(SettingsActivity.REMINDER_TIME_DELIMITER);
-     	String[] eveningReminderTime = SettingsActivity.eveningAlarm.split(SettingsActivity.REMINDER_TIME_DELIMITER);
         switch (item.getItemId()) {
+        case R.id.calendar_menu_edit_event:
+        	if(selectedListItem!=-1)
+        	{
+        		Intent intent = new Intent(Intent.ACTION_EDIT)
+        			.setData(ContentUris.withAppendedId(Events.CONTENT_URI, ((AppointmentRecord)(getListAdapter().getItem(selectedListItem))).getId()));
+        		startActivity(intent);
+        	}
+        	break;
+        case R.id.calendar_menu_deleteEvent:
+        	if(selectedListItem!=-1)
+        	{
+        		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        		
+            	alert.setTitle("Delete event?");
+            	alert.setMessage("Do you want to delete the selected event?");
+        
+            	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            		public void onClick(DialogInterface dialog, int whichButton) {
+            			long eventID = ((AppointmentRecord)(getListAdapter().getItem(selectedListItem))).getId();
+            			ContentResolver cr = getContentResolver();
+            			ContentValues values = new ContentValues();
+            			Uri deleteUri = null;
+            			deleteUri = ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, eventID);
+            			int rows = getContentResolver().delete(deleteUri, null, null);
+            			
+            			if(rows==1)
+            			{
+            				Toast.makeText(activity, R.string.successDeleteEvent, Toast.LENGTH_SHORT).show();
+            				activity.runOnUiThread(new Runnable() {
+        						@Override
+        						public void run() {
+        							if(selectedListItem<list.size())
+        							{
+        								list.remove(selectedListItem);
+        								adapter.notifyDataSetChanged();
+        							}
+        						}
+            				});
+            			}
+            			else
+            			{
+            				Toast.makeText(activity, R.string.errorDeleteEvent, Toast.LENGTH_SHORT).show();
+            			}
+            		}
+            	});
+        
+            	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            		public void onClick(DialogInterface dialog, int whichButton) {
+            			//TODO do nothing
+            		}
+            	});
+            	
+            	alert.show();
+        	}
+        	break;
         case R.id.calendar_menu_new_survey:
 //    		Intent intentNewSurvey = new Intent(Intent.ACTION_EDIT);  
 //        	intentNewSurvey.setType("vnd.android.cursor.item/event");
@@ -510,10 +624,64 @@ public class CalendarActivity extends ListActivity {
         	
         	break;
         default:
-            return true;
+            return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);
     }
+	
+
+	@Override
+	public void onListItemClick(ListView parent, View v, int position,long id)
+	{
+		selectedListItem = position;
+		v.setBackgroundColor(Color.LTGRAY);
+//		final int itemPos = position;
+//		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+//		
+//    	alert.setTitle("Delete event?");
+//    	alert.setMessage("Do you want to delete the selected event?");
+//
+//    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//    		public void onClick(DialogInterface dialog, int whichButton) {
+//    			long eventID = ((AppointmentRecord)(getListAdapter().getItem(itemPos))).getId();
+//    			ContentResolver cr = getContentResolver();
+//    			ContentValues values = new ContentValues();
+//    			Uri deleteUri = null;
+//    			deleteUri = ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, eventID);
+//    			int rows = getContentResolver().delete(deleteUri, null, null);
+//    			
+//    			if(rows==1)
+//    			{
+//    				Toast.makeText(activity, R.string.successDeleteEvent, Toast.LENGTH_SHORT).show();
+//    				activity.runOnUiThread(new Runnable() {
+//						@Override
+//						public void run() {
+//							if(itemPos<list.size())
+//							{
+//								list.remove(itemPos);
+//								adapter.notifyDataSetChanged();
+//							}
+//						}
+//    				});
+//    			}
+//    			else
+//    			{
+//    				Toast.makeText(activity, R.string.errorDeleteEvent, Toast.LENGTH_SHORT).show();
+//    			}
+//    		}
+//    	});
+//
+//    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+//    		public void onClick(DialogInterface dialog, int whichButton) {
+//    			//TODO do nothing
+//    		}
+//    	});
+//    	
+//    	alert.show();
+//		Intent intent = new Intent(Intent.ACTION_EDIT)
+//			.setData(ContentUris.withAppendedId(Events.CONTENT_URI, ((AppointmentRecord)(getListAdapter().getItem(position))).getId()));
+//		startActivity(intent);
+	}
 }
 
 class CalendarRowViewHolder {

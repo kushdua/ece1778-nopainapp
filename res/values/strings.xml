@@ -130,4 +130,9 @@
    <string name="errorFindingCalendars">Error finding Google calendars. Please ensure they are created correctly.</string>
    <string name="lblCredits">Lindsay Jibb, Bozhidar Lenchov, Kush Dua
        ECE1778 Creative Mobile Applications Project ©2013</string>
+   <string name="successDeleteEvent">Successfully deleted event.</string>
+   <string name="errorDeleteEvent">Could not delete event.</string>
+   <string name="calendar_menu_edit_event">Edit Event</string>
+   <string name="calendar_menu_delete_event">Delete Event</string>
+   <string name="err_calendar_no_event_selected">No event selected.</string>
 </resources>

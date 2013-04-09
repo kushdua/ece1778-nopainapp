@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -22,10 +23,14 @@ public class HomeActivity extends Activity {
 		addListenerOnButton();
 		activity=this;
 		//Disabling settings and calendar DB functionality in normal app operation until tested
-//		SettingsActivity.loadSettingsValuesFromDatabase(this, false);
-//		CalendarActivity.initializeCalendarID(this, CalendarActivity.CALENDAR_NAME, false);
-//		CalendarActivity.loadTimesOrCreateRecurringMorningEveningEvents(this, SettingsActivity.morningAlarm, SettingsActivity.eveningAlarm, true);
+		SettingsActivity.loadSettingsValuesFromDatabase(this, false);
+		CalendarActivity.initializeCalendarID(this, CalendarActivity.CALENDAR_NAME, false);
+		CalendarActivity.loadTimesOrCreateRecurringMorningEveningEvents(this, SettingsActivity.morningAlarm, SettingsActivity.eveningAlarm, true);
 	}
+	
+    protected void onResume() {
+        super.onResume();
+    }
 	
 	/*
 	 * Method to handle all the buttonclicks on the home page screen and starting the respective activity
@@ -91,5 +96,15 @@ public class HomeActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_home, menu);
 		return true;
 	}
-
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+		if(item.getTitle().toString().compareTo(getResources().getString(R.string.menu_settings))==0)
+		{
+			Intent intent = new Intent(activity, SettingsActivity.class);
+			startActivity(intent);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }

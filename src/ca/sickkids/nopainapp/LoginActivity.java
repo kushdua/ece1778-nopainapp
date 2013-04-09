@@ -126,11 +126,11 @@ public class LoginActivity extends Activity {
 					ContentValues settingsValues = new ContentValues(5);
 					settingsValues.put("userID", userID);
 					settingsValues.put("disease", "");
-					settingsValues.put("reminder", "10");
+					settingsValues.put("reminder", "30");
 					settingsValues.put("morningSurveyTime", "10:00");
 					settingsValues.put("eveningSurveyTime", "22:00");
 					long numSettingsRows = db.insertOrThrow("settings", null, settingsValues);
-					if(numSettingsRows == -1)
+					if(numSettingsRows == -1 || numSettingsRows!=1)
 					{
 						Log.e("LOGIN SETTINGS","Cannot save default settings for new user. "+numSettingsRows+" rows updated.");
 					}
