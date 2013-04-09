@@ -44,7 +44,6 @@
         <item>No</item> 
     </string-array>  
         <string-array name="q2choice">
-        <item></item>
         <item>Yes</item>
         <item>No</item> 
     </string-array>   
