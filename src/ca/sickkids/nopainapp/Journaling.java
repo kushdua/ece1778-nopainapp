@@ -191,7 +191,6 @@ public class Journaling extends Activity{
 	    return mediaFile;
 	}
 	
-	
 	@SuppressLint("NewApi")
 	private boolean ifcamera()	{
 		int numCameras = Camera.getNumberOfCameras();
