@@ -67,6 +67,8 @@ public class CalendarActivity extends ListActivity {
 	
 	public static ArrayList<AppointmentRecord> initializeCalendarID(Activity activity, String calendarName, boolean returnApptList)
 	{
+		Log.w("CALENDAR","Entering initializeCalendarID");
+		
 		Uri uri = CalendarContract.Calendars.CONTENT_URI;
 		String[] projection = new String[] {
 		       CalendarContract.Calendars._ID,

@@ -78,6 +78,12 @@ public class HomeActivity extends Activity {
 //    	intent.putExtra("endTime", System.currentTimeMillis()+43500000);
 //    	startActivity(intent);
     }
+    
+    public void onSettingsClickHandler(View v)
+    {
+    	Intent intent = new Intent(v.getContext(), SettingsActivity.class);
+    	startActivity(intent);
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
