@@ -70,7 +70,7 @@
         <item>Other (please list)</item>
     </string-array>
     <string name="q1prev">Did you use the last Advice?</string>
-    <string name="q1next">Did you like this Advice?</string>
+    <string name="q1next">Did you like the last Advice?</string>
     <string name="q1yna">Did you have PAIN in the last 12 hours?</string>
     <string name="q1ynb">Do you have PAIN now?</string>
     <string name="q1Text">Touch the mark and move it to show how much PAIN you have right now.</string>

@@ -23,8 +23,8 @@ import android.widget.Toast;
 
 public class SurveyActivity extends Activity implements OnItemSelectedListener {
 	private int currQuestion = 1;
-	//private static final int MAX_QUESTION_NUMBER = 9;
 	private static final int MAX_QUESTION_NUMBER = 11;
+	//private static final int MAX_QUESTION_NUMBER = 13;
 	public static ArrayList<String> answers = new ArrayList<String>();
 	private static int numsurvey = 0;
 	
@@ -84,13 +84,13 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 	public void saveAnswerAndUpdateQuestion(int currQuestion, int nextQuestion)
 	{
 		if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==3 || currQuestion==4 || currQuestion==5 || currQuestion==6 || currQuestion ==11)
-		//if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==1 || currQuestion==2 || currQuestion==3 || currQuestion==4 || currQuestion ==9)
+		//if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==5 || currQuestion==6 || currQuestion==7 || currQuestion==8 || currQuestion ==13)
 		{
 			answers.set(currQuestion-1, Integer.toString(painBar.getProgress()));
 			//Log.w("INFO","Storing " + Integer.toString(painBar.getProgress()) + " at position " + (currQuestion-1));
 		}
 		else if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==1 || currQuestion==2 ||currQuestion==7 || currQuestion==8 || currQuestion==9 || currQuestion==10)
-		//else if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==5 || currQuestion==6 || currQuestion==7 || currQuestion==8)
+		//else if(!(currQuestion == 0 && nextQuestion == 1) && currQuestion==1 || currQuestion==2 || currQuestion==3 || currQuestion==4 || currQuestion==9|| currQuestion==10|| currQuestion==11|| currQuestion==12)
 		{
 			if(otherTextField.getVisibility()==View.VISIBLE)
 			{
@@ -111,7 +111,7 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 		switch(nextQuestion)
 		{
 			default:
-			 //code commited temporarily 
+			 //code committed temporarily 
 			 case 1: //change it to 1 later
 				 questionContents.setText(R.string.q1yna);
 				 adapter = ArrayAdapter.createFromResource(
