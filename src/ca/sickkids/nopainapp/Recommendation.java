@@ -36,8 +36,8 @@ public class Recommendation extends ListActivity {
 	private static int[] freq = {5,4,2,6,1,8,9};
 	private static int[] frequpdated = new int[maxsuggestion];
 	private static int[] advice_index = new int[maxsuggestion];
-	private static final String[] survey1 = {"","","yes","yes","10","20","29","10","","","","","90"}; //mild
-	private static final String[] survey2 = {"","","yes","yes","10","20","29","10","","","","","90"}; //mild
+	private static final String[] survey1 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
+	private static final String[] survey2 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
 	private static final String[] survey3 = {"","","yes","yes","50","60","60","65","","","","","50"}; //medium
 	private static final String[] survey4 = {"","","yes","yes","30","90","80","5","","","","","10"}; //high
 	private static final String[] survey5 = {"","","yes","yes","30","90","80","5","","","","","10"}; //high
@@ -75,7 +75,7 @@ public class Recommendation extends ListActivity {
 	
 
 	private void findpaincategory () {
-
+		//TODO: Need to modify the get(...) indexes here ...
 		if(SurveyActivity.answers.get(0).equalsIgnoreCase("NO") && SurveyActivity.answers.get(1).equalsIgnoreCase("NO")){
 			//don't give any advice
 		}
@@ -84,9 +84,9 @@ public class Recommendation extends ListActivity {
 				Integer.parseInt(SurveyActivity.answers.get(10))<30) {
 			painstatus=category.SEVERE;			
 		}
-		else if(Integer.parseInt(SurveyActivity.answers.get(2))<30 && Integer.parseInt(SurveyActivity.answers.get(3))<30 && 
-				Integer.parseInt(SurveyActivity.answers.get(4))<30 && Integer.parseInt(SurveyActivity.answers.get(5))<30 && 
-				Integer.parseInt(SurveyActivity.answers.get(10))>70) {
+		else if(Integer.parseInt(SurveyActivity.answers.get(2))<=30 && Integer.parseInt(SurveyActivity.answers.get(3))<=30 && 
+				Integer.parseInt(SurveyActivity.answers.get(4))<=30 && Integer.parseInt(SurveyActivity.answers.get(5))<=30 && 
+				Integer.parseInt(SurveyActivity.answers.get(10))>=70) {
 			painstatus=category.MILD;			
 		} else {
 			painstatus=category.MODERATE;			
@@ -114,14 +114,14 @@ public class Recommendation extends ListActivity {
 		}
 		else if (painstatus==category.MODERATE) {
 			//check last 4 saved survey records and see what to do
-			if((Integer.parseInt(survey5[4])<30 && Integer.parseInt(survey5[5])<30 && Integer.parseInt(survey5[6])<30 &&
-		     Integer.parseInt(survey5[7])<30 && Integer.parseInt(survey5[12])>70)
-		     || (Integer.parseInt(survey4[4])<30 && Integer.parseInt(survey4[5])<30 && Integer.parseInt(survey4[6])<30 &&
-			 Integer.parseInt(survey4[7])<30 && Integer.parseInt(survey4[12])>70)
-			 || (Integer.parseInt(survey3[4])<30 && Integer.parseInt(survey3[5])<30 && Integer.parseInt(survey3[6])<30 &&
-			 Integer.parseInt(survey3[7])<30 && Integer.parseInt(survey3[12])>70)
-			 || (Integer.parseInt(survey2[4])<30 && Integer.parseInt(survey2[5])<30 && Integer.parseInt(survey2[6])<30 &&
-			 Integer.parseInt(survey2[7])<30 && Integer.parseInt(survey2[12])>70)) {
+			if((Integer.parseInt(survey5[4])<=30 && Integer.parseInt(survey5[5])<=30 && Integer.parseInt(survey5[6])<=30 &&
+		     Integer.parseInt(survey5[7])<=30 && Integer.parseInt(survey5[12])>=70)
+		     || (Integer.parseInt(survey4[4])<=30 && Integer.parseInt(survey4[5])<=30 && Integer.parseInt(survey4[6])<=30 &&
+			 Integer.parseInt(survey4[7])<=30 && Integer.parseInt(survey4[12])>=70)
+			 || (Integer.parseInt(survey3[4])<=30 && Integer.parseInt(survey3[5])<=30 && Integer.parseInt(survey3[6])<=30 &&
+			 Integer.parseInt(survey3[7])<=30 && Integer.parseInt(survey3[12])>=70)
+			 || (Integer.parseInt(survey2[4])<=30 && Integer.parseInt(survey2[5])<=30 && Integer.parseInt(survey2[6])<=30 &&
+			 Integer.parseInt(survey2[7])<=30 && Integer.parseInt(survey2[12])>=70)) {
 				regular_suggestion=true;
 				maxsuggestion = 7;
 			}
