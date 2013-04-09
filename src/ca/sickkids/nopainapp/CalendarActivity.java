@@ -38,7 +38,7 @@ public class CalendarActivity extends ListActivity {
 	public static int calendarID = -1;
 	public static int morningRecurringEventID = -1;
 	public static int eveningRecurringEventID = -1;
-	protected static final String CALENDAR_NAME="NoPain";
+	protected static final String CALENDAR_NAME="NOpain";
 	private static String accountName = "";
 	private static String accountType = "";
 //	private String allowedReminders = CalendarContract.Reminders.METHOD_ALARM+","+CalendarContract.Reminders.METHOD_ALERT;
@@ -75,23 +75,35 @@ public class CalendarActivity extends ListActivity {
 		       CalendarContract.Calendars.NAME
 		};
 
-		Cursor calendarCursor = activity.managedQuery(uri, projection, CalendarContract.Calendars.NAME+"=?", new String[]{calendarName}, null);
+		//Cursor calendarCursor = activity.managedQuery(uri, projection, CalendarContract.Calendars.NAME+"=?", new String[]{calendarName}, null);
+		Cursor calendarCursor = activity.managedQuery(uri, projection, null, null, null);
 		if(calendarCursor.getCount()>0)
 		{
 			//Try to find our calendar ID (NoPain)
 			boolean foundOurs = false;
-			while(!calendarCursor.isAfterLast())
+			while(calendarCursor.moveToNext())
 			{
+				//Take account info from first calendar returned
 				if(calendarCursor.isFirst())
 				{
 					CalendarActivity.accountName = calendarCursor.getString(1);
 					CalendarActivity.accountType = calendarCursor.getString(2);
 				}
 				
+				//Indicate whether we found our NOpain calendar or not...
 				if(calendarCursor.getString(3).compareTo(CALENDAR_NAME)==0)
 				{
 					foundOurs = true;
+					CalendarActivity.accountName = calendarCursor.getString(1);
+					CalendarActivity.accountType = calendarCursor.getString(2);
 					break;
+				}
+				else if(calendarCursor.getString(3).compareTo("NoPain")==0)
+				{
+					//Delete previous calendars...
+					ContentValues values = new ContentValues();
+					Uri deleteUrl = ContentUris.withAppendedId(CalendarContract.Calendars.CONTENT_URI, calendarCursor.getInt(0));
+					int rows = activity.getContentResolver().delete(deleteUrl, null, null);
 				}
 			}
 
@@ -109,7 +121,13 @@ public class CalendarActivity extends ListActivity {
 				values.put(CalendarContract.Calendars.CALENDAR_ACCESS_LEVEL, CalendarContract.Calendars.CAL_ACCESS_OWNER);
 				values.put(CalendarContract.Calendars.CALENDAR_TIME_ZONE, TimeZone.getDefault().getID());
 				values.put(CalendarContract.Calendars.ACCOUNT_TYPE, accountType);
-				Uri rowUri = cr.insert(CalendarContract.Calendars.CONTENT_URI, values);
+				Uri calUri = CalendarContract.Calendars.CONTENT_URI;
+				calUri = calUri.buildUpon()
+					    .appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "true")
+					    .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_NAME, accountName)
+					    .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_TYPE, CalendarContract.ACCOUNT_TYPE_LOCAL)
+					    .build();
+				Uri rowUri = cr.insert(calUri, values);
 				try
 				{
 					CalendarActivity.calendarID = Integer.parseInt(rowUri.getLastPathSegment());
@@ -138,7 +156,15 @@ public class CalendarActivity extends ListActivity {
 			values.put(CalendarContract.Calendars.CALENDAR_ACCESS_LEVEL, CalendarContract.Calendars.CAL_ACCESS_OWNER);
 			values.put(CalendarContract.Calendars.CALENDAR_TIME_ZONE, TimeZone.getDefault().getID());
 			values.put(CalendarContract.Calendars.ACCOUNT_TYPE, accountType);
-			Uri rowUri = cr.insert(CalendarContract.Calendars.CONTENT_URI, values);
+			values.put(CalendarContract.Calendars.VISIBLE, 1);
+			values.put(CalendarContract.Calendars.SYNC_EVENTS, 1);
+			Uri calUri = CalendarContract.Calendars.CONTENT_URI;
+			calUri = calUri.buildUpon()
+				    .appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "true")
+				    .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_NAME, accountName)
+				    .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_TYPE, CalendarContract.ACCOUNT_TYPE_LOCAL)
+				    .build();
+			Uri rowUri = cr.insert(calUri, values);
 			try
 			{
 				CalendarActivity.calendarID = Integer.parseInt(rowUri.getLastPathSegment());
@@ -156,7 +182,7 @@ public class CalendarActivity extends ListActivity {
 		       CalendarContract.Events.DTSTART
 		};
 
-		Cursor eventCursor = activity.managedQuery(eventsUri, eventProjection, CalendarContract.Calendars.NAME+"=?",new String[]{calendarName}, null);
+		Cursor eventCursor = activity.managedQuery(eventsUri, eventProjection, CalendarContract.Events.CALENDAR_ID+"=?",new String[]{Integer.toString(calendarID)}, null);
 		
 		ArrayList<AppointmentRecord> resultList = new ArrayList<AppointmentRecord>();
 		
