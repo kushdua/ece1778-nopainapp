@@ -31,9 +31,10 @@ public class Recommendation extends ListActivity {
 	private static final String doctors_suggestion_moderate = "You have reported moderate pain or pain interference on your last 5 reports. Please consider seeking a healthcare professional’s help";
 
 	public static int chosen_advice_index;
+	//private static int rotate=5;
 	
 	private static int maxsuggestion = 7;
-	private static int[] freq = {5,4,2,6,1,8,9};
+	public static int[] freq = {1,1,1,1,2,1,1};
 	private static int[] frequpdated = new int[maxsuggestion];
 	private static int[] advice_index = new int[maxsuggestion];
 	private static final String[] survey1 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
@@ -60,7 +61,6 @@ public class Recommendation extends ListActivity {
 		findpaincategory();
 		parselastsurveys();
 		String[] finallist = new String[maxsuggestion];
-
 		getreccomendation(finallist);
 		 ArrayList<RowModel> list=new ArrayList<RowModel>();
 		    int count =0;
@@ -76,21 +76,22 @@ public class Recommendation extends ListActivity {
 
 	private void findpaincategory () {
 		//TODO: Need to modify the get(...) indexes here ...
-		if(SurveyActivity.answers.get(0).equalsIgnoreCase("NO") && SurveyActivity.answers.get(1).equalsIgnoreCase("NO")){
+		if(SurveyActivity.answers.get(2).equalsIgnoreCase("NO") && SurveyActivity.answers.get(3).equalsIgnoreCase("NO")){
 			//don't give any advice
 		}
-		else if(Integer.parseInt(SurveyActivity.answers.get(2))>70 || Integer.parseInt(SurveyActivity.answers.get(3))>70 || 
-				Integer.parseInt(SurveyActivity.answers.get(4))>70 || Integer.parseInt(SurveyActivity.answers.get(5))>70 || 
-				Integer.parseInt(SurveyActivity.answers.get(10))<30) {
-			painstatus=category.SEVERE;			
-		}
-		else if(Integer.parseInt(SurveyActivity.answers.get(2))<=30 && Integer.parseInt(SurveyActivity.answers.get(3))<=30 && 
-				Integer.parseInt(SurveyActivity.answers.get(4))<=30 && Integer.parseInt(SurveyActivity.answers.get(5))<=30 && 
-				Integer.parseInt(SurveyActivity.answers.get(10))>=70) {
-			painstatus=category.MILD;			
-		} else {
-			painstatus=category.MODERATE;			
+		else if(Integer.parseInt(SurveyActivity.answers.get(4))>70 || Integer.parseInt(SurveyActivity.answers.get(5))>70 || 
+				Integer.parseInt(SurveyActivity.answers.get(6))>70 || Integer.parseInt(SurveyActivity.answers.get(7))>70 || 
+				Integer.parseInt(SurveyActivity.answers.get(12))<30) {
+			painstatus=category.SEVERE;	
 
+		}
+		else if(Integer.parseInt(SurveyActivity.answers.get(4))<=30 && Integer.parseInt(SurveyActivity.answers.get(5))<=30 && 
+				Integer.parseInt(SurveyActivity.answers.get(6))<=30 && Integer.parseInt(SurveyActivity.answers.get(7))<=30 && 
+				Integer.parseInt(SurveyActivity.answers.get(12))>=70) {
+			painstatus=category.MILD;	
+
+		} else {
+			painstatus=category.MODERATE;	
 		}
 		
     }
@@ -150,7 +151,7 @@ private void getreccomendation(String[] finallist) {
 			//Get the max number from freq table
 			for (int i=0;i<freq.length;i++){
 				freqnew[i]=freq[i];
-				if(lowest>freq[i]){
+				if(lowest>=freq[i]){
 					lowest = freq[i];
 					minindex =i;
 				}

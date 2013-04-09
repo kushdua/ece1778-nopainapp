@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:numStars="5"
         android:rating="1"
+        android:isIndicator="true"
         android:stepSize="1" />
     
     <Button
