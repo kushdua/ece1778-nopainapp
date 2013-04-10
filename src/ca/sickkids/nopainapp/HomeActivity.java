@@ -23,9 +23,9 @@ public class HomeActivity extends Activity {
 		addListenerOnButton();
 		activity=this;
 		//Disabling settings and calendar DB functionality in normal app operation until tested
-		SettingsActivity.loadSettingsValuesFromDatabase(this, false);
-		CalendarActivity.initializeCalendarID(this, CalendarActivity.CALENDAR_NAME, false);
-		CalendarActivity.loadTimesOrCreateRecurringMorningEveningEvents(this, SettingsActivity.morningAlarm, SettingsActivity.eveningAlarm, true);
+		//SettingsActivity.loadSettingsValuesFromDatabase(this, false);
+		//CalendarActivity.initializeCalendarID(this, CalendarActivity.CALENDAR_NAME, false);
+		//CalendarActivity.loadTimesOrCreateRecurringMorningEveningEvents(this, SettingsActivity.morningAlarm, SettingsActivity.eveningAlarm, true);
 	}
 	
     protected void onResume() {
