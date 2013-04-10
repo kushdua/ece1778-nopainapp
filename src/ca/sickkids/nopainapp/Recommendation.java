@@ -36,11 +36,12 @@ public class Recommendation extends ListActivity {
 	public static int[] freq = {1,5,7,3,2,9,4};
 	private static int[] frequpdated = new int[maxsuggestion];
 	private static int[] advice_index = new int[maxsuggestion];
+	//prepopulated data .. such a way that it doesn't affect the recommendation --- just to start up and will be replaced later on
 	private static final String[] survey1 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
 	private static final String[] survey2 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
-	private static final String[] survey3 = {"","","yes","yes","10","20","30","10","","","","","90"}; //medium
-	private static final String[] survey4 = {"","","yes","yes","10","20","30","10","","","","","90"}; //high
-	private static final String[] survey5 = {"","","yes","yes","10","20","30","10","","","","","90"}; //high
+	private static final String[] survey3 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
+	private static final String[] survey4 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
+	private static final String[] survey5 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
 
 	private boolean regular_suggestion = false;
 	private enum category {
@@ -71,7 +72,6 @@ public class Recommendation extends ListActivity {
 
 		    setListAdapter(new RatingAdapter(list));
 		  }
-	
 
 	private void findpaincategory () {
 		//TODO: Need to modify the get(...) indexes here ...
