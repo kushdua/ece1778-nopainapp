@@ -3,10 +3,16 @@ package ca.sickkids.nopainapp;
 import android.os.Bundle;
 import android.app.Activity;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.app.Activity;
 import android.os.Bundle;
 import android.app.ListActivity;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -36,11 +42,11 @@ public class Recommendation extends ListActivity {
 	public static int[] freq = {1,5,7,3,2,9,4};
 	private static int[] frequpdated = new int[maxsuggestion];
 	private static int[] advice_index = new int[maxsuggestion];
-	private static final String[] survey1 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
-	private static final String[] survey2 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
-	private static final String[] survey3 = {"","","yes","yes","10","20","30","10","","","","","90"}; //medium
-	private static final String[] survey4 = {"","","yes","yes","10","20","30","10","","","","","90"}; //high
-	private static final String[] survey5 = {"","","yes","yes","10","20","30","10","","","","","90"}; //high
+	private static String[] survey1 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
+	private static String[] survey2 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
+	private static String[] survey3 = {"","","yes","yes","10","20","30","10","","","","","90"}; //medium
+	private static String[] survey4 = {"","","yes","yes","10","20","30","10","","","","","90"}; //high
+	private static String[] survey5 = {"","","yes","yes","10","20","30","10","","","","","90"}; //high
 
 	private boolean regular_suggestion = false;
 	private enum category {
@@ -51,7 +57,8 @@ public class Recommendation extends ListActivity {
 	private int lowest= Integer.MAX_VALUE;
 	//private int maxindex;
 	
-	
+	DBHelper dbHelper = null;
+	Activity activity = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,17 +68,92 @@ public class Recommendation extends ListActivity {
 		parselastsurveys();
 		String[] finallist = new String[maxsuggestion];
 		getreccomendation(finallist);
-		 ArrayList<RowModel> list=new ArrayList<RowModel>();
-		    int count =0;
-		    for (String s : finallist) {
-		      list.add(new RowModel(s,count));
-		      count++;
-		    }
-		    //ListView list = getListView();
+		ArrayList<RowModel> list=new ArrayList<RowModel>();
+		int count =0;
+		for (String s : finallist) {
+			list.add(new RowModel(s,count));
+			count++;
+		}
+		//ListView list = getListView();
 
-		    setListAdapter(new RatingAdapter(list));
-		  }
+		dbHelper = new DBHelper(this, HomeActivity.DB_NAME, null, HomeActivity.DB_VERSION);
+		activity = this;
+		loadLast5Surveys();
+		setListAdapter(new RatingAdapter(list));
+	}
 	
+	private void loadLast5Surveys()
+	{
+    	SQLiteDatabase db = dbHelper.getReadableDatabase();
+    	//Fail silently
+    	if(db!=null)
+    	{
+    		try
+    		{
+    			String args[] = { Integer.toString(LoginActivity.userID) };
+    			//Most recent surveys read first
+    			int surveyNum = 0;
+    			int totalCount = 0;
+    			Cursor result = db.rawQuery("SELECT q5, q6, q7, q8, q13 FROM survey WHERE userID=? ORDER BY id DESC LIMIT 5;", args);
+    			if(result != null && result.getCount() != -1)
+    			{
+    				totalCount = result.getCount();
+					while(result.moveToNext())
+					{
+						surveyNum++;
+						if(surveyNum==1 && totalCount == 5)
+						{
+							survey5[4]=result.getString(0);
+							survey5[5]=result.getString(1);
+							survey5[6]=result.getString(2);
+							survey5[7]=result.getString(3);
+							survey5[12]=result.getString(4);
+						}
+						else if(surveyNum==2 && totalCount >= 4)
+						{
+							survey4[4]=result.getString(0);
+							survey4[5]=result.getString(1);
+							survey4[6]=result.getString(2);
+							survey4[7]=result.getString(3);
+							survey4[12]=result.getString(4);
+						}
+						else if(surveyNum==3 && totalCount >= 3)
+						{
+							survey3[4]=result.getString(0);
+							survey3[5]=result.getString(1);
+							survey3[6]=result.getString(2);
+							survey3[7]=result.getString(3);
+							survey3[12]=result.getString(4);
+						}
+						else if(surveyNum==4 && totalCount >= 2)
+						{
+							survey2[4]=result.getString(0);
+							survey2[5]=result.getString(1);
+							survey2[6]=result.getString(2);
+							survey2[7]=result.getString(3);
+							survey2[12]=result.getString(4);
+						}
+						else if(surveyNum==5 && totalCount >= 1)
+						{
+							survey1[4]=result.getString(0);
+							survey1[5]=result.getString(1);
+							survey1[6]=result.getString(2);
+							survey1[7]=result.getString(3);
+							survey1[12]=result.getString(4);
+						}
+					}
+    			}
+    		}
+    		catch(SQLException e)
+    		{
+    			Log.e("Recommendation", "Error retrieving past recommendations " + e.getMessage());
+    		}
+    		finally
+    		{
+    			db.close();
+    		}
+    	}
+	}
 
 	private void findpaincategory () {
 		//TODO: Need to modify the get(...) indexes here ...
@@ -95,7 +177,7 @@ public class Recommendation extends ListActivity {
 		
     }
 	
-	private void savelastsurvey() {
+	private void savelastsurvey(String advice) {
 
 		//Additional code to save the last survey accordingly
 			survey1[4]=survey2[4];
@@ -127,6 +209,45 @@ public class Recommendation extends ListActivity {
 			survey5[6]=SurveyActivity.answers.get(6);
 			survey5[7]=SurveyActivity.answers.get(7);
 			survey5[12]=SurveyActivity.answers.get(12);
+			
+			SQLiteDatabase db=dbHelper.getWritableDatabase();
+			//Faily silently
+			if(db!=null)
+			{
+				try
+				{
+					ContentValues values = new ContentValues();
+					values.put("userID", LoginActivity.userID);
+					values.put("q1", SurveyActivity.answers.get(1));
+					values.put("q2", SurveyActivity.answers.get(2));
+					values.put("q3", SurveyActivity.answers.get(3));
+					values.put("q4", SurveyActivity.answers.get(4));
+					values.put("q5", SurveyActivity.answers.get(5));
+					values.put("q6", SurveyActivity.answers.get(6));
+					values.put("q7", SurveyActivity.answers.get(7));
+					values.put("q8", SurveyActivity.answers.get(8));
+					values.put("q9", SurveyActivity.answers.get(9));
+					values.put("q10", SurveyActivity.answers.get(10));
+					values.put("q11", SurveyActivity.answers.get(11));
+					values.put("q12", SurveyActivity.answers.get(12));
+					values.put("q13", SurveyActivity.answers.get(13));
+					values.put("recommendation", advice);
+					long numRows = db.insertOrThrow("survey", null, values);
+					//long numRows = db.update("survey", values, "userID=?", new String[]{Integer.toString(LoginActivity.userID)});
+					if(numRows!=1)
+					{
+						Log.e("SURVEY", "Unable to save survey results to DB; wrong number of rows returned - " + numRows);
+					}
+				}
+				catch(SQLException e)
+				{
+					Log.e("SURVEY", "Unable to save survey results to DB; wrong number of rows returned - " + e.toString());
+				}
+				finally
+				{
+					db.close();
+				}
+			}
 	}
 	
     private void parselastsurveys() {
@@ -260,7 +381,7 @@ class RatingAdapter extends ArrayAdapter<RowModel> {
             model.rating=rating;
           
             LinearLayout parent=(LinearLayout)ratingBar.getParent();
-            TextView label=(TextView)parent.findViewById(R.id.label);
+            final TextView label=(TextView)parent.findViewById(R.id.label);
             Button b1=(Button)parent.findViewById(R.id.choose);
             
             b1.setOnClickListener(new OnClickListener() {
@@ -271,7 +392,7 @@ class RatingAdapter extends ArrayAdapter<RowModel> {
           	    	 * TODO : Check the position of the row and see what item was chosen
           	    	 * And accordingly put that recommendation in database
           	    	 */
-          	    	savelastsurvey();
+          	    	savelastsurvey(label.getText().toString());
           	    	chosen_advice_index=advice_index[position];
             		Toast.makeText(getApplicationContext(), "Thanks for chooosing the recommendation", Toast.LENGTH_SHORT).show();
           	    	finish();

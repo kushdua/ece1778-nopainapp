@@ -31,6 +31,7 @@ public class LoginActivity extends Activity {
 	DBHelper dbHelper = null;
 	
 	public static int userID = -1;
+	public static String user_name = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class LoginActivity extends Activity {
 			{
 				userID = result.getInt(0);
 				result.close();
+				LoginActivity.user_name = userName.getText().toString();
 				this.pass.setText("");
 				this.userName.setText("");
 				Toast.makeText(activity, R.string.successLogin, Toast.LENGTH_SHORT).show();
@@ -135,6 +137,7 @@ public class LoginActivity extends Activity {
 						Log.e("LOGIN SETTINGS","Cannot save default settings for new user. "+numSettingsRows+" rows updated.");
 					}
 					
+					LoginActivity.user_name = name;
 					Toast.makeText(activity, R.string.successRegistering, Toast.LENGTH_SHORT).show();
 					Intent intent = new Intent(activity, HomeActivity.class);
 					startActivity(intent);

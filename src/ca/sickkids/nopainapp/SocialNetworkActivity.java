@@ -14,6 +14,7 @@ public class SocialNetworkActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		activity=this;
 		setContentView(R.layout.social_network_activity);
 	}
 

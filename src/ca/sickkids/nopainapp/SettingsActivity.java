@@ -56,7 +56,7 @@ public class SettingsActivity extends Activity {
 			String args[] = {};//{ //1,//2 };
 	    	//db.execSQL("SELECT name, pass FROM users WHERE name=? AND pass=?;", args);
 			Cursor result = db.rawQuery("SELECT disease, reminder, morningSurveyTime, eveningSurveyTime FROM settings WHERE userID=?;", new String[]{Integer.toString(LoginActivity.userID)});
-			if(result != null && result.getCount()==1 && result.moveToNext())
+			if(result != null && result.moveToNext()) //&& result.getCount()==1 
 			{
 				SettingsActivity.disease=result.getString(0);
 	

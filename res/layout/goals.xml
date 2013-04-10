@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_pattern"
+    android:gravity="center_vertical|center_horizontal|center"
+    android:orientation="vertical"
+    tools:context=".GoalsActivity" >
+
+    <TextView
+        android:id="@+id/lblInputGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblGoal"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/btnGoalFacebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtInputGoal"
+        android:layout_below="@+id/txtInputGoal"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/facebook"
+        android:height="40dp"
+        android:onClick="onFacebookShareClickHandler"
+        android:width="40dp" />
+
+    <EditText
+        android:id="@+id/txtInputGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblInputGoal"
+        android:layout_below="@+id/lblInputGoal"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:lines="@integer/textMaxLines"
+        android:maxLines="@integer/textMaxLines" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btnGoalTwitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnGoalFacebook"
+        android:layout_alignBottom="@+id/btnGoalFacebook"
+        android:layout_alignRight="@+id/txtInputGoal"
+        android:background="@drawable/twitter"
+        android:height="40dp"
+        android:onClick="onTwitterShareClickHandler"
+        android:width="40dp" />
+
+</RelativeLayout>

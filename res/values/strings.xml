@@ -135,4 +135,6 @@
    <string name="calendar_menu_delete_event">Delete Event</string>
    <string name="err_calendar_no_event_selected">No event selected.</string>
    <string name="calendar_menu_delete_calendar">Delete Calendar</string>
+   <string name="lblGoal">Pain management goal:</string>
+   <string name="copiedGoalClipboard">Copied goal text to clipboard. Paste to share.</string>
 </resources>
