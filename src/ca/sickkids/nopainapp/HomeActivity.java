@@ -10,7 +10,7 @@ import android.widget.Button;
 
 public class HomeActivity extends Activity {
 
-	private Button journal = null, exit = null;
+	private Button journal = null, exit = null, diseaseinfo=null;
 	public static Activity activity = null;
 	
 	public static final String DB_NAME = "NOPAINDB";
@@ -43,6 +43,16 @@ public class HomeActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(), Journaling.class);
+				startActivity(intent);				
+			}
+    	});
+    	
+    	//JOURNAL Button Handler
+    	diseaseinfo= (Button) findViewById(R.id.btnDiseaseInfo);
+    	diseaseinfo.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), DiseaseInfoActivity.class);
 				startActivity(intent);				
 			}
     	});
