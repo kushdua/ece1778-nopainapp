@@ -31,7 +31,6 @@ public class Recommendation extends ListActivity {
 	private static final String doctors_suggestion_moderate = "You have reported moderate pain or pain interference on your last 5 reports. Please consider seeking a healthcare professional’s help";
 
 	public static int chosen_advice_index;
-	//private static int rotate=5;
 	
 	private static int maxsuggestion = 7;
 	public static int[] freq = {1,1,1,1,2,1,1};
@@ -94,6 +93,36 @@ public class Recommendation extends ListActivity {
 			painstatus=category.MODERATE;	
 		}
 		
+		//Additional code to save the last survey accordingly
+			survey1[4]=survey2[4];
+			survey1[5]=survey2[5];
+			survey1[6]=survey2[6];
+			survey1[7]=survey2[7];
+			survey1[12]=survey2[12];
+			
+			survey2[4]=survey3[4];
+			survey2[5]=survey3[5];
+			survey2[6]=survey3[6];
+			survey2[7]=survey3[7];
+			survey2[12]=survey3[12];
+			
+			survey3[4]=survey4[4];
+			survey3[5]=survey4[5];
+			survey3[6]=survey4[6];
+			survey3[7]=survey4[7];
+			survey3[12]=survey4[12];
+			
+			survey4[4]=survey5[4];
+			survey4[5]=survey5[5];
+			survey4[6]=survey5[6];
+			survey4[7]=survey5[7];
+			survey4[12]=survey5[12];
+			
+			survey5[4]=SurveyActivity.answers.get(4);
+			survey5[5]=SurveyActivity.answers.get(5);
+			survey5[6]=SurveyActivity.answers.get(6);
+			survey5[7]=SurveyActivity.answers.get(7);
+			survey5[12]=SurveyActivity.answers.get(12);
     }
 	
     private void parselastsurveys() {
