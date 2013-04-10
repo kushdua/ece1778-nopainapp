@@ -122,9 +122,10 @@ public class SettingsActivity extends Activity {
 	
 	public static int reminderStringToMinutes(String in)
 	{
+		String input = (in.contains(" ")?in.substring(0, in.indexOf(' ')) : in);
 		try
 		{
-			return Integer.parseInt(in.substring(0, in.indexOf(' ')))*(in.contains("day")?1440:1);
+			return Integer.parseInt(input)*(in.contains("day")?1440:1);
 		}
 		catch(NumberFormatException e)
 		{
