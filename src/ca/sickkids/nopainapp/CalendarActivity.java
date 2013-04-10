@@ -20,10 +20,12 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.graphics.Color;
 import android.location.Address;
+import android.media.audiofx.BassBoost.Settings;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.provider.CalendarContract.Events;
+import android.provider.CalendarContract.Reminders;
 
 import java.text.DateFormat;
 
@@ -118,20 +120,21 @@ public class CalendarActivity extends ListActivity {
 				}
 				
 				//Indicate whether we found our NOpain calendar or not...
-				if(calendarCursor.getString(3).compareTo(CALENDAR_NAME)==0)
+				if(calendarCursor.getString(3).compareTo(CALENDAR_NAME + ":" + Integer.toString(LoginActivity.userID))==0)
 				{
-					//TO KEEP DROPPING CALENDAR UNCOMMENT THIS
-//					ContentValues values = new ContentValues();
-//					Uri deleteUrl = ContentUris.withAppendedId(CalendarContract.Calendars.CONTENT_URI, calendarCursor.getInt(0));
-//					int rows = activity.getContentResolver().delete(deleteUrl, null, null);
-//					continue;
-					
 					//TO MAKE SURE CREATED CALENDAR IS PICKED UP HAVE THIS UNCOMMENTED
 					foundOurs = true;
 					CalendarActivity.accountName = calendarCursor.getString(1);
 					CalendarActivity.accountType = calendarCursor.getString(2);
 					CalendarActivity.calendarID = calendarCursor.getInt(0);
 					break;
+				}
+				else if(calendarCursor.getString(3).compareTo(CALENDAR_NAME)==0)
+				{
+					ContentValues values = new ContentValues();
+					Uri deleteUrl = ContentUris.withAppendedId(CalendarContract.Calendars.CONTENT_URI, calendarCursor.getInt(0));
+					int rows = activity.getContentResolver().delete(deleteUrl, null, null);
+					continue;
 				}
 				else if(calendarCursor.getString(3).compareTo("NoPain")==0)
 				{
@@ -147,7 +150,7 @@ public class CalendarActivity extends ListActivity {
 			{
 				ContentResolver cr = activity.getContentResolver();
 				ContentValues values = new ContentValues();
-				values.put(CalendarContract.Calendars.NAME, CALENDAR_NAME);
+				values.put(CalendarContract.Calendars.NAME, CALENDAR_NAME + ":" + Integer.toString(LoginActivity.userID));
 				values.put(CalendarContract.Calendars.CALENDAR_DISPLAY_NAME, CALENDAR_NAME);
 				values.put(CalendarContract.Calendars.ACCOUNT_NAME, accountName);
 				values.put(CalendarContract.Calendars.OWNER_ACCOUNT, true); //or accountName?
@@ -299,7 +302,7 @@ public class CalendarActivity extends ListActivity {
 		else
 		{
 			//Update survey time...
-			updateEventTime(activity, morningRecurringEventID, morningHour, morningMinute);
+			updateEventTime(activity, morningRecurringEventID, morningHour, morningMinute, true, -1);
 		}
 		
 		//See if evening survey exists based on time + grab ID
@@ -312,19 +315,30 @@ public class CalendarActivity extends ListActivity {
 		else
 		{
 			//Update survey time...
-			updateEventTime(activity, eveningRecurringEventID, eveningHour, eveningMinute);
+			updateEventTime(activity, eveningRecurringEventID, eveningHour, eveningMinute, true, -1);
 		}
 	}
 	
-	public static void updateEventTime(Activity activity, int eventID, int newHour, int newMinute)
+	public static void updateEventTime(Activity activity, int eventID, int newHour, int newMinute, boolean isRecurring, int nonRecurringDurationMinutes)
 	{
 		ContentResolver cr = activity.getContentResolver();
 		ContentValues values = new ContentValues();
 		Uri updateUri = null;
 		//Update starting time for event
-		long now = System.currentTimeMillis();
-    	values.put(Events.DTSTART, now);
-    	values.put(Events.DTEND, now+5*CalendarActivity.NUMBER_MILLISECONDS_IN_MINUTE);
+		long nowTime = System.currentTimeMillis();
+		Date now = new Date(System.currentTimeMillis());
+		long newTime = new Date(now.getYear(), now.getMonth(), now.getDay(), newHour, newMinute).getTime();
+    	values.put(Events.DTSTART, newTime);
+    	if(!isRecurring && nonRecurringDurationMinutes!=-1)
+    	{
+    		values.put(Events.DTEND, newTime+nonRecurringDurationMinutes*CalendarActivity.NUMBER_MILLISECONDS_IN_MINUTE);
+    	}
+    	else if(!isRecurring)
+    	{
+    		//Default 5 minutes event duration if not specified as param
+    		values.put(Events.DTEND, newTime+5*CalendarActivity.NUMBER_MILLISECONDS_IN_MINUTE);
+    	}
+    	//values.put(Events.DTEND, now+5*CalendarActivity.NUMBER_MILLISECONDS_IN_MINUTE);
 		updateUri = ContentUris.withAppendedId(Events.CONTENT_URI, eventID);
 		int rows = activity.getContentResolver().update(updateUri, values, null, null);
 	}
@@ -413,11 +427,16 @@ public class CalendarActivity extends ListActivity {
 //	        	}
 //        	}
         	values.put(Events.DTSTART, eventDate.getTime());
-        	values.put(Events.DTEND, eventDate.getTime()+5*CalendarActivity.NUMBER_MILLISECONDS_IN_MINUTE);
         	if(isMorningRecurring || isEveningRecurring || createRecurring)
         	{
 	        	values.put(Events.RRULE, 
 	        	      CalendarActivity.recurrenceRRule);//COUNT=20;BYDAY=MO,TU,WE,TH,FR;WKST=MO");
+	        	//5 minute duration by default
+	        	values.put(Events.DURATION, "P5M");
+        	}
+        	else
+        	{
+            	values.put(Events.DTEND, eventDate.getTime()+5*CalendarActivity.NUMBER_MILLISECONDS_IN_MINUTE);
         	}
         	values.put(Events.TITLE, defaultSurveyTitle);
         	values.put(Events.CALENDAR_ID, calendarID);
@@ -432,6 +451,12 @@ public class CalendarActivity extends ListActivity {
         	Uri uri = activity.getContentResolver().
         	            insert(Events.CONTENT_URI, values);
         	result = Long.valueOf(uri.getLastPathSegment()).intValue();
+        	
+        	ContentValues valuesReminder = new ContentValues();
+        	valuesReminder.put(Reminders.EVENT_ID, result);
+        	valuesReminder.put(Reminders.MINUTES, (SettingsActivity.reminderMinutes>0)?SettingsActivity.reminderMinutes:30);
+        	valuesReminder.put(Reminders.METHOD, Reminders.METHOD_ALERT);
+        	long reminderID = new Long(activity.getContentResolver().insert(Reminders.CONTENT_URI, valuesReminder).getLastPathSegment());
 		}
 		
 		return result;
@@ -653,6 +678,12 @@ public class CalendarActivity extends ListActivity {
         	            insert(Events.CONTENT_URI, valuesSurvey);
         	long eventSurveyId = new Long(eventUri.getLastPathSegment());
         	
+        	ContentValues valuesReminder = new ContentValues();
+        	valuesReminder.put(Reminders.EVENT_ID, eventSurveyId);
+        	valuesReminder.put(Reminders.MINUTES, (SettingsActivity.reminderMinutes>0)?SettingsActivity.reminderMinutes:30);
+        	valuesReminder.put(Reminders.METHOD, Reminders.METHOD_ALERT);
+        	long reminderID = new Long(getContentResolver().insert(Reminders.CONTENT_URI, valuesReminder).getLastPathSegment());
+        	
         	//Edit newly created event
     		Intent intent = new Intent(Intent.ACTION_EDIT)
     	    	.setData(ContentUris.withAppendedId(Events.CONTENT_URI, eventSurveyId));
@@ -685,6 +716,12 @@ public class CalendarActivity extends ListActivity {
         	      getContentResolver().
         	            insert(Events.CONTENT_URI, valuesAppt);
         	long eventId = new Long(apptUri.getLastPathSegment());
+        	
+        	ContentValues valuesReminderAppt = new ContentValues();
+        	valuesReminderAppt.put(Reminders.EVENT_ID, eventId);
+        	valuesReminderAppt.put(Reminders.MINUTES, (SettingsActivity.reminderMinutes>0)?SettingsActivity.reminderMinutes:30);
+        	valuesReminderAppt.put(Reminders.METHOD, Reminders.METHOD_ALERT);
+        	long reminderApptID = new Long(getContentResolver().insert(Reminders.CONTENT_URI, valuesReminderAppt).getLastPathSegment());
         	
         	//Edit newly created event
     		Intent apptIntent = new Intent(Intent.ACTION_EDIT)

@@ -126,7 +126,7 @@ public class LoginActivity extends Activity {
 					ContentValues settingsValues = new ContentValues(5);
 					settingsValues.put("userID", userID);
 					settingsValues.put("disease", "");
-					settingsValues.put("reminder", "30");
+					settingsValues.put("reminder", "30 minutes");
 					settingsValues.put("morningSurveyTime", "10:00");
 					settingsValues.put("eveningSurveyTime", "22:00");
 					long numSettingsRows = db.insertOrThrow("settings", null, settingsValues);
