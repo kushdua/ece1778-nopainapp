@@ -120,7 +120,7 @@
         <item>10 minutes</item>
         <item>20 minutes</item>
         <item>30 minutes</item>
-        <item>1 hour</item>
+        <item>60 minutes</item>
    </string-array>
    <string name="titleSettings">Settings</string>
    <string name="errorSavingSettingValue">Error saving setting value. Please try again.</string>

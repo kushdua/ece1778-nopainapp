@@ -93,7 +93,7 @@ public class SettingsActivity extends Activity {
 				
 				if(setSettingsUIElementValues)
 				{
-					String[] array = morningAlarm.split(SettingsActivity.REMINDER_TIME_DELIMITER);
+					String[] array = eveningAlarm.split(SettingsActivity.REMINDER_TIME_DELIMITER);
 					SettingsActivity.eveningAlarmPicker.setCurrentHour(Integer.parseInt(array[0]));
 					SettingsActivity.eveningAlarmPicker.setCurrentMinute(Integer.parseInt(array[1]));
 				}
