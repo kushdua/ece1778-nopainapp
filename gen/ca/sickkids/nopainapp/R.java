@@ -70,10 +70,11 @@ public final class R {
         public static final int btnVideo=0x7f0b0027;
         public static final int btnView=0x7f0b0028;
         public static final int buttonLoginRegisterContainer=0x7f0b0031;
+        public static final int calendar_menu_deleteCalendar=0x7f0b0058;
         public static final int calendar_menu_deleteEvent=0x7f0b0057;
         public static final int calendar_menu_edit_event=0x7f0b0056;
-        public static final int calendar_menu_new_appointment=0x7f0b0059;
-        public static final int calendar_menu_new_survey=0x7f0b0058;
+        public static final int calendar_menu_new_appointment=0x7f0b005a;
+        public static final int calendar_menu_new_survey=0x7f0b0059;
         public static final int choiceSpinner=0x7f0b0054;
         public static final int choose=0x7f0b0037;
         public static final int diseaseNameContainer=0x7f0b003c;
@@ -113,7 +114,7 @@ public final class R {
         public static final int lblSurvey=0x7f0b0008;
         public static final int loginBackgroundContainer=0x7f0b002a;
         public static final int loginLayout=0x7f0b002b;
-        public static final int menu_settings=0x7f0b005a;
+        public static final int menu_settings=0x7f0b005b;
         public static final int morningAlarmContainer=0x7f0b0042;
         public static final int morningAlarmTimePicker=0x7f0b0044;
         public static final int multiAutoCompleteTextView1=0x7f0b0025;
@@ -175,6 +176,7 @@ public final class R {
         public static final int calendarRowDurationUntilPrefix=0x7f06003f;
         public static final int calendarRowNamePrefix=0x7f06003c;
         public static final int calendarRowTypePrefix=0x7f06003d;
+        public static final int calendar_menu_delete_calendar=0x7f06004e;
         public static final int calendar_menu_delete_event=0x7f06004c;
         public static final int calendar_menu_edit_event=0x7f06004b;
         public static final int calendar_menu_new_appointment=0x7f060003;

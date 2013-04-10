@@ -19,6 +19,12 @@
         android:title="@string/calendar_menu_delete_event"/>
     
     <item
+        android:id="@+id/calendar_menu_deleteCalendar"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/calendar_menu_delete_calendar"/>
+    
+    <item
         android:id="@+id/calendar_menu_new_survey"
         android:orderInCategory="100"
         android:showAsAction="never"

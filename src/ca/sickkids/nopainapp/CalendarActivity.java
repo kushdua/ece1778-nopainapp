@@ -85,9 +85,9 @@ public class CalendarActivity extends ListActivity {
     protected void onResume() {
         super.onResume();
         
-        //list.clear();
-        //list.addAll(initializeCalendarID(activity, CALENDAR_NAME, true));
-        //adapter.notifyDataSetChanged();
+        list.clear();
+        list.addAll(initializeCalendarID(activity, CALENDAR_NAME, true));
+        adapter.notifyDataSetChanged();
     }
 	
 	public static ArrayList<AppointmentRecord> initializeCalendarID(Activity activity, String calendarName, boolean returnApptList)
@@ -241,12 +241,11 @@ public class CalendarActivity extends ListActivity {
 				String type = (split.length==2) ? split[0].trim() : "";
 				String name = (split.length==2) ? split[1].trim() : "";
 				//DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, Locale.getDefault());
-				Date beginTime = new Date((long)Math.abs(eventCursor.getInt(2)));
+				Date beginTime = new Date((long)Math.abs(eventCursor.getLong(2)));
 				record.setId(eventCursor.getInt(0));
 				record.setName(name);
 				record.setType(type);
 				record.setDate(beginTime.getTime());//df.format(beginTime)));
-				record.setDistanceDuration(DateUtils.getRelativeTimeSpanString(beginTime.getTime(), System.currentTimeMillis(),0,DateUtils.FORMAT_ABBREV_RELATIVE).toString());
 				String rrule = eventCursor.getString(3);
 				record.setRecurring(false);
 				if(rrule!=null && rrule.contains(CalendarActivity.recurrenceRRule))
@@ -291,19 +290,30 @@ public class CalendarActivity extends ListActivity {
     	}
 		
 		//See if morning survey exists based on name (if it doesn't, create it) + grab ID
-		int morningEventID = getEventIDBasedOnTimeAndName(activity, calendarID, defaultSurveyTitle, morningHour, morningMinute, true, false, -1, true, true, true);
+		if(morningRecurringEventID==-1)
+		{
+    		morningRecurringEventID = getEventIDBasedOnTimeAndName(activity, calendarID, defaultSurveyTitle, morningHour, morningMinute, true, false, -1, true, true, true);
 				//(activity, calendarID, defaultSurveyTitle, 
 				//morningHour, morningMinute, -1, false, true);
-		
-		//Update survey time...
-		updateEventTime(activity, morningEventID, morningHour, morningMinute);
+		}
+		else
+		{
+			//Update survey time...
+			updateEventTime(activity, morningRecurringEventID, morningHour, morningMinute);
+		}
 		
 		//See if evening survey exists based on time + grab ID
-		int eveningEventID = getEventIDBasedOnTimeAndName(activity, calendarID, defaultSurveyTitle, eveningHour, eveningMinute, false, true, -1, true, true, true);
+		if(eveningRecurringEventID==-1)
+		{
+			eveningRecurringEventID = getEventIDBasedOnTimeAndName(activity, calendarID, defaultSurveyTitle, eveningHour, eveningMinute, false, true, -1, true, true, true);
 				//(activity, calendarID, defaultSurveyTitle, 
 				//eveningHour, eveningMinute, morningEventID, false, true);
-		//Update survey time...
-		updateEventTime(activity, eveningEventID, eveningHour, eveningMinute);
+		}
+		else
+		{
+			//Update survey time...
+			updateEventTime(activity, eveningRecurringEventID, eveningHour, eveningMinute);
+		}
 	}
 	
 	public static void updateEventTime(Activity activity, int eventID, int newHour, int newMinute)
@@ -340,8 +350,8 @@ public class CalendarActivity extends ListActivity {
 			{
 				if(eventCursor.getString(1).contains("noPain:"))//compareTo(eventName)==0)
 				{
-					Date eventTime = new Date(eventCursor.getInt(2));
-					if(!compareTimes || (excludeID!=-1 && eventCursor.getInt(0)!=excludeID) &&
+					Date eventTime = new Date(eventCursor.getLong(2));
+					if((compareTimes || (excludeID!=-1 && eventCursor.getInt(0)!=excludeID)) &&
 					   eventTime.getHours()==hours && eventTime.getMinutes()==minutes)
 					{
 						//If event is said to be recurring but one in DB is not, continue searching for the event the user specified
@@ -385,22 +395,23 @@ public class CalendarActivity extends ListActivity {
         	}
         	
         	//See what survey to start from - whether morning or evening is up next
-        	if(isMorningRecurring ||
-        	   (now.getHours()>morningHour && now.getHours()<eveningHour) ||
-        	   (now.getHours()==morningHour && now.getMinutes()>=morningMinute) ||
-        	   (now.getHours()==eveningHour && now.getMinutes()<eveningMinute))
-        	{
-        		//Insert evening
-        		eventDate = new Date(now.getYear(),	now.getMonth(), now.getDay(), eveningHour, eveningMinute);
-        	}
-        	else
-        	{
-	        	if(isEveningRecurring)
-	        	{
-	        		//Insert morning
-	        		eventDate = new Date(now.getYear(),	now.getMonth(), now.getDay(), morningHour, morningMinute);
-	        	}
-        	}
+        	eventDate = new Date(now.getYear(), now.getMonth(), now.getDay(), hours, minutes);
+//        	if(isMorningRecurring ||
+//        	   (now.getHours()>morningHour && now.getHours()<eveningHour) ||
+//        	   (now.getHours()==morningHour && now.getMinutes()>=morningMinute) ||
+//        	   (now.getHours()==eveningHour && now.getMinutes()<eveningMinute))
+//        	{
+//        		//Insert evening
+//        		eventDate = new Date(now.getYear(),	now.getMonth(), now.getDay(), eveningHour, eveningMinute);
+//        	}
+//        	else
+//        	{
+//	        	if(isEveningRecurring)
+//	        	{
+//	        		//Insert morning
+//	        		eventDate = new Date(now.getYear(),	now.getMonth(), now.getDay(), morningHour, morningMinute);
+//	        	}
+//        	}
         	values.put(Events.DTSTART, eventDate.getTime());
         	values.put(Events.DTEND, eventDate.getTime()+5*CalendarActivity.NUMBER_MILLISECONDS_IN_MINUTE);
         	if(isMorningRecurring || isEveningRecurring || createRecurring)
@@ -435,21 +446,60 @@ public class CalendarActivity extends ListActivity {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			
 			View row=super.getView(position, convertView, parent);
+//			if(position!=selectedListItem)
+//			{
+//				row.setBackgroundColor(Color.TRANSPARENT);
+//			}
+//			else
+//			{
+//				row.setBackgroundColor(Color.LTGRAY);
+//			}
+
 			CalendarRowViewHolder holder=(CalendarRowViewHolder)row.getTag();
 			if (holder==null) {
 				holder=new CalendarRowViewHolder(row, false);
 				row.setTag(holder);
 			}
-			
+
 			AppointmentRecord record = (AppointmentRecord)getListAdapter().getItem(position);
+			
+			Date now = new Date(System.currentTimeMillis());
+			Date date = new Date(record.getDate());
+			
 			holder.recurring=record.isRecurring();
-			holder.name.setText(getResources().getText(R.string.calendarRowNamePrefix) + record.getName());
-			holder.type.setText(getResources().getText(R.string.calendarRowTypePrefix) + record.getType() + ", " + 
-						(record.isRecurring() ? "Recurring" : "One Time"));
-			holder.date.setText(getResources().getText(R.string.calendarRowDatePrefix) + Long.toString(record.getDate()));
-			holder.distance.setText(getResources().getText(R.string.calendarRowDurationUntilPrefix) + record.getDistanceDuration());
+			holder.name.setText(getResources().getText(R.string.calendarRowNamePrefix) + " " + record.getName());
+			holder.type.setText(getResources().getText(R.string.calendarRowTypePrefix) + " " + record.getType() + ", " + 
+						(record.isRecurring() ? "Recurring daily" : "One Time"));
+			if(!holder.recurring)
+			{
+				holder.date.setText(getResources().getText(R.string.calendarRowDatePrefix) + " " + new Date(record.getDate()).toLocaleString());
+			}
+			else
+			{
+				int hour = date.getHours();
+				int minutes = date.getMinutes();
+				holder.date.setText(getResources().getText(R.string.calendarRowDatePrefix) + " " + (hour>12?hour-12:hour) + ":" + (minutes<10 ? "0"+minutes : minutes) + (hour<12 ? " AM" : " PM"));
+			}
+			
+			if(!holder.recurring)
+			{
+				holder.distance.setText(getResources().getText(R.string.calendarRowDurationUntilPrefix) + " " + DateUtils.getRelativeTimeSpanString(date.getTime(), System.currentTimeMillis(),DateUtils.MINUTE_IN_MILLIS, DateUtils.FORMAT_ABBREV_RELATIVE).toString());
+				//holder.distance.setVisibility(View.VISIBLE);
+			}
+			else
+			{
+				//as future improvement fix distance to appear proper and not 7 days from now
+				holder.distance.setVisibility(View.INVISIBLE);
+				if(now.getHours() > date.getHours())
+				{
+					holder.distance.setText(getResources().getText(R.string.calendarRowDurationUntilPrefix) + " " + DateUtils.getRelativeTimeSpanString(date.getTime()+86400000, System.currentTimeMillis(),DateUtils.MINUTE_IN_MILLIS, DateUtils.FORMAT_ABBREV_RELATIVE).toString());
+				}
+				else
+				{
+					holder.distance.setText(getResources().getText(R.string.calendarRowDurationUntilPrefix) + " " + DateUtils.getRelativeTimeSpanString(date.getTime(), System.currentTimeMillis(),DateUtils.MINUTE_IN_MILLIS, DateUtils.FORMAT_ABBREV_RELATIVE).toString());
+				}
+			}
 //			holder.reminderPeriod.setText(record.getReminderDuration());
 			
 			return(row);
@@ -470,7 +520,8 @@ public class CalendarActivity extends ListActivity {
      	   return false;
      	}
     	
-    	if(selectedListItem==-1 || selectedListItem>=list.size())
+    	if((selectedListItem==-1 || selectedListItem>=list.size()) && 
+    	   (item.getItemId()==R.id.calendar_menu_edit_event || item.getItemId()==R.id.calendar_menu_deleteEvent))
     	{
     		Toast.makeText(activity, R.string.err_calendar_no_event_selected, Toast.LENGTH_SHORT);
     		return false;
@@ -485,6 +536,24 @@ public class CalendarActivity extends ListActivity {
         			.setData(ContentUris.withAppendedId(Events.CONTENT_URI, ((AppointmentRecord)(getListAdapter().getItem(selectedListItem))).getId()));
         		startActivity(intent);
         	}
+        	break;
+        case R.id.calendar_menu_deleteCalendar:
+        	ContentValues values = new ContentValues();
+			Uri deleteUrl = ContentUris.withAppendedId(CalendarContract.Calendars.CONTENT_URI, calendarID);
+			int rows = activity.getContentResolver().delete(deleteUrl, null, null);
+			CalendarActivity.calendarID=-1;
+			CalendarActivity.morningRecurringEventID=-1;
+			CalendarActivity.eveningRecurringEventID=-1;
+			list.clear();
+			initializeCalendarID(activity, CALENDAR_NAME, false);
+			loadTimesOrCreateRecurringMorningEveningEvents(activity, SettingsActivity.morningAlarm,	SettingsActivity.eveningAlarm, false);
+			HomeActivity.activity.runOnUiThread(new Runnable(){
+				public void run()
+				{
+					list=initializeCalendarID(activity, CALENDAR_NAME, true);
+					adapter.notifyDataSetChanged();
+				}
+			});
         	break;
         case R.id.calendar_menu_deleteEvent:
         	if(selectedListItem!=-1)
@@ -572,7 +641,7 @@ public class CalendarActivity extends ListActivity {
         	valuesSurvey.put(Events.TITLE, defaultSurveyTitle);
         	valuesSurvey.put(Events.CALENDAR_ID, calendarID);
         	valuesSurvey.put(Events.EVENT_TIMEZONE, TimeZone.getDefault().getID());
-        	valuesSurvey.put(Events.DESCRIPTION, "noPain: Daily survey");
+        	valuesSurvey.put(Events.DESCRIPTION, "noPain: One time survey");
         	// reasonable defaults exist:
         	valuesSurvey.put(Events.ACCESS_LEVEL, Events.ACCESS_PRIVATE);
         	valuesSurvey.put(Events.SELF_ATTENDEE_STATUS,
@@ -634,7 +703,7 @@ public class CalendarActivity extends ListActivity {
 	public void onListItemClick(ListView parent, View v, int position,long id)
 	{
 		selectedListItem = position;
-		v.setBackgroundColor(Color.LTGRAY);
+//		v.setBackgroundColor(Color.LTGRAY);
 //		final int itemPos = position;
 //		AlertDialog.Builder alert = new AlertDialog.Builder(this);
 //		

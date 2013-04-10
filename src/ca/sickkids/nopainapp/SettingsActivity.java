@@ -117,13 +117,14 @@ public class SettingsActivity extends Activity {
 	public void onDestroy()
 	{
 		saveSelections();
+		super.onDestroy();
 	}
 	
 	public static int reminderStringToMinutes(String in)
 	{
 		try
 		{
-			return Integer.parseInt(in)*(in.contains("day")?1440:1);
+			return Integer.parseInt(in.substring(0, in.indexOf(' ')))*(in.contains("day")?1440:1);
 		}
 		catch(NumberFormatException e)
 		{

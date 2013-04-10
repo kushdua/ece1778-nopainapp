@@ -6,7 +6,6 @@ public class AppointmentRecord {
 	private int userID = -1;
 	private String type = "";
 	private long date = -1;
-	private String distanceDuration = "";
 	private int reminderDurationPeriodMinutes = -1;
 	private boolean isRecurring = false;
 	
@@ -18,20 +17,18 @@ public class AppointmentRecord {
 		userID = -1;
 		type = Types.TYPE_SURVEY.toString();
 		date = System.currentTimeMillis();
-		setDistanceDuration("");
 		reminderDurationPeriodMinutes = 5;
 		setRecurring(false);
 	}
 	
 	//Constructor for db record to memory structure or when saving event perhaps
-	public AppointmentRecord(int id, String name, int userID, String type, long date, String distanceDuration, int reminderDurationMinutes, boolean isRecurring)
+	public AppointmentRecord(int id, String name, int userID, String type, long date, int reminderDurationMinutes, boolean isRecurring)
 	{
 		this.id = id;
 		this.name = name;
 		this.userID = userID;
 		this.type = type;
 		this.date = date;
-		this.setDistanceDuration(distanceDuration);
 		this.reminderDurationPeriodMinutes = reminderDurationMinutes;
 		this.setRecurring(isRecurring);
 	}
@@ -82,14 +79,6 @@ public class AppointmentRecord {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDistanceDuration() {
-		return distanceDuration;
-	}
-
-	public void setDistanceDuration(String distanceDuration) {
-		this.distanceDuration = distanceDuration;
 	}
 
 	public boolean isRecurring() {
