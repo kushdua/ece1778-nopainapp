@@ -7,11 +7,58 @@ import android.widget.TextView;
 public class DiseaseInfoActivity extends Activity{
 	
 	TextView tv;
-	String cancer_what = "Cancer is not just one disease. There are over 100 different types of cancer, each with" +
+	String cancer_old = "What is Cancer? \n" +
+					"Cancer is not just one disease. There are over 100 different types of cancer, each with" +
 					"different names, effects, and treatments. Even though each type of cancer is different" +
-					"there are some basic things that are similar to most cancers." +
+					"there are some basic things that are similar to most cancers.\n" +
 					"In order to understand more about cancer, you first need to understand a bit about" +
-					"cells.";
+					"cells.\n\n" +
+					"What are cells? \n" +
+					"Cells are the building blocks of the body. They are very small and can only be seen under"+
+					"a microscope. There are billions of cells in a fully grown human body. Not every cell"+
+					"is the same. There are hundreds of different kinds of cells in the body and each has a"+
+					"different job. For example, bone cells are different from skin cells, which are different"+
+					"from muscle cells. The cells work together to form organs like the heart, the brain, or"+
+					"intestines.\n\n" +
+					"Even though cells do different jobs in our body, they still have some similarities. Each" +
+					"cell has something called a nucleus that contains DNA. The DNA contains genes that" +
+					"are like instructions for our cells. DNA tells cells what to do and how and when to do" +
+					"it. Genes within the DNA tell the cells when to reproduce (make copies of themselves)" +
+					"and when to die. If a cell is damaged, instructions in the DNA tell the cell either how to" +
+					"repair itself, or if it is too damaged, that it is time for the cell to die.\n\n" +
+					"How do cells reproduce?\n" +
+					"Cells reproduce through a process called cell division. In cell division, the cell copies" +
+					"all it’s DNA and then divides into two identical cells. Normally, cells only reproduce to" +
+					"replace other cells that have died or to make more cells when your body is growing. This" +
+					"way, your body carefully regulates how many cells there are in your body.\n\n" +
+					"Different types of cells reproduce at different rates. For example, cells in your mouth" +
+					"and that line your stomach and intestines live a short time and reproduce very often." +
+					"Cells in your brain and spinal cord, called neurons, live a long time and in adults they" +
+					"almost never reproduce.\n\n" +
+					"Cells and cancer\n" +
+					"Cancer happens when there is a change in the DNA (genes) in a normal cell called" +
+					"a mutation. The mutation causes the cell to act differently than a normal cell. The" +
+					"mutated cells do not die when they should. They reproduce even when the body does" +
+					"not need them to, usually much faster than normal cells. The cancerous cell reproduces" +
+					"over and over again, forming two cells, then four, then eight, then 16, until it has made" +
+					"billions of copies of itself. Each of the copies has the same mutation./n/n" +
+					"How cancer spreads\n" +
+					"The place the cancer first started in the body is known as the primary cancer site. We" +
+					"call this group of cancer cells the primary cancer. These cancer cells can break away and" +
+					"travel to other parts of the body through the blood or lymph vessels. When cancer cells" +
+					"start to travel in the body, it is called metastasis. Sometimes these cells can get stuck in" +
+					"other tissues in the body and will then start to grow in this new place in the body. This" +
+					"new group of cells is called the secondary cancer site.\n\n" +
+					"What causes cancer?\n" +
+					"Scientists are searching for the answer to what causes cancer. For most cancers though," +
+					"especially for cancers in young people, we still do not know what causes them. We" +
+					"do know that cancer IS NOT contagious. You cannot catch cancer and cancer does not" +
+					"spread from one person to the next.\n\n" +
+					"Remember, having cancer yourself does not mean that your brothers, sisters, friends," +
+					"or parents will get cancer. Very, very rarely, cancer can be caused by a mutation in the" +
+					"genes of your DNA that was passed on through your family. Having this mutated gene" +
+					"does not mean that a person will definitely get cancer, but it can increase the risk of" +
+					"developing a cancer.\n";
 	
 	String cancer = "What is cancer?\nCancer is not just one disease. There are over 100 different types of cancer, each with different names, effects, and treatments. Even though each type of cancer is different, there are some basic things that are similar to most cancers. \n\nIn order to understand more about cancer, you first need to understand a bit about cells.\n\nWhat are cells?\nCells are the building blocks of the body. They are very small and can only be seen under a microscope. There are billions of cells in a fully grown human body. Not every cell is the same. There are hundreds of different kinds of cells in the body and each has a different job. For example, bone cells are different from skin cells, which are different from muscle cells. The cells work together to form organs like the heart, the brain, or intestines.\n\nEven though cells do different jobs in our body, they still have some similarities. Each cell has something called a nucleus that contains DNA. The DNA contains genes that are like instructions for our cells. DNA tells cells what to do and how and when to do it. Genes within the DNA tell the cells when to reproduce (make copies of themselves) and when to die. If a cell is damaged, instructions in the DNA tell the cell either how to repair itself, or if it is too damaged, that it is time for the cell to die. \n\nHow do cells reproduce?\nCells reproduce through a process called cell division. In cell division, the cell copies all it\u2019s DNA and then divides into two identical cells. Normally, cells only reproduce to replace other cells that have died or to make more cells when your body is growing. This way, your body carefully regulates how many cells there are in your body. \n\nDifferent types of cells reproduce at different rates. For example, cells in your mouth and that line your stomach and intestines live a short time and reproduce very often. Cells in your brain and spinal cord, called neurons, live a long time and in adults they almost never reproduce.\n\nCells and cancer\nCancer happens when there is a change in the DNA (genes) in a normal cell called a mutation. The mutation causes the cell to act differently than a normal cell. The mutated cells do not die when they should. They reproduce even when the body does not need them to, usually much faster than normal cells. The cancerous cell reproduces over and over again, forming two cells, then four, then eight, then 16, until it has made billions of copies of itself. Each of the copies has the same mutation. \n\nHow cancer spreads\nThe place the cancer first started in the body is known as the primary cancer site. We call this group of cancer cells the primary cancer. These cancer cells can break away and travel to other parts of the body through the blood or lymph vessels. When cancer cells start to travel in the body, it is called metastasis. Sometimes these cells can get stuck in other tissues in the body and will then start to grow in this new place in the body. This new group of cells is called the secondary cancer site. \n\nWhat causes cancer?\nScientists are searching for the answer to what causes cancer. For most cancers though, especially for cancers in young people, we still do not know what causes them. We do know that cancer IS NOT contagious. You cannot catch cancer and cancer does not spread from one person to the next.\n\nRemember, having cancer yourself does not mean that your brothers, sisters, friends, or parents will get cancer. Very, very rarely, cancer can be caused by a mutation in the genes of your DNA that was passed on through your family. Having this mutated gene does not mean that a person will definitely get cancer, but it can increase the risk of developing a cancer.\n\nDo all cancers need treatment?\nAs you now know, cancer is not just one disease. In fact, there are hundreds of different types of cancer and within each type of cancer there can be a lot of variety depending on: \n\u2022\twhere the cancer is growing in the body \n\u2022\thow fast it is growing\n\u2022\thow different the cancer cells are from normal cells \n\u2022\twhether the cancer has spread to another part of the body\n\u2022\thow your body is responding to the cancer \n\nCancer is a life-threatening disease and so most cancers do require treatment. Often they need to be treated as fast as possible.\n\nHow will cancer affect me now?\nYour cancer and its treatment will likely have effects on how your body feels and the way it works. The way you feel about your body might change too. Lots of young people describe feeling a bunch of different emotions all at once:\n\u2022\tShock that cancer is happening to you\n\u2022\tScared about what\u2019s going to happen\n\u2022\tUncertain about what cancer is and what treatment means\n\u2022\tConfused and wondering \u201cWhy me? Why now?\u201d\n\u2022\tWorried about the future, your family, about missing school, your friends, about losing your hair, and about a million other things.\n\nTo be sad, worried, scared, nervous, shocked, lonely or just plain mad is normal. You may feel happy and positive one day and sad and angry the next. No matter what you are feeling, know that you are not the only young person with cancer who feels this way. Just remember that cancer is not your fault and there is no right or wrong way to feel.\n\nBut one thing that doesn\u2019t change is who you are. You are still the same person you were before cancer.\nAlong with your family, your doctors, nurses, social workers, and the rest of the health care team are there to support you. They are trained to look after your body, but they also want to help you with all the other effects of cancer too. This program will talk about many of the effects of cancer and how to deal with them. ";
 	

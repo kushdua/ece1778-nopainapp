@@ -383,14 +383,19 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 				}	
 			}
 			//if(currQuestion==11) 
-			if(currQuestion==13)
+			if(currQuestion==13|| (numsurvey==0 && currQuestion==11))
 			{
 				//Change text for next to get recommendation
 				nextButton.setText(R.string.btnGetRecommendationText);
 			}
 			//else if(currQuestion==12) 
-			else if(currQuestion==14)
+			else if(currQuestion==14 || (numsurvey==0 && currQuestion==12))
 			{
+				
+				if(currQuestion==12 && numsurvey==0) {
+					answers.set(12,Integer.toString(painBar.getProgress()));
+					answers.set(11, choicesSpinner.getSelectedItem().toString());
+				}
 				//Display recommendation
 				nextButton.setVisibility(View.INVISIBLE);
 				Intent intent = new Intent(v.getContext(), Recommendation.class);

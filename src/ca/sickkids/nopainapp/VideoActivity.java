@@ -80,7 +80,8 @@ public class VideoActivity extends Activity {
 //                  videocursor.moveToPosition(position);
 //                  String filename = videocursor.getString(video_column_index); 
                   Intent intent = new Intent(VideoActivity.this, ViewVideo.class);
-                  intent.putExtra("videofilename", items.get(position));
+                  intent.putExtra("videofilename", Environment.getExternalStorageDirectory().getPath()+"/DCIM/"+"NoPainVideos/"+
+                		  items.get(position));
                   startActivity(intent);
             }
       };
@@ -119,7 +120,7 @@ public class VideoActivity extends Activity {
 //.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE);
 //                        videocursor.moveToPosition(position);
 //                        id += " Size(KB):" + videocursor.getString(video_column_index);
-                	  	id=items.get(position) + " Size(KB): " + (sizes.get(position)/(1024*1024));
+                	  	id=items.get(position) + " Size: " + (sizes.get(position)/(1024)) + "KB";
                         tv.setText(id);
                   } else
                         tv = (TextView) convertView;

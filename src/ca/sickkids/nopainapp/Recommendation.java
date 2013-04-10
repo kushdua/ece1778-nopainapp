@@ -42,11 +42,12 @@ public class Recommendation extends ListActivity {
 	public static int[] freq = {1,5,7,3,2,9,4};
 	private static int[] frequpdated = new int[maxsuggestion];
 	private static int[] advice_index = new int[maxsuggestion];
-	private static String[] survey1 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
-	private static String[] survey2 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
-	private static String[] survey3 = {"","","yes","yes","10","20","30","10","","","","","90"}; //medium
-	private static String[] survey4 = {"","","yes","yes","10","20","30","10","","","","","90"}; //high
-	private static String[] survey5 = {"","","yes","yes","10","20","30","10","","","","","90"}; //high
+	//prepopulated data .. such a way that it doesn't affect the recommendation --- just to start up and will be replaced later on
+	private static final String[] survey1 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
+	private static final String[] survey2 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
+	private static final String[] survey3 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
+	private static final String[] survey4 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
+	private static final String[] survey5 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
 
 	private boolean regular_suggestion = false;
 	private enum category {
@@ -218,19 +219,19 @@ public class Recommendation extends ListActivity {
 				{
 					ContentValues values = new ContentValues();
 					values.put("userID", LoginActivity.userID);
-					values.put("q1", SurveyActivity.answers.get(1));
-					values.put("q2", SurveyActivity.answers.get(2));
-					values.put("q3", SurveyActivity.answers.get(3));
-					values.put("q4", SurveyActivity.answers.get(4));
-					values.put("q5", SurveyActivity.answers.get(5));
-					values.put("q6", SurveyActivity.answers.get(6));
-					values.put("q7", SurveyActivity.answers.get(7));
-					values.put("q8", SurveyActivity.answers.get(8));
-					values.put("q9", SurveyActivity.answers.get(9));
-					values.put("q10", SurveyActivity.answers.get(10));
-					values.put("q11", SurveyActivity.answers.get(11));
-					values.put("q12", SurveyActivity.answers.get(12));
-					values.put("q13", SurveyActivity.answers.get(13));
+					values.put("q1", SurveyActivity.answers.get(0));
+					values.put("q2", SurveyActivity.answers.get(1));
+					values.put("q3", SurveyActivity.answers.get(2));
+					values.put("q4", SurveyActivity.answers.get(3));
+					values.put("q5", SurveyActivity.answers.get(4));
+					values.put("q6", SurveyActivity.answers.get(5));
+					values.put("q7", SurveyActivity.answers.get(6));
+					values.put("q8", SurveyActivity.answers.get(7));
+					values.put("q9", SurveyActivity.answers.get(8));
+					values.put("q10", SurveyActivity.answers.get(9));
+					values.put("q11", SurveyActivity.answers.get(10));
+					values.put("q12", SurveyActivity.answers.get(11));
+					values.put("q13", SurveyActivity.answers.get(12));
 					values.put("recommendation", advice);
 					long numRows = db.insertOrThrow("survey", null, values);
 					//long numRows = db.update("survey", values, "userID=?", new String[]{Integer.toString(LoginActivity.userID)});
