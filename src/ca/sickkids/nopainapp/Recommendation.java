@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 
 public class Recommendation extends ListActivity {
-	private static final String[] items={"Learn about pain", "Learn about your disease", "Talk or write about disease",
+	public static final String[] items={"Learn about pain", "Learn about your disease", "Talk or write about disease",
         "Get your mind off it", "Set a pain management goal ",
         "Talk to someone about it ", "Use medications"};
 	
@@ -39,7 +39,7 @@ public class Recommendation extends ListActivity {
 	public static int chosen_advice_index;
 	
 	private static int maxsuggestion = 7;
-	public static int[] freq = {1,5,7,3,2,9,4};
+	public static int[] freq = {1,1,1,1,1,1,1};
 	private static int[] frequpdated = new int[maxsuggestion];
 	private static int[] advice_index = new int[maxsuggestion];
 	//prepopulated data .. such a way that it doesn't affect the recommendation --- just to start up and will be replaced later on
@@ -79,11 +79,11 @@ public class Recommendation extends ListActivity {
 
 		dbHelper = new DBHelper(this, HomeActivity.DB_NAME, null, HomeActivity.DB_VERSION);
 		activity = this;
-		loadLast5Surveys();
+		loadLast5SurveysAndRecommendations();
 		setListAdapter(new RatingAdapter(list));
 	}
 	
-	private void loadLast5Surveys()
+	private void loadLast5SurveysAndRecommendations()
 	{
     	SQLiteDatabase db = dbHelper.getReadableDatabase();
     	//Fail silently
@@ -102,7 +102,7 @@ public class Recommendation extends ListActivity {
 					while(result.moveToNext())
 					{
 						surveyNum++;
-						if(surveyNum==1 && totalCount == 5)
+						if(surveyNum==1 && totalCount >= 1)
 						{
 							survey5[4]=result.getString(0);
 							survey5[5]=result.getString(1);
@@ -110,7 +110,7 @@ public class Recommendation extends ListActivity {
 							survey5[7]=result.getString(3);
 							survey5[12]=result.getString(4);
 						}
-						else if(surveyNum==2 && totalCount >= 4)
+						else if(surveyNum==2 && totalCount >= 2)
 						{
 							survey4[4]=result.getString(0);
 							survey4[5]=result.getString(1);
@@ -126,7 +126,7 @@ public class Recommendation extends ListActivity {
 							survey3[7]=result.getString(3);
 							survey3[12]=result.getString(4);
 						}
-						else if(surveyNum==4 && totalCount >= 2)
+						else if(surveyNum==4 && totalCount >= 4)
 						{
 							survey2[4]=result.getString(0);
 							survey2[5]=result.getString(1);
@@ -134,7 +134,7 @@ public class Recommendation extends ListActivity {
 							survey2[7]=result.getString(3);
 							survey2[12]=result.getString(4);
 						}
-						else if(surveyNum==5 && totalCount >= 1)
+						else if(surveyNum==5 && totalCount == 5)
 						{
 							survey1[4]=result.getString(0);
 							survey1[5]=result.getString(1);
@@ -144,6 +144,29 @@ public class Recommendation extends ListActivity {
 						}
 					}
     			}
+    			result.close();
+    			
+    			//Most recent surveys read first
+    			int pos=0;
+    			String text = "";
+    			int count=0;
+    			int freqLen = Recommendation.freq.length;
+    			Cursor resultRec = db.rawQuery("SELECT text, count FROM recommendation WHERE userID=? ORDER BY id ASC;", args);
+    			while(resultRec.moveToNext())
+    			{
+    				text=resultRec.getString(0);
+    				count=resultRec.getInt(1);
+    				for(int i=0; i<freqLen; i++)
+    				{
+    					if(Recommendation.items[i].compareTo(text)==0)
+    					{
+    						pos=i;
+    						break;
+    					}
+    				}
+    				Recommendation.freq[pos]=count;
+    			}
+    			resultRec.close();
     		}
     		catch(SQLException e)
     		{

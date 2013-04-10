@@ -1,10 +1,13 @@
 package ca.sickkids.nopainapp;
 
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentHashMap;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +40,7 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 	private Button nextButton = null;
 	private ProgressBar surveyProgress = null;
 	private EditText otherTextField = null;
+	DBHelper dbHelper = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +66,7 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 			currQuestion+=2;
 		}*/
 		
-		
+		dbHelper = new DBHelper(this, HomeActivity.DB_NAME, null, HomeActivity.DB_VERSION);
 		saveAnswerAndUpdateQuestion(0, 1);
 	}
 
@@ -347,18 +351,34 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 			prevButton.setVisibility(View.VISIBLE);
 			prevButton.setText(R.string.btnPrevText);
 			
+			SQLiteDatabase db = dbHelper.getWritableDatabase();
+			ContentValues values = new ContentValues();
+			String[] args = {Integer.toString(LoginActivity.userID), Recommendation.items[Recommendation.chosen_advice_index]};
 			if(currQuestion==3 && numsurvey==1) {
 				if(answers.get(currQuestion-2).equalsIgnoreCase("YES")) 
+				{
 					Recommendation.freq[Recommendation.chosen_advice_index]=Recommendation.freq[Recommendation.chosen_advice_index]+1;
+					values.put("count", Recommendation.freq[Recommendation.chosen_advice_index]);
+					db.update("recommendation", values, "userID=? AND text=?", args);
+				}
 				else if (answers.get(currQuestion-2).equalsIgnoreCase("NO"))
+				{
 					if(Recommendation.freq[Recommendation.chosen_advice_index]>2)
+					{
 						Recommendation.freq[Recommendation.chosen_advice_index]=Recommendation.freq[Recommendation.chosen_advice_index]-2;
+						values.put("count", Recommendation.freq[Recommendation.chosen_advice_index]);
+						db.update("recommendation", values, "userID=? AND text=?", args);
+					}
 					else if (Recommendation.freq[Recommendation.chosen_advice_index]==2)
+					{
 						Recommendation.freq[Recommendation.chosen_advice_index]=Recommendation.freq[Recommendation.chosen_advice_index]-1;
+						values.put("count", Recommendation.freq[Recommendation.chosen_advice_index]);
+						db.update("recommendation", values, "userID=? AND text=?", args);
+					}
+				}
 				else {
 					//DO NOTHING
 					//Recommendation.freq[Recommendation.chosen_advice_index]=Recommendation.freq[Recommendation.chosen_advice_index]+1;
-
 				}	
 			}
 
