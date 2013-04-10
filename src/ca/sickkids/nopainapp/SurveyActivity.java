@@ -359,8 +359,7 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 					//DO NOTHING
 					//Recommendation.freq[Recommendation.chosen_advice_index]=Recommendation.freq[Recommendation.chosen_advice_index]+1;
 
-				}
-				
+				}	
 			}
 
 			if(currQuestion==5 || (numsurvey==0 && currQuestion==3)) 
@@ -384,13 +383,13 @@ public class SurveyActivity extends Activity implements OnItemSelectedListener {
 				}	
 			}
 			//if(currQuestion==11) 
-			if(currQuestion==13 || (numsurvey==0 && currQuestion==11))
+			if(currQuestion==13)
 			{
 				//Change text for next to get recommendation
 				nextButton.setText(R.string.btnGetRecommendationText);
 			}
 			//else if(currQuestion==12) 
-			else if(currQuestion==14|| (numsurvey==0 && currQuestion==12))
+			else if(currQuestion==14)
 			{
 				//Display recommendation
 				nextButton.setVisibility(View.INVISIBLE);

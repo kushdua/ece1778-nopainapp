@@ -33,14 +33,14 @@ public class Recommendation extends ListActivity {
 	public static int chosen_advice_index;
 	
 	private static int maxsuggestion = 7;
-	public static int[] freq = {1,1,1,1,2,1,1};
+	public static int[] freq = {1,5,7,3,2,9,4};
 	private static int[] frequpdated = new int[maxsuggestion];
 	private static int[] advice_index = new int[maxsuggestion];
 	private static final String[] survey1 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
 	private static final String[] survey2 = {"","","yes","yes","10","20","30","10","","","","","90"}; //mild
-	private static final String[] survey3 = {"","","yes","yes","50","60","60","65","","","","","50"}; //medium
-	private static final String[] survey4 = {"","","yes","yes","30","90","80","5","","","","","10"}; //high
-	private static final String[] survey5 = {"","","yes","yes","30","90","80","5","","","","","10"}; //high
+	private static final String[] survey3 = {"","","yes","yes","10","20","30","10","","","","","90"}; //medium
+	private static final String[] survey4 = {"","","yes","yes","10","20","30","10","","","","","90"}; //high
+	private static final String[] survey5 = {"","","yes","yes","10","20","30","10","","","","","90"}; //high
 
 	private boolean regular_suggestion = false;
 	private enum category {
@@ -93,6 +93,10 @@ public class Recommendation extends ListActivity {
 			painstatus=category.MODERATE;	
 		}
 		
+    }
+	
+	private void savelastsurvey() {
+
 		//Additional code to save the last survey accordingly
 			survey1[4]=survey2[4];
 			survey1[5]=survey2[5];
@@ -123,7 +127,7 @@ public class Recommendation extends ListActivity {
 			survey5[6]=SurveyActivity.answers.get(6);
 			survey5[7]=SurveyActivity.answers.get(7);
 			survey5[12]=SurveyActivity.answers.get(12);
-    }
+	}
 	
     private void parselastsurveys() {
 		//Before computing the ratings ... find if the suggestion is about doctors approval or not
@@ -267,6 +271,7 @@ class RatingAdapter extends ArrayAdapter<RowModel> {
           	    	 * TODO : Check the position of the row and see what item was chosen
           	    	 * And accordingly put that recommendation in database
           	    	 */
+          	    	savelastsurvey();
           	    	chosen_advice_index=advice_index[position];
             		Toast.makeText(getApplicationContext(), "Thanks for chooosing the recommendation", Toast.LENGTH_SHORT).show();
           	    	finish();
