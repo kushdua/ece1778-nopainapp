@@ -9,18 +9,6 @@
     tools:context=".SocialNetworkActivity" >
 
     <Button
-        android:id="@+id/btnFacebook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="146dp"
-        android:background="@drawable/facebook"
-        android:height="40dp"
-        android:width="40dp"
-        android:onClick="onFacebookClickHandler" />
-
-    <Button
         android:id="@+id/btnTwitter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,5 +19,30 @@
         android:height="40dp"
         android:width="40dp"
         android:onClick="onTwitterClickHandler" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/programMarginMedium"
+        android:layout_marginRight="@dimen/programMarginMedium"
+        android:layout_marginTop="63dp"
+        android:gravity="center_horizontal|center"
+        android:text="Click on the buttons below to open the respective social application and chat with your friends."
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/btnFacebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:background="@drawable/facebook"
+        android:height="40dp"
+        android:onClick="onFacebookClickHandler"
+        android:width="40dp" />
 
 </RelativeLayout>

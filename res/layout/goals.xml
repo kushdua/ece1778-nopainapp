@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RelativeLayout1"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_pattern"
@@ -9,50 +9,83 @@
     android:orientation="vertical"
     tools:context=".GoalsActivity" >
 
-    <TextView
-        android:id="@+id/lblInputGoal"
+    <LinearLayout
+        android:id="@+id/layoutGraph"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lblGoal"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btnGoalFacebook"
+        <LinearLayout
+            android:id="@+id/chart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblPainLevels"
+            android:layout_marginTop="@dimen/programMarginMedium"
+            android:layout_weight=".9"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutTextGoal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtInputGoal"
-        android:layout_below="@+id/txtInputGoal"
-        android:layout_marginTop="45dp"
-        android:background="@drawable/facebook"
-        android:height="40dp"
-        android:onClick="onFacebookShareClickHandler"
-        android:width="40dp" />
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/txtInputGoal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/lblInputGoal"
-        android:layout_below="@+id/lblInputGoal"
-        android:layout_marginTop="14dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:lines="@integer/textMaxLines"
-        android:maxLines="@integer/textMaxLines" >
+        <TextView
+            android:id="@+id/lblInputGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lblGoal"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <requestFocus />
-    </EditText>
+        <EditText
+            android:id="@+id/txtInputGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/lblInputGoal"
+            android:layout_below="@+id/lblInputGoal"
+            android:layout_marginTop="14dp"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:lines="@integer/textMaxLines"
+            android:maxLines="@integer/textMaxLines" >
 
-    <Button
-        android:id="@+id/btnGoalTwitter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnGoalFacebook"
-        android:layout_alignBottom="@+id/btnGoalFacebook"
-        android:layout_alignRight="@+id/txtInputGoal"
-        android:background="@drawable/twitter"
-        android:height="40dp"
-        android:onClick="onTwitterShareClickHandler"
-        android:width="40dp" />
+            <requestFocus />
+        </EditText>
 
-</RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/layoutButtonsShare"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center" >
+
+            <Button
+                android:id="@+id/btnGoalFacebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal|center"
+                android:background="@drawable/facebook"
+                android:height="40dp"
+                android:onClick="onFacebookShareClickHandler"
+                android:width="40dp" />
+
+            <Button
+                android:id="@+id/btnGoalTwitter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/twitter"
+                android:height="40dp"
+                android:onClick="onTwitterShareClickHandler"
+                android:width="40dp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -75,21 +75,22 @@ public class DiseaseInfoActivity extends Activity{
 		//addListenerOnButton();
 		 tv = (TextView) findViewById(R.id.textView1);
 
-		 if(SettingsActivity.disease.compareTo("General Pain")==0)
+		 if(SettingsActivity.disease.compareTo("Juvenile Idiopathic Arthritis (JIA)")==0)
 		 {
-			 tv.setText(pain);
+			 tv.setText(jia);
 		 }
 		 else if(SettingsActivity.disease.compareTo("Cancer")==0)
 		 {
 			 tv.setText(cancer);
 		 }
-		 else if(SettingsActivity.disease.compareTo("Juvenile Idiopathic Arthritis (JIA)")==0)
-		 {
-			 tv.setText(jia);
-		 }
 		 else if(SettingsActivity.disease.compareTo("Sickle Cell Disease (SCD)")==0)
 		 {
 			 tv.setText(scd);
+		 }
+		 else
+		 {
+			 //General Pain default case
+			 tv.setText(pain);
 		 }
 	}
 }
