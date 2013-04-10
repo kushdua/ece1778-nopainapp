@@ -55,7 +55,7 @@ public final class R {
         public static final int btnCalendar=0x7f0b0006;
         public static final int btnClassroom=0x7f0b000c;
         public static final int btnDiseaseInfo=0x7f0b001b;
-        public static final int btnDone=0x7f0b0026;
+        public static final int btnDone=0x7f0b0027;
         public static final int btnExit=0x7f0b001c;
         public static final int btnFacebook=0x7f0b0048;
         public static final int btnGoals=0x7f0b000d;
@@ -65,10 +65,10 @@ public final class R {
         public static final int btnRegister=0x7f0b0033;
         public static final int btnSettings=0x7f0b001a;
         public static final int btnSocialNetwork=0x7f0b0015;
-        public static final int btnText=0x7f0b0029;
+        public static final int btnText=0x7f0b002a;
         public static final int btnTwitter=0x7f0b0049;
-        public static final int btnVideo=0x7f0b0027;
-        public static final int btnView=0x7f0b0028;
+        public static final int btnVideo=0x7f0b0028;
+        public static final int btnView=0x7f0b0029;
         public static final int buttonLoginRegisterContainer=0x7f0b0031;
         public static final int calendar_menu_deleteCalendar=0x7f0b0058;
         public static final int calendar_menu_deleteEvent=0x7f0b0057;
@@ -89,10 +89,10 @@ public final class R {
         public static final int fourthRowContainer=0x7f0b0018;
         public static final int fourthRowLabelContainer=0x7f0b001d;
         public static final int homeBackgroundContainer=0x7f0b0000;
-        public static final int imageView1=0x7f0b002c;
+        public static final int imageView1=0x7f0b002d;
         public static final int journal=0x7f0b000e;
-        public static final int journalGallery=0x7f0b0023;
-        public static final int journalingBackgroundContainer=0x7f0b0024;
+        public static final int journalGallery=0x7f0b0024;
+        public static final int journalingBackgroundContainer=0x7f0b0025;
         public static final int label=0x7f0b0035;
         public static final int lblBarMaximum=0x7f0b0053;
         public static final int lblBarMinimum=0x7f0b0051;
@@ -112,12 +112,12 @@ public final class R {
         public static final int lblSettingsReminders=0x7f0b0040;
         public static final int lblSocial=0x7f0b0017;
         public static final int lblSurvey=0x7f0b0008;
-        public static final int loginBackgroundContainer=0x7f0b002a;
-        public static final int loginLayout=0x7f0b002b;
+        public static final int loginBackgroundContainer=0x7f0b002b;
+        public static final int loginLayout=0x7f0b002c;
         public static final int menu_settings=0x7f0b005b;
         public static final int morningAlarmContainer=0x7f0b0042;
         public static final int morningAlarmTimePicker=0x7f0b0044;
-        public static final int multiAutoCompleteTextView1=0x7f0b0025;
+        public static final int multiAutoCompleteTextView1=0x7f0b0026;
         public static final int painBar=0x7f0b0052;
         public static final int rate=0x7f0b0036;
         public static final int recommendationBackgroundContainer=0x7f0b0034;
@@ -135,7 +135,7 @@ public final class R {
         public static final int surveyBackgroundContainer=0x7f0b004a;
         public static final int surveyProgress=0x7f0b004c;
         public static final int textOtherField=0x7f0b0055;
-        public static final int textView1=0x7f0b002d;
+        public static final int textView1=0x7f0b0023;
         public static final int textView2=0x7f0b002f;
         public static final int thirdRowButtonContainer=0x7f0b0014;
         public static final int thirdRowContainer=0x7f0b0013;
@@ -149,14 +149,15 @@ public final class R {
     public static final class layout {
         public static final int activity_home=0x7f030000;
         public static final int calendar_activity=0x7f030001;
-        public static final int journal_view_videos=0x7f030002;
-        public static final int journaling=0x7f030003;
-        public static final int login_screen=0x7f030004;
-        public static final int recommendation=0x7f030005;
-        public static final int row_view_events=0x7f030006;
-        public static final int settings_activity=0x7f030007;
-        public static final int social_network_activity=0x7f030008;
-        public static final int survey_activity=0x7f030009;
+        public static final int education_mod=0x7f030002;
+        public static final int journal_view_videos=0x7f030003;
+        public static final int journaling=0x7f030004;
+        public static final int login_screen=0x7f030005;
+        public static final int recommendation=0x7f030006;
+        public static final int row_view_events=0x7f030007;
+        public static final int settings_activity=0x7f030008;
+        public static final int social_network_activity=0x7f030009;
+        public static final int survey_activity=0x7f03000a;
     }
     public static final class menu {
         public static final int activity_calendar_menu=0x7f0a0000;
