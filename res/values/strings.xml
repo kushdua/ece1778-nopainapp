@@ -137,4 +137,5 @@
    <string name="calendar_menu_delete_calendar">Delete Calendar</string>
    <string name="lblGoal">Pain management goal:</string>
    <string name="copiedGoalClipboard">Copied goal text to clipboard. Paste to share.</string>
+   <string name="errClassroomNotInYet">Classroom pain management modules not implemented yet. Check back soon!</string>
 </resources>

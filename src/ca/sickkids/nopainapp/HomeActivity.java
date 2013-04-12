@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class HomeActivity extends Activity {
 
@@ -83,6 +84,11 @@ public class HomeActivity extends Activity {
     {
 		Intent intent = new Intent(v.getContext(), SurveyActivity.class);
 		startActivity(intent);
+    }
+    
+    public void onClassroomClickHandler(View v)
+    {
+		Toast.makeText(activity, R.string.errClassroomNotInYet, Toast.LENGTH_SHORT);
     }
     
     public void onSocialNetworkClickHandler(View v)

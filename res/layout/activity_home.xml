@@ -98,7 +98,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.33"
-                    android:background="@drawable/classroom" />
+                    android:background="@drawable/classroom"
+                    android:onClick="onClassroomClickHandler"  />
 
                 <Button
                     android:id="@+id/btnGoals"

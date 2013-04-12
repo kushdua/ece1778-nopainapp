@@ -193,6 +193,7 @@ public final class R {
         public static final int calendar_menu_new_appointment=0x7f060003;
         public static final int calendar_menu_new_survey=0x7f060002;
         public static final int copiedGoalClipboard=0x7f060050;
+        public static final int errClassroomNotInYet=0x7f060051;
         public static final int err_calendar_no_event_selected=0x7f06004d;
         public static final int errorConfirmingPassword=0x7f060038;
         public static final int errorDeleteEvent=0x7f06004a;
