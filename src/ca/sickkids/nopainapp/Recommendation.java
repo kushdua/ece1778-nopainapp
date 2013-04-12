@@ -39,7 +39,7 @@ public class Recommendation extends ListActivity {
 	public static int chosen_advice_index;
 	
 	private static int maxsuggestion = 7;
-	public static int[] freq = {1,1,1,1,1,1,1};
+	public static int[] freq = {1,9,5,6,4,7,2};
 	private static int[] frequpdated = new int[maxsuggestion];
 	private static int[] advice_index = new int[maxsuggestion];
 	//prepopulated data .. such a way that it doesn't affect the recommendation --- just to start up and will be replaced later on
