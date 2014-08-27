@@ -27,40 +27,40 @@ to the nursing discipline, which is interested in pain management, and the wider
 
 Page Description 
 
-1. Log-in 
+1. Log-in :
 User-identification and password allows access to NOpain. Users can register new accounts, providing them their own unique 
 settings, calendar and survey storage.
 
-2. Home
+2. Home :
 Provides direct links to NOpain self-managment functionalities. Credits to course, apper, programmers are displayed in 
 placeholder of potential future SickKids branding.
 
-3. Pain survey and recommendations 
+3. Pain survey and recommendations :
 Pain is self-reported via survey. Based on data entered into the survey, tailored pain management recommendations are given. Pain re-assessment occurs post-initial recommendation. All data are stored locally, and in the future can be transferred to external SickKids databases for storage and evaluation by an AYA’s healthteam.
 
-4. Calendar
+4. Calendar :
 The calendar is integrated with the Google Calendar platform to allow tracking of upcoming pain surveys and clinic visits.
 The calendar displays recurrent surveys at times specified by the user in settings. All entries displayed in NOpain’s 
 calendar event list are visible through the native Calendar app, as NOpain uses the native Calendar Provider libraries. 
 Users may also clear their calendar (i.e., delete all user-set appointments, leaving only twice-daily recurring surveys).
  
-5. Goal-setting
+5. Goal-setting :
 Clinical goals (e.g., walk a block every day this week) can be entered by users.  Goals can be tracked manually over time 
 and discussed using social media. Historical pain ratings can be graphed for review/reflection by AYA. 
  
-6. Journal 
+6. Journal :
 Thoughts, experiences and progress can be recorded in text and/or video format (both stored locally on external phone 
 memory partition). Functionality for display and playback of video journal entries is also present. 
  
-7. Social support 
+7. Social support :
 Twitter and Facebook can be launched by directly from NOpain to allow communication between AYA (and others) about pain 
 and individual progress.
  
-8 Disease education
+8 Disease education :
 Educational materials about pain and an AYA’s painful condition (e.g., cancer) are available for 
 review. The appropriate material is shown based on the underlying pain condition the user indicated in their settings 
 (i.e., General Pain, Cancer, Sickle Cell Disease, Juvenile Idiopathic Arthritis).
  
-9 Settings
+9 Settings :
 AYA can customize/personalize their health condition (used for health education modules) and time of recurring (i.e. daily)
 surveys in NOpain. All settings are linked to the user account, and stored locally in a database.
