@@ -64,3 +64,17 @@ review. The appropriate material is shown based on the underlying pain condition
 9 Settings :
 AYA can customize/personalize their health condition (used for health education modules) and time of recurring (i.e. daily)
 surveys in NOpain. All settings are linked to the user account, and stored locally in a database.
+
+Future Work
+
+1. Polish user-interface. Some undesirable features of the interface should be refined (e.g., spacing of selectable 
+pain management recommendations). To improve the user experience, the interface and functionality (corner cases) 
+should be polished/refined. 
+
+2. User-centred usability testing. User-centred testing is necessary to develop an app that is well-used. Conducting usability testing with AYA would allow us to: (1) change functionalities, (2) refine the design and interface, (3) ensure NOpain is understandable and (4) reveal and address NOpain technical issues. 
+
+3. Effectiveness testing. To be adopted by patients and clinicians on a wide-scale, rigorous testing (i.e., a randomized control trial) is necessary to establish NOpain’s clinical effectiveness. 
+
+4. Integration with hospital databases. Ideally, data generated through the use of NOpain would be integrated with an AYA’s electronic medical record to streamline care and communication across healthteams. However, this poses several changes including better securing of data stored on the phone, as well as potential security audits and verifications.
+
+
