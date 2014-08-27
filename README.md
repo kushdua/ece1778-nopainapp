@@ -56,12 +56,12 @@ memory partition). Functionality for display and playback of video journal entri
 Twitter and Facebook can be launched by directly from NOpain to allow communication between AYA (and others) about pain 
 and individual progress.
  
-8 Disease education :
+8. Disease education :
 Educational materials about pain and an AYA’s painful condition (e.g., cancer) are available for 
 review. The appropriate material is shown based on the underlying pain condition the user indicated in their settings 
 (i.e., General Pain, Cancer, Sickle Cell Disease, Juvenile Idiopathic Arthritis).
  
-9 Settings :
+9. Settings :
 AYA can customize/personalize their health condition (used for health education modules) and time of recurring (i.e. daily)
 surveys in NOpain. All settings are linked to the user account, and stored locally in a database.
 
